@@ -6,7 +6,7 @@ Self-made problem involving LearnCPP chapter 10, "structs"
 Create a program that continually asks for an employee's...
 - First name
 - Last name
-- DOB
+- DOB in MM/DD/YYYY format
 - Position in company
 Until "QUIT" is entered.
 
