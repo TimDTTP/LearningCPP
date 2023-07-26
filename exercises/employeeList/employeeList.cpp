@@ -18,7 +18,7 @@ struct Employee
     std::string lastName{};
     std::string dob{};
     Positions pos{};
-};
+}; 
 
 // function that prints employee attributes
 
