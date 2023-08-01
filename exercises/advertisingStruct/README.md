@@ -1,5 +1,5 @@
 
-# Problem WIP
+# Problem
 
 Problem #1 given from LearnCPP Chapter 10.8
 
