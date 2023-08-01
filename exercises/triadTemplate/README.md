@@ -1,6 +1,8 @@
 
 # Problem
 
+Given by LearnCPP Chapter 10.X
+
 Create a class template named Triad that has 3 members of the same template type. Also create a function template named print that can print a Triad. The following program should compile:
 
 int main()
