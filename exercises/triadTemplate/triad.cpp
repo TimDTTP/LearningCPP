@@ -1,0 +1,36 @@
+#include <iostream>
+
+// template function
+template <typename T>
+struct Triad
+{
+    T first{};
+    T second{};
+    T third{};
+};
+
+// deduction guide
+template <typename T>
+Triad(T, T, T) -> Triad<T>;
+
+// print function for Triad
+template <typename T>
+void print(const Triad<T>& triad)
+{
+    std::cout << "[" << triad.first << ", "
+                     << triad.second << ", "
+                     << triad.third
+                     << "] ";
+}
+
+// int main, Copy and paste
+int main()
+{
+	Triad t1{ 1, 2, 3 }; // note: uses CTAD to deduce template arguments
+	print(t1);
+
+	Triad t2{ 1.2, 3.4, 5.6 }; // note: uses CTAD to deduce template arguments
+	print(t2);
+
+	return 0;
+}
