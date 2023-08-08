@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iterator>
 #include <limits> // for std::numeric_limits
 
 // input loop + clear input buffer
@@ -41,7 +42,10 @@ int findIndex(int input, const int array[9], int size) // pass by value, because
         if (array[i] != input)
             continue;
         else
+        {
             index = i;
+            break;
+        }
     }
     return index;
 }
