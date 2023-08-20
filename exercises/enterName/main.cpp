@@ -43,5 +43,8 @@ int main()
         std::cout << array[i] << '\n';
     }
 
+    // delete array
+    delete[] array;
+
     return 0;
 }
