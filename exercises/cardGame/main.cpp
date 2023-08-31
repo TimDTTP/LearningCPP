@@ -1,5 +1,8 @@
 
+#include <algorithm> // for std::shuffle
 #include <array> // for std::array
+#include <chrono>
+#include <random> // for std::random_device, seed_seq, mt19937
 #include <iostream>
 
 
@@ -120,39 +123,109 @@ void printCard(const Card& card) {
 }
 
 
-// Initializes deck, sorted in order
+// initializes deck
 std::array<Card, 52> createDeck() {
     std::array<Card, 52> deck{};
 
-    // iterate through array
-    for (int iter{0}; auto cardArray : deck) {
-        // temporary card
-        Card temp;
+    // temporary card
+    Card temp;
 
-        // iterate through CardSuit
-        for (int i{ 0 }; i != (static_cast<int>(CardSuit::max_suit)); ++i) {
-            temp.suit = static_cast<CardSuit>(i);
+    int index{ 0 };
 
-            // iterate through CardRank
-            for (int k{ 0 }; k != (static_cast<int>(CardRank::max_rank)); ++k) {
-                temp.rank = static_cast<CardRank>(k);
-            }
+    // iterate through CardSuit
+    for (int i{ 0 }; i != (static_cast<int>(CardSuit::max_suit)); ++i) {
+        temp.suit = static_cast<CardSuit>(i);
+
+        // iterate through CardRank
+        for (int k{ 0 }; k != (static_cast<int>(CardRank::max_rank)); ++k) {
+            temp.rank = static_cast<CardRank>(k);
+
+            // add to deck
+            deck[index] = temp;
+
+            // increment index
+            ++index;
         }
-
-        // add card to index location
-        deck[iter] = temp;
-
-        ++iter;
     }
 
     return deck;
 }
 
 
+// print entire deck
+void printDeck(const std::array<Card, 52>& deck)  {
+    // std::array doesn't decay; retains information on length
+    for (int i{ 0 }; i != std::size(deck); ++i) {
+        printCard(deck[i]);
+    }
+
+    std::cout << '\n';
+}
+
+
+// shuffle deck
+void shuffleDeck(std::array<Card, 52>& deck) {
+    // create PRNG seed
+    std::random_device rd{};
+    std::seed_seq ss{
+        static_cast<std::mt19937::result_type>(std::chrono::steady_clock::now().time_since_epoch().count()),
+        rd(), rd(), rd(), rd(), rd(), rd(), rd(), rd()
+    };
+
+    // implement seed into PRNG
+    std::mt19937 mt{ ss };
+
+    // shuffle deck
+    std::shuffle(deck.begin(), deck.end(), mt);
+}
+
+
+// returns card's value
+int getCardValue(const Card& card) {
+    switch (card.rank) {
+        case CardRank::rank_2 :
+            return 2;
+        case CardRank::rank_3 :
+            return 3;
+        case CardRank::rank_4 :
+            return 4;
+        case CardRank::rank_5 :
+            return 5;
+        case CardRank::rank_6 :
+            return 6;
+        case CardRank::rank_7 :
+            return 7;
+        case CardRank::rank_8 :
+            return 8;
+        case CardRank::rank_9 :
+            return 9;
+        case CardRank::rank_10 :
+        case CardRank::rank_jack :
+        case CardRank::rank_queen :
+        case CardRank::rank_king :
+            return 10;
+        case CardRank::rank_ace:
+            return 11;  
+
+        case CardRank::max_rank:
+            return 0;
+
+        default:
+            return 0;      
+    };
+}
+
+
 int main() {
     std::array<Card, 52> deck{ createDeck() };
 
-    printCard(deck[1]);
+    printDeck(deck);
+
+    shuffleDeck(deck);
+
+    printDeck(deck);
+
+    std::cout << getCardValue(deck[0]) << '\n';
 
     return 0;
 }
