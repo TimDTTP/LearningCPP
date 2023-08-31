@@ -1,7 +1,9 @@
 
+#include <array> // for std::array
 #include <iostream>
 
 
+// all possible card ranks
 enum class CardRank {
     rank_2,
     rank_3,
@@ -21,6 +23,7 @@ enum class CardRank {
 };
 
 
+// all possible card suits
 enum class CardSuit {
     suit_spades,
     suit_clubs,
@@ -31,12 +34,14 @@ enum class CardSuit {
 };
 
 
+// each card
 struct Card {
     CardRank rank{};
     CardSuit suit{};
 };
 
 
+// prints each card with corresponding Char
 void printCard(const Card& card) {
     switch (card.rank) {
         case CardRank::rank_2:
@@ -74,7 +79,18 @@ void printCard(const Card& card) {
             break;
         case CardRank::rank_king:
             std::cout << "K";
-            break;    
+            break;
+        case CardRank::rank_ace:
+            std::cout << "A";
+            break;
+
+        case CardRank::max_rank:
+            std::cout << static_cast<int>(CardRank::max_rank);
+            break;
+
+        default:
+            std::cout << "\nNot an available suit\n";
+            break;
     }
 
     switch (card.suit) {
@@ -90,18 +106,53 @@ void printCard(const Card& card) {
         case CardSuit::suit_hearts:
             std::cout << "H";
             break;
+
+        case CardSuit::max_suit:
+            std::cout << static_cast<int>(CardSuit::max_suit);
+            break;
+
+        default:
+            std::cout << "\nNot an available suit\n";
+            break;
     }
 
     std::cout << ' ';
 }
 
 
-int main() {
-    Card card{};
-    card.rank = CardRank::rank_ace;
-    card.suit = CardSuit::suit_hearts;
+// Initializes deck, sorted in order
+std::array<Card, 52> createDeck() {
+    std::array<Card, 52> deck{};
 
-    printCard(card);
+    // iterate through array
+    for (int iter{0}; auto cardArray : deck) {
+        // temporary card
+        Card temp;
+
+        // iterate through CardSuit
+        for (int i{ 0 }; i != (static_cast<int>(CardSuit::max_suit)); ++i) {
+            temp.suit = static_cast<CardSuit>(i);
+
+            // iterate through CardRank
+            for (int k{ 0 }; k != (static_cast<int>(CardRank::max_rank)); ++k) {
+                temp.rank = static_cast<CardRank>(k);
+            }
+        }
+
+        // add card to index location
+        deck[iter] = temp;
+
+        ++iter;
+    }
+
+    return deck;
+}
+
+
+int main() {
+    std::array<Card, 52> deck{ createDeck() };
+
+    printCard(deck[1]);
 
     return 0;
 }
