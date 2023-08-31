@@ -118,6 +118,7 @@ void printCard(const Card& card) {
 
 
 // create deck
+/*
 std::array<Card, 52> createDeck() {
     std::array<Card, 52> deck{};
 
@@ -144,10 +145,39 @@ std::array<Card, 52> createDeck() {
 
     return deck;
 }
+*/
+
 /* Problem:
 The first loop is constantly repeating the iteration within.
 This is causing only the last iteration to be assigned to the deck.
 */
+
+std::array<Card, 52> createDeck() {
+    std::array<Card, 52> deck{};
+
+    // temporary card
+    Card temp;
+
+    int index{ 0 };
+
+    // iterate through CardSuit
+    for (int i{ 0 }; i != (static_cast<int>(CardSuit::max_suit)); ++i) {
+        temp.suit = static_cast<CardSuit>(i);
+
+        // iterate through CardRank
+        for (int k{ 0 }; k != (static_cast<int>(CardRank::max_rank)); ++k) {
+            temp.rank = static_cast<CardRank>(k);
+
+            // add to deck
+            deck[index] = temp;
+
+            // increment index
+            ++index;
+        }
+    }
+
+    return deck;
+}
 
 int main() {
     std::array<Card, 52> deck{ createDeck() };
