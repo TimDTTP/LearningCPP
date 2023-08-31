@@ -1,8 +1,10 @@
-
+ 
 #include <algorithm> // for std::shuffle
 #include <array> // for std::array
 #include <chrono>
 #include <random> // for std::random_device, seed_seq, mt19937
+#include <string> // for std::string
+#include <vector> // for std::vector
 #include <iostream>
 
 /* Disclaimer:
@@ -220,16 +222,93 @@ int getCardValue(const Card& card) {
 }
 
 
+// print current player's hand, excluding 0's
+void printHand(const std::vector<Card>& hand) {
+    for(auto i : hand) {
+        printCard(i);
+    }
+
+    std::cout << '\n';
+}
+
+
+// banner for blackjack
+void banner() {
+    for (int i{ 0 }; i < 50; ++i) {
+        std::cout << '*';
+    }
+    std::cout << '\n';
+    
+    std::cout << "Welcome to Blackjack!\n";
+
+    for (int i{ 0 }; i < 50; ++i) {
+        std::cout << '*';
+    }
+    std::cout << "\n\n";
+}
+
+
+// spacer for in between blackjack rounds
+void spacer(int spacer) {
+    for (int i{ 0 }; i < spacer; ++i) {
+        std::cout << "---" << '\n';
+    }
+}
+
+
+// hit or stay (blackjack)
+void thePlay(const std::array<Card, 52>& deck, int& index, std::vector<Card> person) {
+    // true = hit, false = stay
+    bool decision;
+
+    // get user input
+    bool inputValid{ false };
+    do {
+        std::string userInput;
+        std::cout << "Would you like to...\n" << "Hit\n" << "\tor\n" << "Stay\n";
+        std::cin >> userInput;
+
+        // clear std::cin
+        if (std::cin) {
+            if (std::cin)
+        }
+
+        if (userInput == "Hit" || userInput == "hit") {
+            inputValid = true;
+            decision = true;
+        }
+        else if (userInput == "Stay" || userInput == "stay") {
+            inputValid = true;
+            decision = false;
+        }
+        else {
+            continue;
+        }
+    }
+    while (std::cin && (inputValid));
+
+    // in scenario of "Hit"
+    if (decision) {
+
+    }
+}
+
+
 // blackjack game
 bool playBlackjack(const std::array<Card, 52> deck) {
-    // each hand
-    std::array<Card, 11> player;
-    std::array<Card, 11> dealer;
+
+    banner();
+
+    // each hand, max amount of cards is 11
+    std::vector<Card> player(2);
+    std::vector<Card> dealer(2);
 
     // index to keep track of current index of shuffled deck
     int index{ 0 };
 
     // deal cards, 2 each
+    std::cout << "Dealing cards..." << '\n';
+    spacer(1);
     for (int i{ 0 }; i < 2; ++i) {
         player[i] = deck[index];
         ++index;
@@ -237,6 +316,21 @@ bool playBlackjack(const std::array<Card, 52> deck) {
         dealer[i] = deck[index];
         ++index;
     }
+
+    // show each player their cards
+    std::cout << "Player's hand: "; 
+    printHand(player);
+
+    std::cout << "Dealer's hand: ";
+    printHand(dealer);
+
+    spacer(1);
+
+    // player's turn
+    std::cout << "Player's turn: \n";
+    thePlay(deck, index, player);
+
+    return true;
 }
 
 
@@ -244,6 +338,8 @@ int main() {
     std::array<Card, 52> deck{ createDeck() };
 
     shuffleDeck(deck);
+
+    playBlackjack(deck);
 
     return 0;
 }
