@@ -3,7 +3,7 @@
 #include <array> // for std::array
 #include <chrono>
 #include <random> // for std::random_device, seed_seq, mt19937
-#include <string> // for std::string
+#include <string_view> // for std::string_view
 #include <vector> // for std::vector
 #include <iostream>
 
@@ -233,13 +233,13 @@ void printHand(const std::vector<Card>& hand) {
 
 
 // banner for blackjack
-void banner() {
+void banner(std::string_view str) {
     for (int i{ 0 }; i < 50; ++i) {
         std::cout << '*';
     }
     std::cout << '\n';
     
-    std::cout << "Welcome to Blackjack!\n";
+    std::cout << str << '\n';
 
     for (int i{ 0 }; i < 50; ++i) {
         std::cout << '*';
@@ -256,40 +256,110 @@ void spacer(int spacer) {
 }
 
 
+// function to handle excess string in std::cin buffer
+void ignoreLine() {
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+
+// verify std::cin success
+void cinCleanup(bool cinSuccess) {
+    if (cinSuccess)
+    {
+        if (std::cin.eof())
+            exit(0);
+
+        std::cin.clear();
+        ignoreLine();
+
+        // error message
+        std::cout << "Invalid input, try again!\n";
+    }
+    else
+        ignoreLine();
+}
+
+
+// get hand total
+int handTotal(const std::vector<Card> hand) {
+    int temp;
+    for (auto i : hand) {
+        temp += getCardValue(i);
+    }
+    
+    return temp;
+}
+
+
 // hit or stay (blackjack)
 void thePlay(const std::array<Card, 52>& deck, int& index, std::vector<Card> person) {
     // true = hit, false = stay
-    bool decision;
+    bool decision{ true };
 
-    // get user input
+    // if user input is valide
     bool inputValid{ false };
-    do {
-        std::string userInput;
-        std::cout << "Would you like to...\n" << "Hit\n" << "\tor\n" << "Stay\n";
-        std::cin >> userInput;
 
-        // clear std::cin
-        if (std::cin) {
-            if (std::cin)
+    // continue to ask, hit or stay
+    while (decision){
+        do {
+            int userInput;
+            std::cout << "Would you like to...\n" << "1) Hit\n" << "2) Stay\n" << "Choice: ";
+            std::cin >> userInput;
+            std::cout << '\n';
+
+            // clear std::cin
+            cinCleanup(!std::cin);
+
+            if (userInput == 1) {
+                inputValid = true;
+                decision = true;
+            }
+            else if (userInput == 2) {
+                inputValid = true;
+                decision = false;
+            }
+            else {
+                std::cout << "Invalid\n";
+                continue;
+            }
+        }
+        while (!inputValid);
+
+        // in scenario of "Hit"
+        if (decision) {
+            // Note: std::vector does NOT decay
+            // Note: std::size will return type, std::size_t
+
+            // add next value to "hand" and increment next card in shuffled deck
+            person.resize((static_cast<int>(std::size(person)) + 1));
+            person[(static_cast<int>(std::size(person)) - 1)] = deck[index];
+
+            std::cout << "Card: ";
+            printCard(deck[index]);
+            std::cout << '\n';
+            
+            std::cout << "Your new hand: ";
+            printHand(person);
+            std::cout << '\n';
+            spacer(1);
+            std::cout << '\n';
+
+            ++index;
         }
 
-        if (userInput == "Hit" || userInput == "hit") {
-            inputValid = true;
-            decision = true;
-        }
-        else if (userInput == "Stay" || userInput == "stay") {
-            inputValid = true;
-            decision = false;
-        }
-        else {
-            continue;
-        }
-    }
-    while (std::cin && (inputValid));
+        // in scenario of "Stay"
+        if (!decision) {
+            // print hand and quit
+            std::cout << "Alright, your hand is: ";
+            printHand(person);
 
-    // in scenario of "Hit"
-    if (decision) {
+            std::cout << '\n';
+            spacer(1);
+            std::cout << '\n';
 
+            std::cout << "Which ends up as a total of ";
+            std::cout << handTotal(person) << "\n\n";
+        }
     }
 }
 
@@ -297,7 +367,8 @@ void thePlay(const std::array<Card, 52>& deck, int& index, std::vector<Card> per
 // blackjack game
 bool playBlackjack(const std::array<Card, 52> deck) {
 
-    banner();
+    std::string_view welcome{ "Welcome to Blackjack!" };
+    banner(welcome);
 
     // each hand, max amount of cards is 11
     std::vector<Card> player(2);
@@ -308,7 +379,6 @@ bool playBlackjack(const std::array<Card, 52> deck) {
 
     // deal cards, 2 each
     std::cout << "Dealing cards..." << '\n';
-    spacer(1);
     for (int i{ 0 }; i < 2; ++i) {
         player[i] = deck[index];
         ++index;
@@ -323,12 +393,22 @@ bool playBlackjack(const std::array<Card, 52> deck) {
 
     std::cout << "Dealer's hand: ";
     printHand(dealer);
-
-    spacer(1);
+    std::cout << '\n';
 
     // player's turn
-    std::cout << "Player's turn: \n";
+    std::string_view playerTurn{ "Player's turn" };
+    banner(playerTurn);
     thePlay(deck, index, player);
+    
+    std::cout << '\n';
+    spacer(1);
+    std::cout << '\n';
+
+    // dealer's turn
+    std::string_view dealerTurn{ "Dealer's turn" };
+    banner(dealerTurn);
+    thePlay(deck, index, dealer);
+
 
     return true;
 }
@@ -339,7 +419,20 @@ int main() {
 
     shuffleDeck(deck);
 
-    playBlackjack(deck);
+    bool winCondition{ playBlackjack(deck) };
+
+    if (winCondition) {
+        std::cout << "You Win!\n";
+    }
+    else {
+        std::cout << "You Lost!\n";
+    }
+    
 
     return 0;
 }
+
+/* Edit:
+- Reformat current deck into banner
+- Fix who wins
+*/
