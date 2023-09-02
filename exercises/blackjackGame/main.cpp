@@ -233,18 +233,11 @@ void printHand(const std::vector<Card>& hand) {
 
 
 // banner for blackjack
-void banner(std::string_view str) {
+void banner() {
     for (int i{ 0 }; i < 50; ++i) {
         std::cout << '*';
     }
     std::cout << '\n';
-    
-    std::cout << str << '\n';
-
-    for (int i{ 0 }; i < 50; ++i) {
-        std::cout << '*';
-    }
-    std::cout << "\n\n";
 }
 
 
@@ -281,8 +274,8 @@ void cinCleanup(bool cinSuccess) {
 
 
 // get hand total
-int handTotal(const std::vector<Card> hand) {
-    int temp;
+int handTotal(const std::vector<Card>& hand) {
+    int temp{ 0 };
     for (auto i : hand) {
         temp += getCardValue(i);
     }
@@ -292,7 +285,7 @@ int handTotal(const std::vector<Card> hand) {
 
 
 // hit or stay (blackjack)
-void thePlay(const std::array<Card, 52>& deck, int& index, std::vector<Card> person) {
+int thePlay(const std::array<Card, 52>& deck, int& index, std::vector<Card> person) {
     // true = hit, false = stay
     bool decision{ true };
 
@@ -301,6 +294,13 @@ void thePlay(const std::array<Card, 52>& deck, int& index, std::vector<Card> per
 
     // continue to ask, hit or stay
     while (decision){
+        // check if current hand is above 21
+        if (handTotal(person) > 21) {
+            std::cout << "**BUSTED**\n\n";
+            return handTotal(person);
+        }
+
+        // client inquiry; hit(continue) stay(exit)
         do {
             int userInput;
             std::cout << "Would you like to...\n" << "1) Hit\n" << "2) Stay\n" << "Choice: ";
@@ -358,34 +358,50 @@ void thePlay(const std::array<Card, 52>& deck, int& index, std::vector<Card> per
             std::cout << '\n';
 
             std::cout << "Which ends up as a total of ";
-            std::cout << handTotal(person) << "\n\n";
+            std::cout << handTotal(person) << '\n'; 
         }
     }
+
+    std::cout << '\n';
+    
+    return handTotal(person);
 }
 
 
 // blackjack game
 bool playBlackjack(const std::array<Card, 52> deck) {
+    // space out for readability
+    for (int i{ 0 }; i < 5; ++i)
+        std::cout << '\n';
 
-    std::string_view welcome{ "Welcome to Blackjack!" };
-    banner(welcome);
+    
+    // welcome message
+    banner();
+    std::cout << "Welcome to Blackjack!\n";
+    banner();
+
 
     // each hand, max amount of cards is 11
     std::vector<Card> player(2);
+    int playerHandTotal;
+
     std::vector<Card> dealer(2);
+    int dealerHandTotal;
+
 
     // index to keep track of current index of shuffled deck
     int index{ 0 };
 
     // deal cards, 2 each
-    std::cout << "Dealing cards..." << '\n';
+    std::cout << "\nDealing cards..." << '\n';
     for (int i{ 0 }; i < 2; ++i) {
         player[i] = deck[index];
         ++index;
 
-        dealer[i] = deck[index];
+        dealer[i] = deck[index]; 
         ++index;
     }
+
 
     // show each player their cards
     std::cout << "Player's hand: "; 
@@ -395,22 +411,35 @@ bool playBlackjack(const std::array<Card, 52> deck) {
     printHand(dealer);
     std::cout << '\n';
 
+
     // player's turn
-    std::string_view playerTurn{ "Player's turn" };
-    banner(playerTurn);
-    thePlay(deck, index, player);
-    
-    std::cout << '\n';
-    spacer(1);
-    std::cout << '\n';
+    banner();
+    std::cout << "Player's turn\n";
+    printHand(player);
+    banner();
+
+    playerHandTotal = thePlay(deck, index, player);
+    if (playerHandTotal > 21)
+        return false;
+
 
     // dealer's turn
-    std::string_view dealerTurn{ "Dealer's turn" };
-    banner(dealerTurn);
-    thePlay(deck, index, dealer);
+    banner();
+    std::cout << "Dealer's turn\n";
+    printHand(dealer);
+    banner();
 
+    dealerHandTotal = thePlay(deck, index, dealer);
+    if (dealerHandTotal > 21)
+        return true;
 
-    return true;
+    // results if both players did NOT bust
+    if (playerHandTotal > dealerHandTotal)
+        return true;
+    else if (playerHandTotal < dealerHandTotal)
+        return false;
+    else // in cases of a tie, player wins
+        return true;
 }
 
 
@@ -421,18 +450,15 @@ int main() {
 
     bool winCondition{ playBlackjack(deck) };
 
+    banner();
     if (winCondition) {
         std::cout << "You Win!\n";
     }
     else {
         std::cout << "You Lost!\n";
     }
+    banner();
     
 
     return 0;
 }
-
-/* Edit:
-- Reformat current deck into banner
-- Fix who wins
-*/
