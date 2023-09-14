@@ -1,7 +1,9 @@
 
+#include <functional>
 #include <iostream>
 #include <limits>
 #include <string>
+using ArithmeticFunction = std::function<int(int, int)>;
 
 
 // assign default values to ASCII code
@@ -120,8 +122,18 @@ int subtract(int value1, int value2) {
 int multiply(int value1, int value2) {
     return (value1 * value2);
 }
-float divide(int value1, int value2) {
+int divide(int value1, int value2) {
     return (value1 / value2);
+}
+
+
+ArithmeticFunction getArithmeticFunction(Operator op) {
+    switch (op) {
+        case Operator::operator_add      : return (&add);
+        case Operator::operator_subtract : return (&subtract);
+        case Operator::operator_multiply : return (&multiply);
+        case Operator::operator_divide   : return (&divide); 
+    }
 }
 
 
@@ -135,6 +147,10 @@ int main() {
     std::cout << "First: " << value1 << '\n';
     std::cout << "Second: " << value2 << '\n';
     std::cout << "Operator: " << static_cast<int>(op) << '\n';
+
+    ArithmeticFunction opFcn{ getArithmeticFunction(op) };
+    std::cout << "Your result is: " << opFcn(value1, value2) << '\n';
+
 
 
     return 0;
