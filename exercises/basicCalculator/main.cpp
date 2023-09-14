@@ -133,6 +133,8 @@ ArithmeticFunction getArithmeticFunction(Operator op) {
         case Operator::operator_subtract : return (&subtract);
         case Operator::operator_multiply : return (&multiply);
         case Operator::operator_divide   : return (&divide); 
+
+        default: std::cout << "error\n";
     }
 }
 
