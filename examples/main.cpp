@@ -1,31 +1,14 @@
 
 #include <iostream>
-#include <string> // for std::string
-
-class Ball {
-private:
-    std::string m_color{};
-    double m_radius{};
-
-public:
-    Ball(std::string userColor, double userRadius)
-        : m_color{ userColor }
-        , m_radius{ userRadius }
-        {
-        }
-
-    void print() {
-        std::cout << "Ball(" << m_color << ", " << m_radius << ")\n";
-    }
-};
+#include <vector>
 
 
 int main() {
-    Ball blue{ "blue", 10.0 };
-    blue.print();
+    std::vector<int> v{ 1, 2, 3, 4, 5 };
 
-    Ball red{ "red", 12.0 };
-    red.print();
+    for (int value : v) {
+        std::cout << value << '\n';
+    }
 
     return 0;
 }
