@@ -1,6 +1,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <stack>
 #include <string>
 
 struct ListNode {
@@ -54,44 +55,60 @@ void print(ListNode* list) {
 
  
 class Solution {
+    LinkedList l3;
+    std::stack<int> stack;
+    bool carryOver{ false };
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        // getValue() -> linked list to reversed int 
-        int added{ getValue(l1) + getValue(l2) };
+        bool statL1{true};
+        bool statL2{true};
+        while (statL1 || statL2) {
+            if (statL1 && statL2) {
+                int add{ (l1->val) + (l2->val) + carryOver };
+                carryOver = false;
+                if (add >= 10) {
+                    carryOver = true;
+                    add -= 10;
+                }
+                stack.push(add);
+                l1 = l1->next;
+                l2 = l2->next;
+            }
 
-        // convert to string
-        std::string sAdded = std::to_string(added);
+            if (statL1 && !statL2) {
+                int add{ (l1->val) + carryOver };
+                carryOver = false;
+                if (add >= 10) {
+                    carryOver = true;
+                    add -= 10;
+                }
+                stack.push(add);
+                l1 = l1->next;
+            }
 
-        // iterate through string and add to linked list
-        LinkedList ll;
-    
-        for (int i{0}; i < static_cast<int>(std::size(sAdded)); ++i) {
-            std::string num{ sAdded[i] };
-            int val{std::stoi(num)};
-            ll.insert(val);
+            if (!statL1 && statL2) {
+                int add{ (l2->val) + carryOver };
+                carryOver = false;
+                if (add >= 10) {
+                    carryOver = true;
+                    add -= 10;
+                }
+                stack.push(add);
+                l2 = l2->next;
+            }
+
+            if (l1 == nullptr) { statL1 = false; }
+            if (l2 == nullptr) { statL2 = false; }
         }
 
-        return ll.getHead();
-    }
+        if (carryOver) { stack.push(1); }
 
-    
-    // return int of linked list + reversed
-    int getValue(ListNode* node) {
-        std::string tempVal;
-
-        while (node != nullptr) {
-            // concatenate via string
-            tempVal += (std::to_string(node->val));
-            node = node->next;
+        while ((stack.empty()) == false) {
+            l3.insert(stack.top());
+            stack.pop();
         }
 
-        // reverse string 
-        std::reverse(std::begin(tempVal), std::end(tempVal));
-
-        // convert to int
-        int answ{std::stoi(tempVal)};
-        
-        return answ;
+        return l3.getHead();
     }
 };
 
@@ -99,16 +116,18 @@ public:
 int main() {
     // [2, 4, 3]
     LinkedList l1;
-    l1.insert(3);
-    l1.insert(4);
     l1.insert(2);
+    l1.insert(4);
+    l1.insert(3);
 
     // [5, 6, 4]
     LinkedList l2;
-    l2.insert(4);
-    l2.insert(6);
     l2.insert(5);
+    l2.insert(6);
+    l2.insert(4);
     
+    print(l1.getHead());
+    print(l2.getHead());
     Solution ans;
     print(ans.addTwoNumbers(l1.getHead(), l2.getHead()));
 

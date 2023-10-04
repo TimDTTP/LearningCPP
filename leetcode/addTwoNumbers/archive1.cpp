@@ -111,11 +111,11 @@ int main() {
     l2.insert(9);
     l2.insert(9);
     l2.insert(9);
-    l2.insert(9);
     l2.insert(1);
     
     Solution ans;
     print(ans.addTwoNumbers(l1.getHead(), l2.getHead()));
+    std::cout << "head is " << l2.getHead()->val << '\n';
 
     return 0;
 }
