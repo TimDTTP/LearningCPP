@@ -1,3 +1,8 @@
+
+# Problem
+
+Question #1 LearnCPP Introduction to Classes
+
 Write a class named Ball. Ball should have two private member variables, one to hold a color (default value: black), and one to hold a radius (default value: 10.0). Add 4 constructors, one to handle each case below:
 
 int main()
