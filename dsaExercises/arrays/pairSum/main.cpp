@@ -5,14 +5,14 @@
 
 struct ValidPair {
     bool pair{};
-    int indexOne{};
-    int indexTwo{};
+    int valOne{};
+    int valTwo{};
 };
 
 void printResult(const ValidPair& result) {
     if (result.pair == true) {
         std::cout << "Valid pair found!\n";
-        std::cout << '[' << result.indexOne << ", " << result.indexTwo << "]\n\n";
+        std::cout << '[' << result.valOne << ", " << result.valTwo << "]\n\n";
     }
     else {
         std::cout << "No valid pair in array\n\n";
@@ -26,8 +26,8 @@ ValidPair nestedLoop(const std::array<int, 5>& arr, int target) {
         for (int k{i + 1}; k <= (arr.size() - 1); ++k) {
             solution.pair = ((arr[i] + arr[k]) == target);
             if (solution.pair) {
-                solution.indexOne = i;
-                solution.indexTwo = k;
+                solution.valOne = arr[i];
+                solution.valTwo = arr[k];
 
                 return solution;
             }
@@ -59,8 +59,8 @@ ValidPair twoPointer(const std::array<int, 5>& arr, int target) {
     solution.pair = ((temp[pointerOne] + temp[pointerTwo]) == target);
 
     if (solution.pair) {
-        solution.indexOne = pointerOne;
-        solution.indexTwo = pointerTwo;
+        solution.valOne = temp[pointerOne];
+        solution.valTwo = temp[pointerTwo];
     }
 
     return solution;
@@ -68,7 +68,7 @@ ValidPair twoPointer(const std::array<int, 5>& arr, int target) {
 
 // approach #3
 ValidPair hashing(const std::array<int, 5>& arr, int target) {
-    
+
 }
 
 int main() {
