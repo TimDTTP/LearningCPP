@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include <array>
+#include <unordered_set>
 
 struct ValidPair {
     bool pair{};
@@ -68,7 +69,19 @@ ValidPair twoPointer(const std::array<int, 5>& arr, int target) {
 
 // approach #3
 ValidPair hashing(const std::array<int, 5>& arr, int target) {
-    
+    // unordered set object
+    std::unordered_set<int> set{};
+
+    // for loop
+    for (int i{0}; i < arr.size(); ++i) {
+        int temp{target - arr[i]};
+
+        // if temp is in set (cause else it will return end())
+        if (set.find(temp) != set.end()) {
+
+        }
+    }
+        // if value != target add to map
 }
 
 int main() {
