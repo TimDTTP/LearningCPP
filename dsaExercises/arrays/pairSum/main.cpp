@@ -5,15 +5,15 @@
 #include <unordered_set>
 
 struct ValidPair {
-    bool pair{};
-    int indexOne{};
-    int indexTwo{};
+    bool pair{false};
+    int valOne{};
+    int valTwo{};
 };
 
 void printResult(const ValidPair& result) {
     if (result.pair == true) {
         std::cout << "Valid pair found!\n";
-        std::cout << '[' << result.indexOne << ", " << result.indexTwo << "]\n\n";
+        std::cout << '[' << result.valOne << ", " << result.valTwo << "]\n\n";
     }
     else {
         std::cout << "No valid pair in array\n\n";
@@ -27,8 +27,8 @@ ValidPair nestedLoop(const std::array<int, 5>& arr, int target) {
         for (int k{i + 1}; k <= (arr.size() - 1); ++k) {
             solution.pair = ((arr[i] + arr[k]) == target);
             if (solution.pair) {
-                solution.indexOne = i;
-                solution.indexTwo = k;
+                solution.valOne = arr[i];
+                solution.valTwo = arr[k];
 
                 return solution;
             }
@@ -60,8 +60,8 @@ ValidPair twoPointer(const std::array<int, 5>& arr, int target) {
     solution.pair = ((temp[pointerOne] + temp[pointerTwo]) == target);
 
     if (solution.pair) {
-        solution.indexOne = pointerOne;
-        solution.indexTwo = pointerTwo;
+        solution.valOne = temp[pointerOne];
+        solution.valTwo = temp[pointerTwo];
     }
 
     return solution;
@@ -69,6 +69,8 @@ ValidPair twoPointer(const std::array<int, 5>& arr, int target) {
 
 // approach #3
 ValidPair hashing(const std::array<int, 5>& arr, int target) {
+    ValidPair solution{};
+
     // unordered set object
     std::unordered_set<int> set{};
 
@@ -77,9 +79,13 @@ ValidPair hashing(const std::array<int, 5>& arr, int target) {
         int temp{target - arr[i]};
 
         // if temp is in set (cause else it will return end())
-        if (set.find(temp) != set.end()) {
-
+        solution.pair = (set.find(temp) != set.end());
+        if (solution.pair) {
+            solution.valOne = arr[i];
+            solution.valTwo = temp;
+            return solution;
         }
+        set.insert(arr[i]);
     }
         // if value != target add to map
 }
@@ -95,6 +101,10 @@ int main() {
     // approach #2
     ValidPair second{twoPointer(arr, target)};
     printResult(second);
+
+    // approach #3
+    ValidPair third{hashing(arr, target)};
+    printResult(third);
 
 
     return 0;
