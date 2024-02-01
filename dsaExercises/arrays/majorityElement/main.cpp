@@ -1,6 +1,14 @@
 
 #include <iostream>
 #include <array>
+#include <unordered_set>
+
+// forward declarations
+int nestedLoop(const std::array<int,8>&, int);
+int binarySearchTree(const std::array<int,8>&, int);
+int mooresAlgo(const std::array<int,8>&, int);
+int hashTable(const std::array<int,8>&, int);
+int sorting(const std::array<int,8>&, int);
 
 // binary search tree implementation
 struct node {
@@ -53,13 +61,6 @@ struct node* insert(struct node* node, int key, int& candidate, int& candidateVa
 void ignoreLine() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
-
-// forward declarations
-int nestedLoop(const std::array<int,8>&, int);
-int binarySearchTree(const std::array<int,8>&, int);
-int mooresAlgo(const std::array<int,8>&, int);
-int hashTable(const std::array<int,8>&, int);
-int sorting(const std::array<int,8>&, int);
 
 // which approach to use
 void chooseApproach(const std::array<int, 8>& arr, int size) {
@@ -159,6 +160,30 @@ int mooresAlgo(const std::array<int, 8>& arr, int size) {
 
         if (vote == 0) {
             candidate = arr[i];
+        }
+    }
+
+    // check if candidate is > (n/2)
+    int countTest{};
+    for (int i{0}; i < size; i++) {
+        if (arr[i] == candidate) {countTest++;}
+    }
+
+    if (countTest <= (size/2)) { return -1; }
+
+    return candidate;
+}
+
+int hashing(const std::array<int, 8>& arr, int size) {
+    std::unordered_set<int, int> hSet{};
+    const int firstCount{1};
+
+    for (int i{0}; i < size; i++) {
+        if (hSet.find(arr[i]) == hSet.end()) {
+            hSet.insert(arr[i], firstCount);
+        }
+        else {
+            // increment value +1 
         }
     }
 }
