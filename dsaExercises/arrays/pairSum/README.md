@@ -24,4 +24,3 @@ Given an array A[] of n numbers and another number x, the task is to check wheth
     - Iterate through array
     - If target - value is in hash map, return
     - Else add value to hash map
-    - If end list, return no valid pair
