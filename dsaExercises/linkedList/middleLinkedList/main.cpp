@@ -31,15 +31,36 @@ int bruteForce(class Node* head) {
 }
 
 int countingValues(class Node* head) {
+    class Node* initialHead{head};
     int counter{};
 
     while (head != NULL) {
-        
+        counter++;
+        head = head->next;
     }
-    return -1;
+
+    for (int i{0}; i < (counter / 2); i++) {
+        initialHead = initialHead->next;
+    }
+
+    return initialHead->data;
 }
 int twoPointers(class Node* head) {
-    return -1;
+    class Node* fastPointer{head};
+
+    while (fastPointer->next != NULL) {
+        head = head->next;
+        
+        for (int i{0}; i < 2; i++) {
+            fastPointer = fastPointer->next;
+
+            if (fastPointer == NULL) {
+                return head->data;
+            }
+        }
+    }
+
+    return head->data;
 }
 
 char userInput() {
