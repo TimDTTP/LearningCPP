@@ -98,13 +98,11 @@ class Node* swapValues(class Node* head) {
         head = head->next;
     }
 
-    head =  head->next;
-
     // swap values
     ptrFirst->data = head->data;
     head->data = temp;
     
-    return head;
+    return ptrFirst;
 }
 
 void solution(class Node* head) {
