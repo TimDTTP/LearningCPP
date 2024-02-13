@@ -65,17 +65,21 @@ public:
             }
             // handle operators
             else {
+                // if stack empty
                 if (opStack.size() == 0) {
                     opStack.push(i);
                 }
+
                 // if ')'; empty stack till '('
                 else if (i == ')') {
                     emptyToParentheses();
                 }
+
                 // if priority > top() || '('; push stack
                 else if (isGreater(i) || i == '(') {
                     opStack.push(i);
                 }
+
                 // if priority < top(); empty stack, push stack
                 else if (!isGreater(i)) {
                     emptyStack();
@@ -88,6 +92,22 @@ public:
         emptyStack();
         
         return solution;
+    }
+
+    std::string preToIn(std::string_view expression) {
+        for (char i{expression.size() - 1}; i >= 0; i--) {
+            std::cout << i << ' ';
+        }
+
+        return solution;
+    }
+
+    std::string preToPost(std::string_view expression) {
+
+    }
+
+    std::string postToPre(std::string_view expression) {
+
     }
 };
 
@@ -116,6 +136,11 @@ void approachSelection(std::string_view expression) {
         case ('A') : {
             std::cout << "The result of approach A:" << std::endl;
             std::cout << "> " << solution.inToPost(expression) << std::endl;
+            break;
+        }
+        case ('B') : {
+            std::cout << "The result of approach B:" << std::endl;
+            std::cout << "> " << solution.preToIn(expression) << std::endl;
         }
     }
 }
