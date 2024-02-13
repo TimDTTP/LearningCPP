@@ -1,7 +1,95 @@
 
 #include <iostream>
+#include <unordered_map>
+#include <stack>
+#include <string>
 
+class fixConversion {
+private:
+    // contains operators
+    std::stack<char> opStack{};
+    
+    // solution return value
+    std::string solution{};
 
+    // dictates priority
+    std::unordered_map<char, int> operators {
+        {'+', 1},
+        {'-', 1},
+        {'*', 2},
+        {'/', 2}
+    };
+
+    // char or operator; assuming ONLY char or operators
+    bool isChar(char i) {
+        int temp{static_cast<int>(i)};
+
+        if ((65 <= temp && temp <= 90) || (97 <= temp && temp <= 122)) {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    bool isGreater(char var) {
+        if (operators[opStack.top()] <= operators[var])
+            return true;
+        else
+            return false;
+    }
+
+    // empty stack if )
+    void emptyToParentheses() {
+        while (opStack.top() != '(') {
+            solution += opStack.top();
+            opStack.pop();
+        }
+        // additional 1 time to pop '('
+        opStack.pop();
+    }
+
+    // empty stack completely
+    void emptyStack() {
+        while (opStack.size() != 0) {
+            solution += opStack.top();
+            opStack.pop();
+        }
+    }
+
+public:
+    std::string inToPost(std::string_view expression) {
+        for (char i : expression) {
+            // handle variables
+            if (isChar(i)) {
+                solution = solution + i;
+            }
+            // handle operators
+            else {
+                if (opStack.size() == 0) {
+                    opStack.push(i);
+                }
+                // if ')'; empty stack till '('
+                else if (i == ')') {
+                    emptyToParentheses();
+                }
+                // if priority > top() || '('; push stack
+                else if (isGreater(i) || i == '(') {
+                    opStack.push(i);
+                }
+                // if priority < top(); empty stack, push stack
+                else if (!isGreater(i)) {
+                    emptyStack();
+                    opStack.push(i);
+                }
+            }
+        }
+
+        // end of string; thus, empty stack
+        emptyStack();
+        
+        return solution;
+    }
+};
 
 char approachInput() {
     std::cout << "Choose which approach to use:" << std::endl
@@ -22,12 +110,19 @@ char approachInput() {
     return selection;
 }
 
-void approachSelection() {
-
+void approachSelection(std::string_view expression) {
+    class fixConversion solution;
+    switch (approachInput()) {
+        case ('A') : {
+            std::cout << "The result of approach A:" << std::endl;
+            std::cout << "> " << solution.inToPost(expression) << std::endl;
+        }
+    }
 }
 
 int main() {
-
+    std::string expressionPrime{"((A+B)-C*(D/E))+F"};
+    approachSelection(expressionPrime);
 
     return 0;
 }
