@@ -4,9 +4,70 @@
 #include <stack>
 #include <string>
 
-class fixConversion {
+class fixConversions;
+char approachInput();
+void approachSelection(std::string_view, int);
+
+int main() {
+    std::string infix{"((A+B)-C*(D/E))+F"};
+    std::string prefix{"*-A/BC-/AKL"};
+
+    std::string expressionPrime{infix};
+
+    approachSelection(expressionPrime, expressionPrime.size());
+
+    return 0;
+}
+
+void approachSelection(std::string_view expression, int size) {
+    class fixConversions solution;
+    switch (approachInput()) {
+        case ('A') : {
+            std::cout << "The result of approach A:" << std::endl;
+            std::cout << "> " << solution.inToPost(expression, size) << std::endl;
+            break;
+        }
+        case ('B') : {
+            std::cout << "The result of approach B:" << std::endl;
+            std::cout << "> " << solution.preToIn(expression, size) << std::endl;
+            break;
+        }
+        case ('C') : {
+            std::cout << "The result of approach C:" << std::endl;
+            std::cout << "> " << solution.preToPost(expression, size) << std::endl;
+            break;
+        }
+        case ('D') : {
+            std::cout << "The result of approach D:" << std::endl;
+            std::cout << "> " << solution.postToPre(expression, size) << std::endl;
+            break;
+        }
+    }
+}
+
+char approachInput() {
+    std::cout << "Choose which approach to use:" << std::endl
+              << "A) Infix to Postfix" << std::endl
+              << "B) Prefix to Infix" << std::endl;
+
+    std::cout << "Enter: ";
+    char selection{};
+    std::cin >> selection;
+
+    if (!std::cin) {
+        if (std::cin.eof())
+            exit(0);
+        std::cin.clear();
+    }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << '\n' << std::endl;
+
+    return selection;
+}
+
+class fixConversions {
 private:
-    // contains operators
+    // operator stack
     std::stack<char> opStack{};
     
     // solution return value
@@ -24,7 +85,7 @@ private:
     bool isChar(char i) {
         int temp{static_cast<int>(i)};
 
-        if ((65 <= temp && temp <= 90) || (97 <= temp && temp <= 122)) {
+        if (('a' <= temp && temp <= 'z') || ('A' <= temp && temp <= 'Z')) {
             return true;
         }
         else
@@ -57,7 +118,7 @@ private:
     }
 
 public:
-    std::string inToPost(std::string_view expression) {
+    std::string inToPost(std::string_view expression, int size) {
         for (char i : expression) {
             // handle variables
             if (isChar(i)) {
@@ -94,60 +155,71 @@ public:
         return solution;
     }
 
-    std::string preToIn(std::string_view expression) {
-        for (char i{expression.size() - 1}; i >= 0; i--) {
-            std::cout << i << ' ';
+    std::string preToIn(std::string_view expression, int size) {
+        std::stack<std::string> sStack{};
+
+        for (int i{size - 1}; i >= 0; i--) {
+            // if char
+            if (isChar(expression[i])){
+                sStack.push(std::string(1, expression[i]));
+            }
+
+            // if operator
+            else {
+                std::string temp{};
+
+                // [operand 1] [operator] [operand 2]
+                temp += '(';
+                temp += sStack.top(); sStack.pop();
+                temp += expression[i];
+                temp += sStack.top(); sStack.pop();
+                temp += ')';
+
+                sStack.push(temp);
+            }
         }
 
-        return solution;
+        return sStack.top();
     }
 
-    std::string preToPost(std::string_view expression) {
 
+    std::string preToPost(std::string_view expression, int size) {
+        std::stack<std::string> sStack{};
+
+        for (int i{size - 1}; i >= 0; i--) {
+            if (isChar(expression[i])) {
+                sStack.push(std::string(1,expression[i]));
+            }
+            else {
+                std::string temp{};
+
+                temp += sStack.top(); sStack.pop();
+                temp += sStack.top(); sStack.pop();
+                temp += expression[i];
+
+                sStack.push(temp);
+            }
+        }
+
+        return sStack.top();
     }
 
-    std::string postToPre(std::string_view expression) {
+    std::string postToPre(std::string_view expression, int size) {
+        std::stack<std::string> sStack{};
 
+        for (int i{size - 1}; i >= 0; i--) {
+            if (isChar(expression[i])) {
+                sStack.push(std::string(1, expression[i]));
+            }
+            else {
+                std::string temp{};
+
+                temp += expression[i];
+                temp += sStack.top(); sStack.pop();
+                temp += sStack.top(); sStack.pop();
+                sStack.push(temp);
+            }
+        }
     }
+
 };
-
-char approachInput() {
-    std::cout << "Choose which approach to use:" << std::endl
-              << "A) Infix to Postfix" << std::endl;
-
-    std::cout << "Enter: ";
-    char selection{};
-    std::cin >> selection;
-
-    if (!std::cin) {
-        if (std::cin.eof())
-            exit(0);
-        std::cin.clear();
-    }
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cout << '\n' << std::endl;
-
-    return selection;
-}
-
-void approachSelection(std::string_view expression) {
-    class fixConversion solution;
-    switch (approachInput()) {
-        case ('A') : {
-            std::cout << "The result of approach A:" << std::endl;
-            std::cout << "> " << solution.inToPost(expression) << std::endl;
-            break;
-        }
-        case ('B') : {
-            std::cout << "The result of approach B:" << std::endl;
-            std::cout << "> " << solution.preToIn(expression) << std::endl;
-        }
-    }
-}
-
-int main() {
-    std::string expressionPrime{"((A+B)-C*(D/E))+F"};
-    approachSelection(expressionPrime);
-
-    return 0;
-}
