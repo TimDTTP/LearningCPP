@@ -4,67 +4,6 @@
 #include <stack>
 #include <string>
 
-class fixConversions;
-char approachInput();
-void approachSelection(std::string_view, int);
-
-int main() {
-    std::string infix{"((A+B)-C*(D/E))+F"};
-    std::string prefix{"*-A/BC-/AKL"};
-
-    std::string expressionPrime{infix};
-
-    approachSelection(expressionPrime, expressionPrime.size());
-
-    return 0;
-}
-
-void approachSelection(std::string_view expression, int size) {
-    class fixConversions solution;
-    switch (approachInput()) {
-        case ('A') : {
-            std::cout << "The result of approach A:" << std::endl;
-            std::cout << "> " << solution.inToPost(expression, size) << std::endl;
-            break;
-        }
-        case ('B') : {
-            std::cout << "The result of approach B:" << std::endl;
-            std::cout << "> " << solution.preToIn(expression, size) << std::endl;
-            break;
-        }
-        case ('C') : {
-            std::cout << "The result of approach C:" << std::endl;
-            std::cout << "> " << solution.preToPost(expression, size) << std::endl;
-            break;
-        }
-        case ('D') : {
-            std::cout << "The result of approach D:" << std::endl;
-            std::cout << "> " << solution.postToPre(expression, size) << std::endl;
-            break;
-        }
-    }
-}
-
-char approachInput() {
-    std::cout << "Choose which approach to use:" << std::endl
-              << "A) Infix to Postfix" << std::endl
-              << "B) Prefix to Infix" << std::endl;
-
-    std::cout << "Enter: ";
-    char selection{};
-    std::cin >> selection;
-
-    if (!std::cin) {
-        if (std::cin.eof())
-            exit(0);
-        std::cin.clear();
-    }
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cout << '\n' << std::endl;
-
-    return selection;
-}
-
 class fixConversions {
 private:
     // operator stack
@@ -220,6 +159,65 @@ public:
                 sStack.push(temp);
             }
         }
+
+        return sStack.top();
     }
 
 };
+
+char approachInput() {
+    std::cout << "Choose which approach to use:" << std::endl
+              << "A) Infix to Postfix" << std::endl
+              << "B) Prefix to Infix" << std::endl;
+
+    std::cout << "Enter: ";
+    char selection{};
+    std::cin >> selection;
+
+    if (!std::cin) {
+        if (std::cin.eof())
+            exit(0);
+        std::cin.clear();
+    }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << '\n' << std::endl;
+
+    return selection;
+}
+
+void approachSelection(std::string_view expression, int size) {
+    fixConversions solution{};
+    switch (approachInput()) {
+        case ('A') : {
+            std::cout << "The result of approach A:" << std::endl;
+            std::cout << "> " << solution.inToPost(expression, size) << std::endl;
+            break;
+        }
+        case ('B') : {
+            std::cout << "The result of approach B:" << std::endl;
+            std::cout << "> " << solution.preToIn(expression, size) << std::endl;
+            break;
+        }
+        case ('C') : {
+            std::cout << "The result of approach C:" << std::endl;
+            std::cout << "> " << solution.preToPost(expression, size) << std::endl;
+            break;
+        }
+        case ('D') : {
+            std::cout << "The result of approach D:" << std::endl;
+            std::cout << "> " << solution.postToPre(expression, size) << std::endl;
+            break;
+        }
+    }
+}
+
+int main() {
+    std::string infix{"((A+B)-C*(D/E))+F"};
+    std::string prefix{"*-A/BC-/AKL"};
+
+    std::string expressionPrime{prefix};
+
+    approachSelection(expressionPrime, expressionPrime.size());
+
+    return 0;
+}
