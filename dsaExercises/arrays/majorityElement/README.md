@@ -26,6 +26,7 @@ Given an array, find the majority element.
         - If next element is same, increment count
         - If not, decrement
             - If count == 0 take new current element as new candidate
+    - Re-iterate to check if frequency > n/2
 
 4. Hash table
     - Create hashmap for key, value pair

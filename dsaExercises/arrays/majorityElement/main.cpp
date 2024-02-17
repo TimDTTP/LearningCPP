@@ -1,13 +1,14 @@
 
 #include <iostream>
+#include <algorithm>
 #include <array>
-#include <unordered_set>
+#include <unordered_map>
 
 // forward declarations
 int nestedLoop(const std::array<int,8>&, int);
 int binarySearchTree(const std::array<int,8>&, int);
 int mooresAlgo(const std::array<int,8>&, int);
-int hashTable(const std::array<int,8>&, int);
+int hashing(const std::array<int,8>&, int);
 int sorting(const std::array<int,8>&, int);
 
 // binary search tree implementation
@@ -104,11 +105,13 @@ void chooseApproach(const std::array<int, 8>& arr, int size) {
             return;
         }
         case ('D') : {
-            std::cout << "Not implemented yet!" << std::endl;
+            std::cout << "The result from approach D!" << std::endl;
+            std::cout << hashing(arr, size) << std::endl;
             return;
         }
         case ('E') : {
-            std::cout << "Not implemented yet!" << std::endl;
+            std::cout << "The result from approach E!" << std::endl;
+            std::cout << sorting(arr, size) << std::endl;
             return;
         }
     }
@@ -175,17 +178,43 @@ int mooresAlgo(const std::array<int, 8>& arr, int size) {
 }
 
 int hashing(const std::array<int, 8>& arr, int size) {
-    std::unordered_set<int, int> hSet{};
-    const int firstCount{1};
+    std::unordered_map<int, int> hSet{};
+    const int initialCount{1};
 
     for (int i{0}; i < size; i++) {
-        if (hSet.find(arr[i]) == hSet.end()) {
-            hSet.insert(arr[i], firstCount);
-        }
-        else {
-            // increment value +1 
+        hSet[arr[i]]++;
+    }
+
+    for (auto i : hSet) {
+        if (i.second > (size / 2)) {
+            return i.first;
         }
     }
+
+    return -1;
+}
+
+int sorting(const std::array<int, 8>& arr, int size) {
+    std::array<int,8> tempArr{arr};
+    std::sort(tempArr.begin(), tempArr.end());
+
+    int current{0};
+    int counter{0};
+    for (auto i : tempArr) {
+        if (i == current) {
+            counter++;
+        }
+        else {
+            current = i;
+            counter = 1;
+        }
+
+        if (counter > (size / 2)) {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 int main() {
