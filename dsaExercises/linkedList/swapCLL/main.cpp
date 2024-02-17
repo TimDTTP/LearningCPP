@@ -1,5 +1,7 @@
 
 #include <iostream>
+#include <limits>
+
 class Node {
 public:
     int data{};
