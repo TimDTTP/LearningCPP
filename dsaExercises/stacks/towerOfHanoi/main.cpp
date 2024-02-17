@@ -1,4 +1,5 @@
 
+#include <cmath>
 #include <iostream>
 #include <stack>
 #include <vector>
@@ -6,7 +7,7 @@
 std::vector<std::stack<int>> tower(3);
 
 int numOfMoves(int n) {
-    return (static_cast<int>(pow(2, n)) - 1);
+    return (static_cast<int>(std::pow(2, n)) - 1);
 }
 
 enum rods {
