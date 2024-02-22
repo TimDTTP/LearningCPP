@@ -7,6 +7,13 @@
 
 class ReverseArray {
 private:
+    void printArray(std::array<int, 7> arr, int size) {
+        for (int i : arr) {
+            std::cout << i << ' ';
+        }
+        std::cout << std::endl;
+    }
+
     // Approach #1
     std::array<int, 7> extra(std::array<int, 7> arr, int size) {
         std::array<int, 7> temp;
@@ -42,34 +49,49 @@ private:
     }
 
     // Approach #4
-    std::array<int, 7> recursion(std::array<int, 7> arr, int size) {
-        int start = 6 - (size - 1);
-        int end = (size - 1);
-
+    void recursion(std::array<int, 7>& arr, int start, int end) {
         if (start >= end)
             return;
+        
         // swap beginning and last
         int temp = arr[start];
         arr[start] = arr[end];
         arr[end] = temp;
         
         // re-call function + 1
-        recursion(arr, size--);
+        recursion(arr, ++start, --end);
     }
+    
+    // Approach #5
+    std::array<int, 7> usingStack(std::array<int, 7> arr, int size) {
+        std::stack<int> tempStack;
+        // push into stack
+        for (int i : arr) {
+            tempStack.push(i);
+        }
 
-    void printArray(std::array<int, 7> arr, int size) {
-    for (int i : arr) {
-        std::cout << i << ' ';
+        // pop and swap
+        for (int i{0}; i < size; ++i) {
+            arr[i] = tempStack.top();
+            tempStack.pop();
+        }
+
+        return arr;
     }
-    std::cout << std::endl;
-}
 
 public:
     void solution(std::array<int, 7> arr, int size) {
         printArray(extra(arr, size), size);
         printArray(swap(arr, size), size);
         printArray(methods(arr, size), size);
-        printArray(recursion(arr, size), size);
+
+        int start = 0;
+        int end = size - 1;
+        std::array<int, 7> temp = arr;
+        recursion(temp, start, end);
+        printArray(temp, size);
+
+        printArray(usingStack(arr, size), size);
     }
 };
 
