@@ -2,6 +2,7 @@
 #include <array>
 #include <algorithm>
 #include <iostream>
+#include <vector>
 
 using intArr7 = std::array<int, 7>;
 
@@ -10,6 +11,14 @@ public:
     // print array
     void printArray(const intArr7& arr) {
         for (const int i : arr) {
+            std::cout << i << ' ';
+        }
+        std::cout << std::endl;
+    }
+
+    // print vector
+    void printVector(std::vector<int> vec) {
+        for (int i : vec) {
             std::cout << i << ' ';
         }
         std::cout << std::endl;
@@ -42,7 +51,21 @@ public:
 
     // Approach: Reversal Algorithm
     void reversal(intArr7 arr, int size) {
-        
+        // potential to perform multiple rotations
+        // this case is only 1 for uniformity
+        int numRotations{1};
+
+        // reverse up to pivot point
+        std::reverse(arr.begin(), arr.end() - numRotations);
+
+        // reverse pivot to end
+        // however, is redundant since we are only rotating 1 time
+        std::reverse(arr.end() - numRotations, arr.end());
+
+        // final reverse for solution
+        std::reverse(arr.begin(), arr.end());
+
+        printArray(arr);
     }
 };
 
@@ -58,6 +81,7 @@ int main() {
     std::cout << "Rotated arrays: " << std::endl;
     cursor.traversal(arr, arr.size());
     cursor.pointer(arr, arr.size());
+    cursor.reversal(arr, arr.size());
 
     return 0;
 }

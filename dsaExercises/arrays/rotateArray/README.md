@@ -18,7 +18,8 @@ Write a program to cyclically rotate an array by 1
     - n = number of rotations
     - Split array into 2 groups
         - One being equal to the number of rotations
+            - Last element for clockwise rotation
+            - First element for counter-clockwise rotations
         - One being the rest
     - Reverse both arrays, independent of each other
     - Append and reverse once more
-    
