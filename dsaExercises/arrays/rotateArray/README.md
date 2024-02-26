@@ -21,5 +21,5 @@ Write a program to cyclically rotate an array by 1
             - Last element for clockwise rotation
             - First element for counter-clockwise rotations
         - One being the rest
-    - Reverse both arrays, independent of each other
+    - Reverse both, independent of each other
     - Append and reverse once more
