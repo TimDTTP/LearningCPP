@@ -6,7 +6,7 @@
 class Solution {
 private:
   // Nested loop approach
-  int nestedLoop(std::array<int, 7> arr) {
+  int nestedLoop(const std::array<int, 7> &arr) {
     int size{arr.size()};
     int maxSoFar{};
     int temp{};
@@ -27,7 +27,19 @@ private:
   }
 
   // Kadanes algorithm approach
+  int kadane(const std::array<int, 7> &arr) {
+    int maxEndingHere{arr[0]};
+    int minEndingHere{arr[0]};
+    int maxSoFar{arr[0]};
 
+    // loop over array
+    for (const int i : arr) {
+      maxEndingHere = std::max(i, maxEndingHere * i, minEndingHere * i);
+      minEndingHere = std::min(i, maxEndingHere * i, minEndingHere * i);
+    }
+
+    return maxSoFar;
+  }
   // Traversal approach
 
 public:
