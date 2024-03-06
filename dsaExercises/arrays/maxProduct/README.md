@@ -7,9 +7,8 @@ Given an array containing both positive and negative integers; find the largest 
 # Approaches
 
 1. Nested for loops (Brute force)
-
 - Loop across array, calculating product of each subarray
-  - If iterated element is a 0
+  - If iterated element is a 0, break out of loop
   - If product is greater than max, max = product
 
 2. Kadane's Algorithm
