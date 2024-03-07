@@ -12,10 +12,14 @@ Given an array containing both positive and negative integers; find the largest 
   - If product is greater than max, max = product
 
 2. Kadane's Algorithm
-   - We track the max and min value after each operation
-     - This is to keep track of upper limit of each end in the chance of another negative number
-   - One variable will keep the max thus far for the lifetime of the function
-   - Return overall max
+  - We track the max and min value after each operation
+    - This is to keep track of upper limit of each end in the chance of another negative number
+    - Max keeps upper limit (non-negative)
+    - Min keeps lower limit (negative) 
+      - This in useful in case of odd number of negative nums
+  - One variable will keep the max thus far for the lifetime of the function
+  - Return overall max
+
 3. Traversal from both ends
   - Traverse twice from both sides
     - Must track from both sides in order due to rejection of last negative number in case of odd
