@@ -23,3 +23,14 @@ arr\[i\] \< arr\[i + 1\] > arr\[i + 2\] \< ... > ... \< ... > ...
      - else, swap
    - If flag == false, ensure element is greater than
      - else, swap
+
+## Analysis
+
+1. Approach 1
+   Because we used std::sort, it is by nature O(n*logn).
+   Time complexity: O(n*logn)
+
+   Spacewise, we could've made it constant space O(1), if we didn't use it to initialize a second array object.
+   However this must be done in order to solve both approaches because arrays in C++ are implicitly passed by reference.
+   O(n) because we initialize a second object with array.
+   Space complexity: O(n)
