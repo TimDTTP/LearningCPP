@@ -34,3 +34,10 @@ arr\[i\] \< arr\[i + 1\] > arr\[i + 2\] \< ... > ... \< ... > ...
    However this must be done in order to solve both approaches because arrays in C++ are implicitly passed by reference.
    O(n) because we initialize a second object with array.
    Space complexity: O(n)
+
+1. Approach 2
+   Only one iteration is made thus...
+   Time Complexity: O(n)
+
+Same argument as in approach 1
+Space complexity: O(n)
