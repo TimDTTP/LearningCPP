@@ -22,10 +22,12 @@ public:
     int M{COL};
 
     // place holder
-    int prev{arr[i + 1][j]};
-    int curr;
+    int curr{};
+    int prev{};
 
     while (true) {
+      int prev{arr[i + 1][j]};
+
       // iterate over first row
       for (int fr{0}; fr < N; fr++) {
         curr = arr[i][j];
