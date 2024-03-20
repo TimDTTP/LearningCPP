@@ -1,4 +1,5 @@
 
+#include <cstdlib>
 #include <iostream>
 #include <regex>
 #include <string>
@@ -15,16 +16,16 @@ private:
 public:
   Length(int feet, int inches) : m_feet{feet}, m_inches{inches} {}
 
-  // overloading operator +
+  // overloading operator
   friend Length operator+(const Length &l1, const Length &l2);
+  friend Length operator-(const Length &l1, const Length &l2);
 
   void printLength() {
     std::cout << m_feet << "\'" << m_inches << "\"" << '\n';
   }
 };
 
-// TODO:
-// add 2 lengths
+// friend function for operator+
 Length operator+(const Length &l1, const Length &l2) {
   int overflow;
 
@@ -40,6 +41,30 @@ Length operator+(const Length &l1, const Length &l2) {
   int feetSum{l1.m_feet + l2.m_feet + overflow};
 
   Length temp{feetSum, inchSum};
+
+  return temp;
+}
+
+// friend function for operator-
+Length operator-(const Length &l1, const Length &l2) {
+  int overflow{0};
+
+  // subtract inches first
+  int inchDiff{l1.m_inches - l2.m_inches};
+  if (inchDiff < 0) {
+    overflow = static_cast<int>(inchDiff / constants::FOOT);
+
+    // to account surpassing limit initially
+    ++overflow;
+  }
+  inchDiff = std::abs(inchDiff);
+
+  inchDiff = constants::FOOT - (inchDiff % constants::FOOT);
+
+  // add feet + 1 if inches > 12
+  int feetDiff{l1.m_feet - l2.m_feet - overflow};
+
+  Length temp{feetDiff, inchDiff};
 
   return temp;
 }
@@ -74,9 +99,13 @@ int main() {
   Length val2{convertLength(i_width)};
 
   Length sum{val1 + val2};
+  Length diff{val1 - val2};
 
   // print sum
   sum.printLength();
+
+  // print diff
+  diff.printLength();
 
   return 0;
 }
