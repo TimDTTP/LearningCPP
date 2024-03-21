@@ -19,6 +19,7 @@ public:
   // overloading operator
   friend Length operator+(const Length &l1, const Length &l2);
   friend Length operator-(const Length &l1, const Length &l2);
+  friend Length operator*(const Length &l1, const int i);
 
   void printLength() {
     std::cout << m_feet << "\'" << m_inches << "\"" << '\n';
@@ -69,6 +70,30 @@ Length operator-(const Length &l1, const Length &l2) {
   return temp;
 }
 
+// friend function for operator *
+Length operator*(const Length &l1, const int i) {
+  int overflow{};
+  int inchProduct{};
+  int feetProduct{};
+
+  // multiply inches first
+  inchProduct = l1.m_inches * i;
+
+  // add to overflow var using floor division
+  // must static_cast to get floor div
+  overflow = static_cast<int>(inchProduct / constants::FOOT);
+
+  // hold onto usable value using modulus
+  inchProduct = inchProduct % constants::FOOT;
+
+  // multiply feet + overflow value
+  feetProduct = (l1.m_feet * i) + overflow;
+
+  Length temp{feetProduct, inchProduct};
+
+  return temp;
+}
+
 Length convertLength(std::string input) {
   int feet{};
   int inches{};
@@ -94,18 +119,24 @@ int main() {
   std::string i_length{"5'4\""};
   std::string i_width{"10'10\""};
 
+  int multiple{4};
+
   // convert to type Length
   Length val1{convertLength(i_length)};
   Length val2{convertLength(i_width)};
 
   Length sum{val1 + val2};
   Length diff{val1 - val2};
+  Length prod{val1 * multiple};
 
   // print sum
   sum.printLength();
 
   // print diff
   diff.printLength();
+
+  // print product
+  prod.printLength();
 
   return 0;
 }
