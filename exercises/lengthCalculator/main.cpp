@@ -20,6 +20,7 @@ public:
   friend Length operator+(const Length &l1, const Length &l2);
   friend Length operator-(const Length &l1, const Length &l2);
   friend Length operator*(const Length &l1, const int i);
+  friend Length operator/(const Length &l1, const int i);
 
   void printLength() {
     std::cout << m_feet << "\'" << m_inches << "\"" << '\n';
@@ -94,6 +95,18 @@ Length operator*(const Length &l1, const int i) {
   return temp;
 }
 
+// friend function for operator/
+Length operator/(const Length &l1, const int i) {
+  // FIX:
+  // disclaimer: Only does floor division, so it rounds down!!
+  int feetDiv{static_cast<int>(l1.m_feet / i)};
+  int inchDiv{static_cast<int>(l1.m_inches / i)};
+
+  Length temp{feetDiv, inchDiv};
+
+  return temp;
+}
+
 Length convertLength(std::string input) {
   int feet{};
   int inches{};
@@ -119,7 +132,7 @@ int main() {
   std::string i_length{"5'4\""};
   std::string i_width{"10'10\""};
 
-  int multiple{4};
+  int multiple{2};
 
   // convert to type Length
   Length val1{convertLength(i_length)};
@@ -128,6 +141,7 @@ int main() {
   Length sum{val1 + val2};
   Length diff{val1 - val2};
   Length prod{val1 * multiple};
+  Length div{val2 / multiple};
 
   // print sum
   sum.printLength();
@@ -137,6 +151,9 @@ int main() {
 
   // print product
   prod.printLength();
+
+  // print div
+  div.printLength();
 
   return 0;
 }
