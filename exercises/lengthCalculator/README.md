@@ -11,6 +11,7 @@ Utilizing operator overloading, create a length calculator using overloading by 
     - Multiply 1 length, 1 integer
     - Simplify measurement using imperial measurements
 - Divide
+    Disclaimer: Will only return floor division
     - Divide 1 length, 1 integer
     - Simplify measurement using imperial measurements
 
