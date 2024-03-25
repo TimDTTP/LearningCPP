@@ -9,8 +9,6 @@ struct Student {
   int points{};
 };
 
-bool isGreater(Student i, Student j) { return (i.points < j.points); }
-
 int main() {
   // array copied from problem
   std::array<Student, 8> arr{{{"Albert", 3},
@@ -22,10 +20,11 @@ int main() {
                               {"Greg", 3},
                               {"Hagrid", 5}}};
 
-  std::string mostPoints{
-      (*std::max_element(arr.begin(), arr.end(), isGreater)).name};
+  const auto best{std::max_element(
+      arr.begin(), arr.end(),
+      [](const auto &i, const auto &j) { return i.points < j.points; })};
 
-  std::cout << mostPoints << " is the best student" << '\n';
+  std::cout << best->name << " is the best student" << '\n';
 
   return 0;
 }
