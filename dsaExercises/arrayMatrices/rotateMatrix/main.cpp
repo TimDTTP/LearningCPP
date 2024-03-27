@@ -5,65 +5,75 @@ const int ROW = 5;
 const int COL = 5;
 
 class Solution {
-private:
-  void printArray(int arr[ROW][COL], int i, int j) {
-    for (int a{0}; a < i; a++) {
-      for (int b{0}; b < j; b++) {
-        std::cout << arr[a][b] << ' ';
+public:
+  void printArray(int arr[ROW][COL]) {
+    for (int a{0}; a < ROW; a++) {
+      for (int b{0}; b < COL; b++) {
+        std::cout << arr[a][b];
+
+        // justified
+        if (arr[a][b] < 10) {
+          std::cout << "  ";
+        } else {
+          std::cout << ' ';
+        }
       }
       std::cout << std::endl;
     }
   }
 
-public:
-  void clockwise(int arr[ROW][COL], int i, int j) {
-    // track upper limit
-    int N{ROW};
-    int M{COL};
-
-    // place holder
-    int curr{};
-    int prev{};
-
-    while (true) {
-      int prev{arr[i + 1][j]};
-
-      // iterate over first row
-      for (int fr{0}; fr < N; fr++) {
-        curr = arr[i][j];
-        arr[i][j] = prev;
-        prev = curr;
-      }
-
-      i++;
-
-      // iterate over last column
-      for (int lc{0}; lc < COL; lc++) {
-        curr = arr[i][lc];
-        arr[i][lc] = prev;
-        prev = curr;
-      }
-
-      M--;
-
-      // iterate over last row REVERSE
-      for (int lr{M - 1}; lr > i; lr--) {
-        curr = arr[lr][j];
-        arr[lr][j] = prev;
-        prev = curr;
-      }
-
-      N--;
-
-      // iterate over first column
-      for (int fc{j}; fc < M; fc++) {
-        curr = arr[fc][j];
-        arr[fc][j] = prev;
-        prev = curr;
-      }
+  void printRow(int arr[ROW][COL], int r) {
+    std::cout << "Row: " << r << '\n';
+    for (int i{0}; i < ROW; ++i) {
+      std::cout << arr[r][i] << ' ';
     }
+    std::cout << '\n';
+  }
 
-    printArray(arr, ROW, COL);
+  void printCol(int arr[ROW][COL], int c) {
+    std::cout << "Column: " << c << '\n';
+    for (int i{0}; i < ROW; ++i) {
+      std::cout << arr[i][c] << '\n';
+    }
+    std::cout << '\n';
+  }
+
+  // rotate clockwise
+  void clockwise(int arr[ROW][COL], int endRow, int endCol) {
+    int beginRow{0};
+    int beginCol{0};
+
+    /*
+     * beginRow - Iterator for row starting at the beginning
+     * endRow - Iterator for row starting at the end
+     * beginCol - Iterator for column starting at the beginning
+     * endCol - Iterator for column starting at the end
+     */
+
+    // placeholder for values
+    int prev, curr;
+
+    while (beginRow < endRow && beginCol < endCol) {
+      if (beginRow + 1 == endRow || beginCol + 1 == endCol) {
+        break;
+      }
+
+      // shift top row right
+      prev = arr[beginRow + 1][beginCol];
+      for (int i{beginCol}; i < endCol; ++i) {
+        curr = arr[beginRow][i];
+        arr[beginRow][i] = prev;
+        prev = curr;
+      }
+
+      // TODO: Left off here
+
+      // shift right column down
+
+      // shift bottom row left
+
+      // shift left column up
+    }
   }
 };
 
@@ -75,7 +85,6 @@ int main() {
                        {21, 22, 23, 24, 25}};
 
   Solution cursor = Solution();
-  cursor.clockwise(arr, 0, 0);
 
   return 0;
 }
