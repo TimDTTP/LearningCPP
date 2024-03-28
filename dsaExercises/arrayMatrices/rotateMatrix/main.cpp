@@ -20,6 +20,7 @@ public:
       }
       std::cout << std::endl;
     }
+    std::cout << '\n';
   }
 
   void printRow(int arr[ROW][COL], int r) {
@@ -60,19 +61,40 @@ public:
 
       // shift top row right
       prev = arr[beginRow + 1][beginCol];
-      for (int i{beginCol}; i < endCol; ++i) {
+      for (int i{beginCol}; i <= endCol; ++i) {
         curr = arr[beginRow][i];
         arr[beginRow][i] = prev;
         prev = curr;
       }
 
-      // TODO: Left off here
+      ++beginRow;
 
       // shift right column down
+      for (int i{beginRow}; i <= endRow; ++i) {
+        curr = arr[i][endCol];
+        arr[i][endCol] = prev;
+        prev = curr;
+      }
+
+      --endCol;
 
       // shift bottom row left
+      for (int i{endCol}; i >= beginCol; --i) {
+        curr = arr[endRow][i];
+        arr[endRow][i] = prev;
+        prev = curr;
+      }
+
+      --endRow;
 
       // shift left column up
+      for (int i{endRow}; i >= beginRow; --i) {
+        curr = arr[i][beginCol];
+        arr[i][beginCol] = prev;
+        prev = curr;
+      }
+
+      ++beginCol;
     }
   }
 };
@@ -85,6 +107,10 @@ int main() {
                        {21, 22, 23, 24, 25}};
 
   Solution cursor = Solution();
+  cursor.printArray(arr);
+
+  cursor.clockwise(arr, ROW - 1, COL - 1);
+  cursor.printArray(arr);
 
   return 0;
 }
