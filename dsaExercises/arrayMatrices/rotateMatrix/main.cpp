@@ -11,13 +11,13 @@
 const int ROW = 5;
 const int COL = 5;
 
+enum class Direction {
+  clockwise,
+  counter_clockwise,
+};
+
 class UserArray {
 private:
-  enum class Direction {
-    clockwise,
-    counter_clockwise,
-  };
-
   // rotate clockwise
   void clockwise(int arr[ROW][COL], int endRow, int endCol) {
     int beginRow{0};
@@ -77,7 +77,65 @@ private:
     }
   }
 
-  void counterClockwise(int arr[ROW][COL], int endRow, int endCol) {}
+  // rotate array counter cw
+  void counterClockwise(int arr[ROW][COL], int endRow, int endCol) {
+    // implement same steps above, except opposite direction
+    int beginRow{0};
+    int beginCol{0};
+
+    /*
+     * beginRow - Iterator for row starting at the beginning
+     * endRow - Iterator for row starting at the end
+     * beginCol - Iterator for column starting at the beginning
+     * endCol - Iterator for column starting at the end
+     */
+
+    // placeholder for values
+    int prev, curr;
+
+    while (beginRow < endRow && beginCol < endCol) {
+      if (beginRow + 1 == endRow || beginCol + 1 == endCol) {
+        break;
+      }
+
+      // shift top row left
+      prev = arr[beginRow + 1][endCol];
+      for (int i{endCol}; i >= beginCol; --i) {
+        curr = arr[beginRow][i];
+        arr[beginRow][i] = prev;
+        prev = curr;
+      }
+
+      ++beginRow;
+
+      // shift left column down
+      for (int i{beginRow}; i <= endRow; ++i) {
+        curr = arr[i][beginCol];
+        arr[i][beginCol] = prev;
+        prev = curr;
+      }
+
+      ++beginCol;
+
+      // shift bottom row right
+      for (int i{beginCol}; i <= endCol; ++i) {
+        curr = arr[endRow][i];
+        arr[endRow][i] = prev;
+        prev = curr;
+      }
+
+      --endRow;
+
+      // shift right column up
+      for (int i{endRow}; i >= beginRow; --i) {
+        curr = arr[i][endCol];
+        arr[i][endCol] = prev;
+        prev = curr;
+      }
+
+      --endCol;
+    }
+  }
 
 public:
   void printArray(int arr[ROW][COL]) {
@@ -97,22 +155,7 @@ public:
     std::cout << '\n';
   }
 
-  void printRow(int arr[ROW][COL], int r) {
-    std::cout << "Row: " << r << '\n';
-    for (int i{0}; i < ROW; ++i) {
-      std::cout << arr[r][i] << ' ';
-    }
-    std::cout << '\n';
-  }
-
-  void printCol(int arr[ROW][COL], int c) {
-    std::cout << "Column: " << c << '\n';
-    for (int i{0}; i < ROW; ++i) {
-      std::cout << arr[i][c] << '\n';
-    }
-    std::cout << '\n';
-  }
-
+  // array rotation interface
   void rotateArray(int arr[ROW][COL], Direction direction) {
     if (direction == Direction::clockwise)
       clockwise(arr, ROW - 1, COL - 1);
@@ -122,6 +165,8 @@ public:
 };
 
 int main() {
+  Direction clockwise{Direction::clockwise};
+  Direction counterClockwise{Direction::counter_clockwise};
   int arr[ROW][COL] = {{1, 2, 3, 4, 5},
                        {6, 7, 8, 9, 10},
                        {11, 12, 13, 14, 15},
@@ -129,6 +174,10 @@ int main() {
                        {21, 22, 23, 24, 25}};
 
   UserArray matrixOperation = UserArray();
+
+  matrixOperation.printArray(arr);
+
+  matrixOperation.rotateArray(arr, counterClockwise);
   matrixOperation.printArray(arr);
 
   return 0;
