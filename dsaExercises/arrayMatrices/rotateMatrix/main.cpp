@@ -1,43 +1,22 @@
 
 #include <iostream>
 
+/*
+ * Note: It is mildly infuriating that you cannot initialize a c-style array
+ *  with another c-style array
+ * Hence, arr is not init as a member variable and is used detachly from the
+ *  class function
+ */
+
 const int ROW = 5;
 const int COL = 5;
 
-class Solution {
-public:
-  void printArray(int arr[ROW][COL]) {
-    for (int a{0}; a < ROW; a++) {
-      for (int b{0}; b < COL; b++) {
-        std::cout << arr[a][b];
-
-        // justified
-        if (arr[a][b] < 10) {
-          std::cout << "  ";
-        } else {
-          std::cout << ' ';
-        }
-      }
-      std::cout << std::endl;
-    }
-    std::cout << '\n';
-  }
-
-  void printRow(int arr[ROW][COL], int r) {
-    std::cout << "Row: " << r << '\n';
-    for (int i{0}; i < ROW; ++i) {
-      std::cout << arr[r][i] << ' ';
-    }
-    std::cout << '\n';
-  }
-
-  void printCol(int arr[ROW][COL], int c) {
-    std::cout << "Column: " << c << '\n';
-    for (int i{0}; i < ROW; ++i) {
-      std::cout << arr[i][c] << '\n';
-    }
-    std::cout << '\n';
-  }
+class UserArray {
+private:
+  enum class Direction {
+    clockwise,
+    counter_clockwise,
+  };
 
   // rotate clockwise
   void clockwise(int arr[ROW][COL], int endRow, int endCol) {
@@ -97,6 +76,49 @@ public:
       ++beginCol;
     }
   }
+
+  void counterClockwise(int arr[ROW][COL], int endRow, int endCol) {}
+
+public:
+  void printArray(int arr[ROW][COL]) {
+    for (int a{0}; a < ROW; a++) {
+      for (int b{0}; b < COL; b++) {
+        std::cout << arr[a][b];
+
+        // justified
+        if (arr[a][b] < 10) {
+          std::cout << "  ";
+        } else {
+          std::cout << ' ';
+        }
+      }
+      std::cout << std::endl;
+    }
+    std::cout << '\n';
+  }
+
+  void printRow(int arr[ROW][COL], int r) {
+    std::cout << "Row: " << r << '\n';
+    for (int i{0}; i < ROW; ++i) {
+      std::cout << arr[r][i] << ' ';
+    }
+    std::cout << '\n';
+  }
+
+  void printCol(int arr[ROW][COL], int c) {
+    std::cout << "Column: " << c << '\n';
+    for (int i{0}; i < ROW; ++i) {
+      std::cout << arr[i][c] << '\n';
+    }
+    std::cout << '\n';
+  }
+
+  void rotateArray(int arr[ROW][COL], Direction direction) {
+    if (direction == Direction::clockwise)
+      clockwise(arr, ROW - 1, COL - 1);
+    else if (direction == Direction::counter_clockwise)
+      counterClockwise(arr, ROW - 1, COL - 1);
+  }
 };
 
 int main() {
@@ -106,11 +128,8 @@ int main() {
                        {16, 17, 18, 19, 20},
                        {21, 22, 23, 24, 25}};
 
-  Solution cursor = Solution();
-  cursor.printArray(arr);
-
-  cursor.clockwise(arr, ROW - 1, COL - 1);
-  cursor.printArray(arr);
+  UserArray matrixOperation = UserArray();
+  matrixOperation.printArray(arr);
 
   return 0;
 }
