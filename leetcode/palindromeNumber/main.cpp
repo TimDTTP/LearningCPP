@@ -1,7 +1,7 @@
 
-#include <ios>
 #include <iostream>
 #include <stack>
+#include <vector>
 
 // function to print stack
 void printStack(std::stack<int> uStack) {
@@ -29,6 +29,9 @@ public:
     std::stack<int> stackCompare{};
 
     int numCount{};
+
+    if (x < 0)
+      return false;
 
     // push values into stack
     while (x > 0) {
@@ -69,6 +72,12 @@ public:
   bool isPalindrome2(int x) {
     std::vector<int> numVector{};
 
+    if (x < 0)
+      return false;
+
+    if (x == 0)
+      return true;
+
     // push into vector
     while (x > 0) {
       int digit{x % 10};
@@ -87,7 +96,7 @@ public:
       }
       ++pointerA;
       --pointerB;
-    } while (pointerA + 2 < pointerB);
+    } while (pointerA + 1 < pointerB + 1);
 
     // if fall through
     return true;
@@ -95,7 +104,7 @@ public:
 };
 
 int main() {
-  int val{12344321};
+  int val{1000030001};
 
   Solution cursor = Solution();
   std::cout << std::boolalpha;
