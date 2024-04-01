@@ -64,14 +64,44 @@ public:
 
     return true;
   }
+
+  // 2 pointer approach
+  bool isPalindrome2(int x) {
+    std::vector<int> numVector{};
+
+    // push into vector
+    while (x > 0) {
+      int digit{x % 10};
+      x /= 10;
+      numVector.push_back(digit);
+    }
+
+    // pointers
+    int pointerA{0};
+    int pointerB{static_cast<int>(numVector.size()) - 1};
+
+    // increment a, decrement b till they meet in middle
+    do {
+      if (numVector[pointerA] != numVector[pointerB]) {
+        return false;
+      }
+      ++pointerA;
+      --pointerB;
+    } while (pointerA + 2 < pointerB);
+
+    // if fall through
+    return true;
+  }
 };
 
 int main() {
-  int val{14141};
+  int val{12344321};
 
   Solution cursor = Solution();
   std::cout << std::boolalpha;
   std::cout << (cursor.isPalindrome(val)) << '\n';
+
+  std::cout << (cursor.isPalindrome2(val)) << '\n';
 
   return 0;
 }
