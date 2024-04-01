@@ -101,6 +101,38 @@ public:
     // if fall through
     return true;
   }
+
+  // solutions found online
+  bool isPalindrome3(int x) {
+    int reverse{};
+    int temp{x};
+
+    if (x < 0)
+      return false;
+
+    while (temp > 0) {
+      int digit{x % 10};
+      reverse = reverse * 10 + digit;
+      temp /= 10;
+    }
+
+    return (x == reverse);
+  }
+
+  // 2nd solution found online, except only checks half of numbers
+  bool isPalindrome4(int x) {
+    int reverse{};
+
+    if (x < 0)
+      return false;
+
+    while (x > reverse) {
+      int digit{x % 10};
+      reverse = reverse * 10 + digit;
+      x /= 10;
+    }
+    return (x == reverse) || (x == reverse / 10);
+  }
 };
 
 int main() {
@@ -111,6 +143,10 @@ int main() {
   std::cout << (cursor.isPalindrome(val)) << '\n';
 
   std::cout << (cursor.isPalindrome2(val)) << '\n';
+
+  std::cout << (cursor.isPalindrome3(val)) << '\n';
+
+  std::cout << (cursor.isPalindrome4(val)) << '\n';
 
   return 0;
 }
