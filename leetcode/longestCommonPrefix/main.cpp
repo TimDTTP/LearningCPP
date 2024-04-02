@@ -50,11 +50,17 @@ public:
     for (int i{1}; i < strs.size(); ++i) {
       unsigned long maxLength{std::min(result.length(), strs[i].length())};
 
+      if (strs[i].empty())
+        return "";
+
       // loop through word
       for (int j{0}; j < maxLength; ++j) {
+        if (result.length() > strs[i].length())
+          result.erase(strs[i].length(), result.size());
+
         if (result[j] != strs[i][j]) {
           // delete rest of result
-          result.erase(result.begin() + j, result.end());
+          result.erase(0 + j, result.size());
           break;
         }
       }
@@ -65,16 +71,16 @@ public:
 };
 
 int main() {
-  std::vector<std::string> sample{"dog", "racecar", "car"};
+  std::vector<std::string> sample{"ca", "a"};
 
   SolutionA approachA;
   std::cout << "Approach A" << '\n';
-  std::cout << approachA.longestCommonPrefix(sample) << '\n';
+  std::cout << "\"" << approachA.longestCommonPrefix(sample) << "\"" << '\n';
   std::cout << '\n';
 
   SolutionB approachB;
   std::cout << "Approach B" << '\n';
-  std::cout << approachB.longestCommonPrefix(sample) << '\n';
+  std::cout << "\"" << approachB.longestCommonPrefix(sample) << "\"" << '\n';
   std::cout << '\n';
 
   return 0;
