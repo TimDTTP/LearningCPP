@@ -1,6 +1,5 @@
 
 #include <iostream>
-#include <map>
 #include <string>
 #include <vector>
 
@@ -41,17 +40,42 @@ public:
   }
 };
 
-// map approach
+// elimination approach
 class SolutionB {
 public:
-  std::string longestCommonPrefix(std::vector<std::string> strs) {}
-}
+  std::string longestCommonPrefix(std::vector<std::string> strs) {
+    std::string result{strs[0]};
+
+    // loop through vector
+    for (int i{1}; i < strs.size(); ++i) {
+      unsigned long maxLength{std::min(result.length(), strs[i].length())};
+
+      // loop through word
+      for (int j{0}; j < maxLength; ++j) {
+        if (result[j] != strs[i][j]) {
+          // delete rest of result
+          result.erase(result.begin() + j, result.end());
+          break;
+        }
+      }
+    }
+
+    return result;
+  }
+};
 
 int main() {
-  std::vector<std::string> sample{"fight", "figggg", "fign"};
+  std::vector<std::string> sample{"dog", "racecar", "car"};
 
   SolutionA approachA;
+  std::cout << "Approach A" << '\n';
   std::cout << approachA.longestCommonPrefix(sample) << '\n';
+  std::cout << '\n';
+
+  SolutionB approachB;
+  std::cout << "Approach B" << '\n';
+  std::cout << approachB.longestCommonPrefix(sample) << '\n';
+  std::cout << '\n';
 
   return 0;
 }
