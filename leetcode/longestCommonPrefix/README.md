@@ -26,3 +26,7 @@ A solution is to sort smallest to largest word.
 2. Iterate through list of words
 3. For each letter that does not match, remove from benchmark
 4. Will narrow down until it fits desired result
+
+## Online Solutions
+Online solution yielded similar to some approaches. 
+Overall, not much more performant nor insightful to change.
