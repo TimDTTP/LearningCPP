@@ -2,7 +2,7 @@
 # Problem
 Given an array matrix, rotate the array
 
-[Link:]()
+[Link:](https://www.geeksforgeeks.org/rotate-matrix-elements/)
 
 ## Approaches
 1. Clockwise
