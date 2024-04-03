@@ -1,10 +1,32 @@
 
 #include <iostream>
+#include <queue>
 #include <stack>
 #include <string>
 #include <unordered_map>
 
 class Solution {
+private:
+  void printStack(std::stack<char> uStack) {
+    std::cout << "Printing stack: " << '\n';
+
+    while (!uStack.empty()) {
+      std::cout << uStack.top() << '\n';
+      uStack.pop();
+    }
+    std::cout << '\n';
+  }
+
+  void printQueue(std::queue<char> uQueue) {
+    std::cout << "Printing queue: " << '\n';
+
+    while (!uQueue.empty()) {
+      std::cout << uQueue.front() << '\n';
+      uQueue.pop();
+    }
+    std::cout << '\n';
+  }
+
 public:
   bool const isValid(std::string s) {
     std::unordered_map<char, char> bracketPair{
@@ -15,17 +37,9 @@ public:
 
     std::stack<char> open{};
 
-    // function to find key value
-    auto findKey{[](std::unordered_map<char, char> map, char lookUp) {
-      if (map.find(lookUp) == map.end())
-        return false;
-      else
-        return true;
-    }};
-
     // while loop
     for (char bracket : s) {
-      bool isOpen{findKey(bracketPair, bracket)};
+      bool isOpen{bracketPair.find(bracket) != bracketPair.end()};
 
       if (isOpen) {
         open.push(bracket);
@@ -44,6 +58,8 @@ public:
 
     return true;
   }
+
+  bool const isValidB(std::string s) {}
 };
 
 int main() {
@@ -51,7 +67,7 @@ int main() {
 
   Solution cursor = Solution();
   std::cout << std::boolalpha;
-  std::cout << cursor.isValid(s) << '\n';
+  std::cout << cursor.isValidB(s) << '\n';
 
   return 0;
 }
