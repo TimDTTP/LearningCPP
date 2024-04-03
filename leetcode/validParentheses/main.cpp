@@ -58,8 +58,6 @@ public:
 
     return true;
   }
-
-  bool const isValidB(std::string s) {}
 };
 
 int main() {
@@ -67,7 +65,7 @@ int main() {
 
   Solution cursor = Solution();
   std::cout << std::boolalpha;
-  std::cout << cursor.isValidB(s) << '\n';
+  std::cout << cursor.isValid(s) << '\n';
 
   return 0;
 }

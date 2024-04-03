@@ -16,7 +16,7 @@ Open brackets must be closed in the respective order
 3. If "closing" bracket, if not top of stack, return false
     - Violates 2 qualifier
 
-- 2 pointer
+- 2 pointer (FLAWED)
 1. One pointer at the beginning of string
 2. Second pointer at end of string
 3. Check if they match as they move towards the middle
