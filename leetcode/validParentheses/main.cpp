@@ -6,7 +6,7 @@
 
 class Solution {
 public:
-  bool isValid(std::string s) {
+  bool const isValid(std::string s) {
     std::unordered_map<char, char> bracketPair{
         {'(', ')'},
         {'[', ']'},
@@ -25,12 +25,15 @@ public:
 
     // while loop
     for (char bracket : s) {
-      if (findKey(bracketPair, bracket)) {
+      bool isOpen{findKey(bracketPair, bracket)};
+
+      if (isOpen) {
         open.push(bracket);
         continue;
-      } else if (bracketPair[open.top()] != bracket) {
+      } else if ((open.empty() && !isOpen) ||
+                 (bracketPair[open.top()] != bracket)) {
         return false;
-      } else if (bracketPair[open.top()] == bracket) {
+      } else {
         open.pop();
       }
     }
@@ -44,7 +47,7 @@ public:
 };
 
 int main() {
-  std::string s{"(){[]]}"};
+  std::string s{"(){[]}"};
 
   Solution cursor = Solution();
   std::cout << std::boolalpha;
