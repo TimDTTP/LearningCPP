@@ -10,3 +10,7 @@ Return 1 sorted linked list which combines the value of both lists
 - Sorted in non-decreasing order
 
 ## Approach
+- Add to another list
+1. Compare values
+2. Init node and add to result list
+O(n) space and time
