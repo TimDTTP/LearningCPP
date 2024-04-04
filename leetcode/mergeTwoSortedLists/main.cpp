@@ -1,5 +1,5 @@
 
-#define NULL 0
+#include <iostream>
 #include <vector>
 
 // Definition for singly-linked list.
@@ -12,48 +12,53 @@ struct ListNode {
 };
 
 // create linked list for testing purposes
-ListNode *list(std::vector<int> nums) {
-  ListNode *temp;
+void insert(ListNode **head, int num) {
+  ListNode *temp = new ListNode;
+  ListNode *ptr;
 
-  for (int i : nums) {
-    // if empty make val head
-    // add onto value
+  temp->val = num;
+  temp->next = NULL;
+
+  if (*head == NULL)
+    *head = temp;
+  else {
+    ptr = *head;
+    while (ptr->next != NULL)
+      ptr = ptr->next;
+    ptr->next = temp;
   }
+}
+
+ListNode *vectorToList(std::vector<int> vec) {
+  ListNode *head = NULL;
+  for (int num : vec) {
+    insert(&head, num);
+  }
+
+  return head;
+}
+
+// print linked list
+void printList(ListNode *list) {
+  std::cout << "Printed list: " << '\n';
+  while (list != NULL) {
+    std::cout << list->val << '\n';
+    list = list->next;
+  }
+  std::cout << '\n';
 }
 
 class Solution {
 public:
-  ListNode *mergeTwoLists(ListNode *list1, ListNode *list2) {
-    ListNode *master{};
-
-    do {
-
-    } while ((list1->next != NULL) && (list2->next != NULL));
-
-    return list1;
-  }
+  ListNode *mergeTwoLists(ListNode *list1, ListNode *list2) { return list1; }
 };
 
 int main() {
-  struct ListNode *list1;
-  struct ListNode *a1 = NULL;
-  struct ListNode *a2 = NULL;
-  list1->val = 1;
-  a1->val = 2;
-  a2->val = 4;
-  list1->next = a1;
-  a1->next = a2;
-  a2->next = NULL;
+  std::vector<int> a{1, 2, 4};
+  std::vector<int> b{1, 3, 4};
 
-  struct ListNode *list2;
-  struct ListNode *b1 = NULL;
-  struct ListNode *b2 = NULL;
-  list2->val = 1;
-  b1->val = 3;
-  b2->val = 4;
-  list2->next = b1;
-  b1->next = b2;
-  b2->next = NULL;
+  ListNode *list1{vectorToList(a)};
+  ListNode *list2{vectorToList(b)};
 
   return 0;
 }
