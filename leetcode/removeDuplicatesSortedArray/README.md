@@ -17,3 +17,10 @@ Return
 2. Int start tracks beginning of unique char
 3. If next num increase, delete repeating numbers and reset index value to start of unique value
 4. At the end delete duplicates once more and return vector
+
+## Errors
+1. Heap buffer overflow
+nums = [1];
+
+Solution: Instead of checking next value, check previous value
+
