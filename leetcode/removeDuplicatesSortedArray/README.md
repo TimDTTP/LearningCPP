@@ -12,11 +12,8 @@ Return
 - Array 'nums' are sorted in a non-decreasing order
 
 ## Approach
-- For loop through array
-- If i < i + 1
-    - Erase all duplicates
-    - nums.erase(nums.begin() + (start + 1), nums.begin() + i)
-    - Hold onto beginning of unique value
-    - start = i
-- If !(i < i + 1)
-    - Continue
+- Traversal
+1. While loop with 'i' as iterator and index marker
+2. Int start tracks beginning of unique char
+3. If next num increase, delete repeating numbers and reset index value to start of unique value
+4. At the end delete duplicates once more and return vector
