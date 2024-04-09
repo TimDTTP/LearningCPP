@@ -51,17 +51,11 @@ public:
 
 class Solution {
 private:
-  void addRemaining(ListNode *l1, ListNode *l2, bool &carryOver) {
-    l1->val += carryOver;
-    carryOver = false;
-    if (l1->val >= 10)
-      carryOver = true;
-  }
-
 public:
   ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
     ListNode *result = l1;
     bool carryOver{false};
+    Util fcn = Util();
 
     while (l1 && l2) {
       int sum{l1->val + l2->val + carryOver};
@@ -77,20 +71,38 @@ public:
     }
 
     // if not empty yet
-    while (l1) {
-      addRemaining(l1, l2, carryOver);
-    }
-
-    while (l2) {
+    if (l2) {
+      l1 = result;
+      while (l1->next != NULL)
+        l1 = l1->next;
       l1->next = l2;
       l1 = l1->next;
-      addRemaining(l1, l2, carryOver);
+    }
+
+    if (l1) {
+      while (l1 != NULL) {
+        int sum{l1->val + carryOver};
+        carryOver = false;
+
+        if (sum >= 10) {
+          carryOver = true;
+        }
+
+        l1->val = sum % 10;
+
+        l1 = l1->next;
+      }
     }
 
     // if surpasses number of digits, add another node
     if (carryOver) {
-      ListNode temp{1};
-      l1->next = &temp;
+      ListNode *temp;
+      temp->val = 1;
+
+      l1 = result;
+      while (l1->next != NULL)
+        l1 = l1->next;
+      l1->next = temp;
     }
 
     return result;
@@ -98,18 +110,20 @@ public:
 };
 
 int main() {
-  int val1{123};
-  int val2{456};
+  int val1{9999999};
+  int val2{9999};
   // expected solution 579
 
   Util listFcn = Util();
 
   ListNode *list1{listFcn.list(val1)};
   ListNode *list2{listFcn.list(val2)};
+  ListNode list3{0};
+  ListNode list4{0};
 
   Solution ans = Solution();
 
-  ListNode *solution{ans.addTwoNumbers(list1, list2)};
+  ListNode *solution{ans.addTwoNumbers(list2, list1)};
   listFcn.printList(solution);
 
   return 0;
