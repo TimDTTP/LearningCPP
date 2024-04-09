@@ -107,6 +107,35 @@ public:
   }
 };
 
+class OnlineSolution {
+  ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
+    ListNode *dummyHead = new ListNode(0);
+    ListNode *dummyTail = dummyHead;
+    bool carry{false};
+
+    while (l1 != nullptr || l2 != nullptr || carry) {
+      int digit1 = (l1 != nullptr) ? l1->val : 0;
+      int digit2 = (l2 != nullptr) ? l2->val : 0;
+
+      int sum{digit1 + digit2 + carry};
+      int digit{sum % 10};
+
+      carry = (sum >= 10) ? true : false;
+
+      ListNode *temp = new ListNode(digit);
+      dummyTail->next = temp;
+      dummyTail = dummyTail->next;
+
+      l1 = (l1 != nullptr) ? l1->next : nullptr;
+      l2 = (l2 != nullptr) ? l2->next : nullptr;
+    }
+
+    ListNode *result = dummyHead->next;
+    delete dummyHead;
+    return result;
+  }
+};
+
 int main() {
   int val1{9999999};
   int val2{9999};

@@ -32,4 +32,8 @@ Which the value of the given linked list will only contain a single digit of the
 Time complexity O(n)
 Space complexity O(1)
 
-
+## Improvements
+Online solution proposes a much more elegant and efficient method.
+- Attempt to compress memory to obtain constant space led to inefficient and more unreadable code
+- Should have made more variables to increase readability
+- Otherwise, semantics are mostly aligned
