@@ -53,11 +53,11 @@ int main() {
     assert(nums[i] == expectedNums[i]);
   }
 
-  std::cout << k << '\n';
-  for (auto i : nums) {
-    std::cout << i << '\n';
-  }
-  std::cout << '\n';
+  // std::cout << k << '\n';
+  // for (auto i : nums) {
+  //   std::cout << i << '\n';
+  // }
+  // std::cout << '\n';
 
   std::cout << "Success!" << '\n';
 
