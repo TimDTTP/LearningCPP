@@ -18,4 +18,10 @@ Buying a ticket takes 1 second.
 (No need to check if indexing is within range)
 
 ## Approach
-- 
+- Mathematical
+1. Base value is number of tickets * number of people
+2. For loop through vector
+3. If number of tickets is less than target
+    Subtract difference from base value
+4. If number of tickets is greater than or equal to AND appears after target
+    Subtract 1 from base value
