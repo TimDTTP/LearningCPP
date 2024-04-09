@@ -6,32 +6,17 @@
 class Solution {
 public:
   int removeDuplicates(std::vector<int> &nums) {
-    // tracks index of array
-    int index{1};
-    // tracks start of unique value
-    int start{1};
+    int buffer{nums[0]};
 
-    // edge case num.size() == 1
-    if (nums.size() == 1)
-      return 1;
-
-    // deal with first value
-    if (nums[0] == nums[index]) {
-      start = 0;
+    for (int i{1}; i < nums.size(); ++i) {
+      if (nums[i] == buffer) {
+        nums.erase(nums.begin() + i);
+        --i;
+        continue;
+      } else
+        buffer = nums[i];
     }
 
-    while (index < nums.size()) {
-      // FIX: Reverse checking
-      if (nums[index] > nums[index - 1]) {
-        // delete
-        nums.erase(nums.begin() + (start + 1), nums.begin() + index);
-        // reset
-        index = start;
-        start = index + 1;
-      }
-
-      ++index;
-    }
     return nums.size();
   }
 };
@@ -51,6 +36,12 @@ int main() {
   for (int i = 0; i < k; i++) {
     assert(nums[i] == expectedNums[i]);
   }
+
+  // std::cout << k << '\n';
+  // for (auto i : nums) {
+  //   std::cout << i << '\n';
+  // }
+  // std::cout << '\n';
 
   std::cout << "Success!" << '\n';
 
