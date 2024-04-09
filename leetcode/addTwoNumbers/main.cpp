@@ -50,23 +50,67 @@ public:
 };
 
 class Solution {
+private:
+  void addRemaining(ListNode *l1, ListNode *l2, bool &carryOver) {
+    l1->val += carryOver;
+    carryOver = false;
+    if (l1->val >= 10)
+      carryOver = true;
+  }
+
 public:
   ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
-    // lorem
-    // ipsum
+    ListNode *result = l1;
+    bool carryOver{false};
 
-    return l1;
+    while (l1 && l2) {
+      int sum{l1->val + l2->val + carryOver};
+      carryOver = false;
+
+      if (sum >= 10)
+        carryOver = true;
+
+      l1->val = sum % 10;
+
+      l1 = l1->next;
+      l2 = l2->next;
+    }
+
+    // if not empty yet
+    while (l1) {
+      addRemaining(l1, l2, carryOver);
+    }
+
+    while (l2) {
+      l1->next = l2;
+      l1 = l1->next;
+      addRemaining(l1, l2, carryOver);
+    }
+
+    // if surpasses number of digits, add another node
+    if (carryOver) {
+      ListNode temp{1};
+      l1->next = &temp;
+    }
+
+    return result;
   }
 };
 
 int main() {
   int val1{123};
   int val2{456};
+  // expected solution 579
 
   Util listFcn = Util();
 
   ListNode *list1{listFcn.list(val1)};
   ListNode *list2{listFcn.list(val2)};
+
+  Solution ans = Solution();
+
+  ListNode *solution{ans.addTwoNumbers(list1, list2)};
+  listFcn.printList(solution);
 
   return 0;
 }
