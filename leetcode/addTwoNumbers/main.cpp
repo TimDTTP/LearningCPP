@@ -55,7 +55,6 @@ public:
   ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
     ListNode *result = l1;
     bool carryOver{false};
-    Util fcn = Util();
 
     while (l1 && l2) {
       int sum{l1->val + l2->val + carryOver};
@@ -96,8 +95,7 @@ public:
 
     // if surpasses number of digits, add another node
     if (carryOver) {
-      ListNode *temp;
-      temp->val = 1;
+      ListNode *temp = new ListNode(1);
 
       l1 = result;
       while (l1->next != NULL)
