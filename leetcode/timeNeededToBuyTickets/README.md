@@ -29,3 +29,6 @@ No need to check if someone is in line to buy 0 tickets
     Subtract difference from base value
 4. If number of tickets is greater than or equal to AND appears after target
     Subtract 1 from base value
+
+## Improvements
+- No notable significant improvement w/ 0ms runtime and 9.29mb memory
