@@ -15,7 +15,11 @@ Buying a ticket takes 1 second.
 
 ## Contraints
 - 0 <= k < n
-(No need to check if indexing is within range)
+No need to check if indexing is within range
+- 1 <= n <= 100
+No need to check if list is empty
+- 1 <= ticket[i] <= 100
+No need to check if someone is in line to buy 0 tickets
 
 ## Approach
 - Mathematical
