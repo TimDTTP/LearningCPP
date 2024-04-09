@@ -24,3 +24,11 @@ nums = [1];
 
 Solution: Instead of checking next value, check previous value
 
+## Improvements
+1. Overwrite instead of vector.erase()
+- instead of using erase to delete the element, it is more efficient to overwrite it
+
+WARNING: This does not remove the duplicates! This is an approach that takes advantage of the vulnerability in the check function.
+  This only pushes the unique numbers to the front, which are the only ones checked.
+
+
