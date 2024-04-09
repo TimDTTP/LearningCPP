@@ -6,8 +6,12 @@
 class Solution {
 public:
   int lengthOfLongestSubstring(std::string s) {
-    int maxSoFar{0};
+    int maxSoFar{1};
+    int counter{0};
     std::unordered_map<char, int> map{};
+
+    if (s.length() == 0)
+      return 0;
 
     for (int i{0}; i < s.length(); ++i) {
       // does not exist in map
@@ -23,7 +27,13 @@ public:
 
         // replace index value
         map[s[i]] = i;
+
+        // reset counter
+        counter = 0;
       }
+      ++counter;
+
+      maxSoFar = std::max(counter, maxSoFar);
     }
 
     return maxSoFar;
@@ -31,7 +41,7 @@ public:
 };
 
 int main() {
-  std::string s{"abcabcdefgbb"};
+  std::string s{"abba"};
 
   Solution ans = Solution();
 
