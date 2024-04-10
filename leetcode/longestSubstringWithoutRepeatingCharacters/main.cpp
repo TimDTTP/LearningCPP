@@ -8,31 +8,23 @@ public:
   int lengthOfLongestSubstring(std::string s) {
     int maxSoFar{1};
     int counter{0};
-    std::unordered_map<char, int> map{};
-
-    if (s.length() == 0)
-      return 0;
+    std::unordered_map<char, int> charMap{};
 
     for (int i{0}; i < s.length(); ++i) {
-      // does not exist in map
-      if (map.find(s[i]) == map.end()) {
-        map[s[i]] = i;
-      }
-
-      // does exist in map
-      else {
-        // compare
-        int diff{i - map[s[i]]};
-        maxSoFar = std::max(diff, maxSoFar);
-
-        // replace index value
-        map[s[i]] = i;
-
-        // reset counter
-        counter = 0;
-      }
       ++counter;
 
+      // if char already exist in map
+      if (charMap.find(s[i]) != charMap.end()) {
+        int diff{i - charMap[s[i]]};
+        maxSoFar = std::max(diff, maxSoFar);
+        counter = 0;
+      }
+      // if new char appears
+      else {
+        charMap[s[i]] = i;
+      }
+
+      // compare values
       maxSoFar = std::max(counter, maxSoFar);
     }
 
