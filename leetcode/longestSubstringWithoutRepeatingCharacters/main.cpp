@@ -6,26 +6,21 @@
 class Solution {
 public:
   int lengthOfLongestSubstring(std::string s) {
-    int maxSoFar{1};
-    int counter{0};
+    int maxSoFar{0};
+    int lowerPos{0};
     std::unordered_map<char, int> charMap{};
 
     for (int i{0}; i < s.length(); ++i) {
-      ++counter;
-
-      // if char already exist in map
-      if (charMap.find(s[i]) != charMap.end()) {
-        int diff{i - charMap[s[i]]};
-        maxSoFar = std::max(diff, maxSoFar);
-        counter = 0;
+      // if char does not exist in map
+      if (charMap.count(s[i]) == 0 || charMap[s[i]] < lowerPos) {
+        charMap[s[i]] = i;
+        maxSoFar = std::max(maxSoFar, (i - lowerPos) + 1);
       }
-      // if new char appears
+      // if char exists in map
       else {
+        lowerPos = charMap[s[i]] + 1;
         charMap[s[i]] = i;
       }
-
-      // compare values
-      maxSoFar = std::max(counter, maxSoFar);
     }
 
     return maxSoFar;
@@ -33,7 +28,7 @@ public:
 };
 
 int main() {
-  std::string s{"abba"};
+  std::string s{"dvdf"};
 
   Solution ans = Solution();
 

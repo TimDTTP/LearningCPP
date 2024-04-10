@@ -21,3 +21,6 @@ The int is the length of the longest substring without any repeating characters.
 5. If it is greater than max, replace max
 6. Lastly replace index value to new index value and continue
 7. Return max
+
+## Improvements
+Online solutions did not propose much or any significant improvement to proposed solution
