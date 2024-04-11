@@ -26,3 +26,7 @@ Repeat till all cards are removed
 - Sort + reverse order
 1. Sort the vector in a decreasing manner
 2. Reverse the order of operations and append to vector
+
+## Online Solutions
+- Offered significant performance increase
+1. Use queue structure to emulate moving values
