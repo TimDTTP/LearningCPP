@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -68,10 +69,36 @@ public:
 
 class Solution {
 public:
-  std::vector<int> deckRevealedIncreasing(std::vector<int> &deck) {
-    // lorem ipsum
+  void printDeck(const std::vector<int> &deck) {
+    for (const int i : deck) {
+      std::cout << i << ' ';
+    }
+    std::cout << '\n';
+  }
 
-    return deck;
+  std::vector<int> deckRevealedIncreasing(std::vector<int> &deck) {
+    // sort vector in decending order
+    std::sort(deck.begin(), deck.end(), std::greater<int>());
+
+    // reverse order of game
+    std::vector<int> result{};
+
+    for (int card{0}; card < deck.size(); ++card) {
+      if (result.empty()) {
+        result.push_back(deck[card]);
+        continue;
+      }
+
+      // pull card from back and push to front
+      int back{result.back()};
+      result.pop_back();
+      result.insert(result.begin(), back);
+
+      // insert next value
+      result.insert(result.begin(), deck[card]);
+    }
+
+    return result;
   }
 };
 
@@ -79,7 +106,12 @@ int main() {
   std::vector<int> deck{2, 37, 3, 19, 5, 31, 7, 23, 11, 41, 13, 29, 17};
 
   Game game = Game();
-  game.play(deck);
+  // game.play(deck);
+
+  Solution solution = Solution();
+  std::vector<int> ans = solution.deckRevealedIncreasing(deck);
+
+  solution.printDeck(ans);
 
   return 0;
 }
