@@ -23,3 +23,6 @@ Repeat till all cards are removed
     int will suffice
 
 ## Approach
+- Sort + reverse order
+1. Sort the vector in a decreasing manner
+2. Reverse the order of operations and append to vector
