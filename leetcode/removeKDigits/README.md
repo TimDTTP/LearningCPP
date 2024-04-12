@@ -19,3 +19,6 @@ Return the smallest possible value after removing 'k' digits from num.
 - num does not have any leading zeros (except 0 itself)
 
 ## Approach
+1. If k == num.length return 0
+2. If amount of numbers before a 0 == k, remove first k digits
+3. Else remove largest substring of k length
