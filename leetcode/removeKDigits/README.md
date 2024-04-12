@@ -19,8 +19,10 @@ Return the smallest possible value after removing 'k' digits from num.
 - num does not have any leading zeros (except 0 itself)
 
 ## Approach
-1. If k == num.length return 0
-2. Get number of non-zero values in string
-3. If k > number of non-zeroes, return 0
-4. Traverse list, if next number is less than current, remove current
-5. Remove only k digits
+- Stack
+1. Iterate through string
+2. Push num into stack
+3. If num < stack.top(), pop until num > stack.top()
+4. Continue until k == 0
+5. If k != 0 and we are at the end, stack.pop() last numbers (they are the largest)
+6. Get rid of leading 0s and return
