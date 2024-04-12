@@ -20,5 +20,7 @@ Return the smallest possible value after removing 'k' digits from num.
 
 ## Approach
 1. If k == num.length return 0
-2. If amount of numbers before a 0 == k, remove first k digits
-3. Else remove largest substring of k length
+2. Get number of non-zero values in string
+3. If k > number of non-zeroes, return 0
+4. Traverse list, if next number is less than current, remove current
+5. Remove only k digits
