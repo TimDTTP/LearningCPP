@@ -9,5 +9,3 @@ Lorem Ipsum
 this
 tis
 tish
-;woi
-wgojo
