@@ -10,27 +10,37 @@ public:
     int length{static_cast<int>(num.length())};
     int index{0};
 
-    while (index < length && k > 0) {
-      if (numStack.empty()) {
-        numStack.push(num[index]);
-        continue;
+    // insert digits into stack
+    for (int digit : num) {
+      while (!numStack.empty() && k > 0 && numStack.top() > digit) {
+        numStack.pop();
+        --k;
       }
+      numStack.push(digit);
+    }
 
-      if (numStack.top() < num[index])
-        numStack.push(num[index]);
-      else {
-        while (numStack.top() >= num[index] && k > 0) {
-          numStack.pop();
-          --k;
-        }
-        numStack.push(num[index]);
-      }
+    // if k > 0 still
+    while (k > 0 && !numStack.empty()) {
+      numStack.pop();
+      --k;
     }
 
     // pull from stack and append to string
-    // remove leading 0's
+    std::string result{};
+    while (!numStack.empty()) {
+      result += numStack.top();
+      numStack.pop();
+    }
+    std::reverse(result.begin(), result.end());
 
-    return num;
+    // remove leading 0's
+    size_t pos = result.find_first_not_of('0');
+    if (pos != std::string::npos)
+      result = result.substr(pos);
+    else
+      return "0";
+
+    return result;
   }
 };
 
