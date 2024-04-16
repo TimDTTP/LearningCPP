@@ -22,3 +22,8 @@ Return the sum of the all the root-to-leaf numbers
     b. temp /= 10
     c. Stack.pop
 4. Return sum
+
+## Improvement
+- No need to instantiate variable 'sum'
+    just use temporary value
+- Reminder! NULL is evaluated as false
