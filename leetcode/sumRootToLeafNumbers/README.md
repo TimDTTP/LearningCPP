@@ -13,3 +13,12 @@ Return the sum of the all the root-to-leaf numbers
 
 ## Approach
 - DFS
+1. Implement a pre-order traversal DFS
+2. If node != NULL
+    a. Push node into stack
+    b. temp = temp * 10 + node.val
+3. Else
+    a. sum += temp
+    b. temp /= 10
+    c. Stack.pop
+4. Return sum
