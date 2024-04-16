@@ -20,11 +20,10 @@ private:
       // use larger one
       if (lDepth > rDepth)
         return (lDepth + 1);
-      if (lDepth < rDepth)
+      else {
         return (rDepth + 1);
+      }
     }
-
-    return 0;
   }
 
   void printGivenLevel(TreeNode *root, int level) {
@@ -80,7 +79,6 @@ public:
   // print tree
   void printLevelOrder(TreeNode *root) {
     int h{height(root)};
-    std::cout << "height: " << h << '\n';
     for (int i{1}; i <= h; i++) {
       printGivenLevel(root, i);
       std::cout << "\n";
