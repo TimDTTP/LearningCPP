@@ -1,111 +1,57 @@
 
 #include "treeNode.h"
 #include <iostream>
-#include <queue>
-#include <vector>
 
-// utils to help solve the problem
-class Util {
-private:
-  int height(TreeNode *node) {
-    if (node == NULL) {
-      return 0;
-    }
+TreeNode *test1() {
+  TreeNode *a = new TreeNode(3);
+  TreeNode *b = new TreeNode(2);
+  TreeNode *c = new TreeNode(1, a, b);
 
-    else {
-      // find depth of each subtree
-      int lDepth{height(node->left)};
-      int rDepth{height(node->right)};
+  return c;
+}
 
-      // use larger one
-      if (lDepth > rDepth)
-        return (lDepth + 1);
-      else {
-        return (rDepth + 1);
-      }
-    }
-  }
+TreeNode *test2() {
+  TreeNode *a = new TreeNode(5);
+  TreeNode *b = new TreeNode(1);
+  TreeNode *c = new TreeNode(9, a, b);
 
-  void printGivenLevel(TreeNode *root, int level) {
-    if (root == NULL)
-      return;
-    if (level == 1)
-      std::cout << " " << root->val;
-    else if (level > 1) {
-      // recursive call
-      printGivenLevel(root->left, level - 1);
-      printGivenLevel(root->right, level - 1);
-    }
-  }
+  TreeNode *e = new TreeNode(0);
 
-public:
-  // vector into binary tree
-  TreeNode *root(std::vector<int> arr) {
-    TreeNode *node = NULL;
+  TreeNode *g = new TreeNode(4, c, e);
 
-    std::queue<TreeNode *> emptyNode{};
-
-    for (int i : arr) {
-      TreeNode *temp = new TreeNode(i);
-      if (node == NULL) {
-        node = temp;
-        emptyNode.push(node);
-        continue;
-      }
-
-      // if both are full
-      if (emptyNode.front()->left && emptyNode.front()->right) {
-        emptyNode.pop();
-      }
-
-      // if left node is empty
-      if (!emptyNode.front()->left) {
-        emptyNode.front()->left = temp;
-        emptyNode.push(emptyNode.front()->left);
-        continue;
-      }
-
-      // if right node is empty
-      else if (!emptyNode.front()->right) {
-        emptyNode.front()->right = temp;
-        emptyNode.push(emptyNode.front()->right);
-        continue;
-      }
-    }
-
-    return node;
-  }
-
-  // print tree
-  void printLevelOrder(TreeNode *root) {
-    int h{height(root)};
-    for (int i{1}; i <= h; i++) {
-      printGivenLevel(root, i);
-      std::cout << "\n";
-    }
-  }
-
-  // test
-};
+  return g;
+}
 
 class Solution {
 public:
-  int sumNumbers(TreeNode *root) { return 1; }
+  int dfs(TreeNode *root, int sum) {
+    // edge case
+    if (root == NULL)
+      return 0;
+
+    sum = sum * 10 + root->val;
+
+    if (!root->left && !root->right)
+      return sum;
+
+    return dfs(root->left, sum) + dfs(root->right, sum);
+  }
+
+  int sumNumbers(TreeNode *root) {
+    int sum{0};
+    sum = dfs(root, sum);
+
+    return sum;
+  }
 };
 
 int main() {
-  std::vector<std::vector<int>> tests{
-      {1, 2, 3},
-      {4, 9, 0, 5, 1},
-  };
+  Solution answer = Solution();
+  TreeNode *node{test2()};
 
-  Util cursor = Util();
+  int ans{answer.sumNumbers(node)};
 
-  TreeNode *node{};
-
-  node = cursor.root(tests[0]);
-
-  cursor.printLevelOrder(node);
+  std::cout << "Sum: " << ans << '\n';
 
   return 0;
 }
