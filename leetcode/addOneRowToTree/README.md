@@ -17,3 +17,8 @@ Which is the new tree where the nodes at 'depth' depth, is replaced with 'value'
 - -10^5 <= val <= 10^5 
 
 ## Approach
+- Recursive
+1. Iterate 'depth' value down
+2. Hold onto original branches address
+3. Point to new 'value'
+4. Value's left/right point to original respective to whether its is left/right
