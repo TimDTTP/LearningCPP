@@ -13,3 +13,8 @@ Where the binary tree is a tree of integers 0-25, representing alphabet letters.
 
 ## Approach
 - DFS
+1. Search for leaf nodes while tracking 2 variables
+    - One variable appends value as it goes
+    - Another tracks the the string
+2. If the int value is smaller than current smallest, then replace it
+3. This should repeat recursively
