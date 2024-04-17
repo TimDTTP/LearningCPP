@@ -2,12 +2,14 @@
 #include "treeNode.h"
 #include <iostream>
 
+// Data type for test samples
 struct Test {
   TreeNode *root;
   int val;
   int depth;
 };
 
+// Sample test input
 Test test1() {
   Test result;
 
@@ -30,6 +32,7 @@ Test test1() {
   return result;
 }
 
+// get height of tree
 int height(TreeNode *root) {
   if (root == NULL)
     return 0;
@@ -44,6 +47,7 @@ int height(TreeNode *root) {
   }
 }
 
+// prints a level of a tree
 void printLevel(TreeNode *root, int height) {
   if (root == NULL)
     return;
@@ -67,6 +71,7 @@ void printTree(TreeNode *root) {
   }
 }
 
+// ACTUAL SOLUTION
 class Solution {
 public:
   // get to appropriate depth
@@ -111,6 +116,7 @@ public:
 int main() {
   Solution ans = Solution();
 
+  // Input sample for solution code
   Test input{test1()};
 
   printTree(ans.addOneRow(input.root, input.val, input.depth));
