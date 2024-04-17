@@ -22,3 +22,7 @@ Which is the new tree where the nodes at 'depth' depth, is replaced with 'value'
 2. Hold onto original branches address
 3. Point to new 'value'
 4. Value's left/right point to original respective to whether its is left/right
+
+## Improvements
+Online solutions yields little to no improvements
+
