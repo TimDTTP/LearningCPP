@@ -16,3 +16,14 @@ Which 0 represents water, 1 represents land.
 - 1 <= row,col <= 100
 
 ## Approach
+- Brute Force
+1. Iterate through array
+2. For each point, check surrounding up, down, left, right boxes
+    - If 0 or out of bounds, increment count by 1
+
+- Approach 2
+1. Iterate through by row
+2. For each '1', * 2 + 2 -> to get number of maximum number of sizes
+3. In a vector, store index of '1's
+4. For each overlapping '1' subtract 2 from max sum
+Time O(n)
