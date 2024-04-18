@@ -18,3 +18,14 @@ Where the binary tree is a tree of integers 0-25, representing alphabet letters.
     - Another tracks the the string
 2. If the int value is smaller than current smallest, then replace it
 3. This should repeat recursively
+
+## Online solutions
+Yielded little to no significant improvements.
+
+Improvements:
+- (minor) 
+Did not have to initialize an array of letters. Could just add value onto 'a' 
+    - i.e. 'a' + 2 = 'c'
+
+- (negligible) 
+Instead of manipulating the 'temp' string individually, add to string and use std::reverse to reverse string and evaluate
