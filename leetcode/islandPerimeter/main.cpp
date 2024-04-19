@@ -14,6 +14,24 @@ std::vector<std::vector<int>> test() {
   return grid;
 }
 
+std::vector<std::vector<int>> test1() {
+  std::vector<std::vector<int>> grid{
+    {1},
+    {0},
+  };
+
+  return grid;
+}
+
+std::vector<std::vector<int>> test2() {
+  std::vector<std::vector<int>> grid{
+      {1, 1, 1},
+      {1, 0, 1},
+  };
+
+  return grid;
+}
+
 class Solution {
 public:
   int islandPerimeter(std::vector<std::vector<int>> &grid) {
@@ -31,7 +49,11 @@ public:
             perimeter -= 2;
         }
       }
-      perimeter += current.size() * 2 + 2;
+      
+      if (current.size() != 0)
+        perimeter += current.size() * 2 + 2;
+
+      std::cout << perimeter << '\n';
 
       previous = current;
       current.clear();
@@ -44,7 +66,7 @@ public:
 int main() {
   Solution ans = Solution();
 
-  std::vector<std::vector<int>> grid{test()};
+  std::vector<std::vector<int>> grid{test2()};
 
   std::cout << ans.islandPerimeter(grid) << '\n';
 
