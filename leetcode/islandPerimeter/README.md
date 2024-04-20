@@ -26,6 +26,7 @@ Which 0 represents water, 1 represents land.
 2. For each '1', * 2 + 2 -> to get number of maximum number of sizes
 3. In a vector, store index of '1's
 4. For each overlapping '1' subtract 2 from max sum
+5. If non-sequential, +2
 
 PROBLEM:
 DOES NOT ACCOUNT FOR GAPS IN A ROW, WHEREAS THE ISLAND IS NOT ATTACH CONTIGUOUSLY
