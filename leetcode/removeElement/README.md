@@ -18,4 +18,11 @@ Which...
 - 0 <= val <= 100
 
 ## Approach
-- 
+- 2 pointer
+1. One pointer starts that the beginning
+2. One pointer starts from the end
+3. Traverse end pointer until it isn't equal to val
+4. Traverse beginning pointer until it meets val
+5. Continue if beginning pointer is still < end pointer
+6. If beginning pointer == val, swap beginning and end pointer
+7. Return beginning pointer index at the end
