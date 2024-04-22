@@ -21,3 +21,8 @@ spin freely from '0' to '9' in one turn.
 - Target and deadends will ONLY contain digits
 
 ## Approach
+- BFS
+1. For each 4 digit combo, perform BFS on increment AND decrement on each digit
+2. If value is in deadend, pop()
+3. If value is the target, return iteration
+4. Else push value into queue.
