@@ -27,3 +27,9 @@ Which 0 represents water, 1 represents land.
 3. In a vector, store index of '1's
 4. For each overlapping '1' subtract 2 from max sum
 Time O(n)
+
+- DFS
+1. Visit each box and if it is a 1 perform a dfs
+2. Increment perimeter if 
+    - Goes out of bounds
+    - Adjacent box is 0
