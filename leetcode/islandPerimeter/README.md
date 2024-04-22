@@ -31,3 +31,9 @@ Which 0 represents water, 1 represents land.
 PROBLEM:
 DOES NOT ACCOUNT FOR GAPS IN A ROW, WHEREAS THE ISLAND IS NOT ATTACH CONTIGUOUSLY
 Time O(n)
+
+- DFS
+1. Visit each box and if it is a 1 perform a dfs
+2. Increment perimeter if 
+    - Goes out of bounds
+    - Adjacent box is 0
