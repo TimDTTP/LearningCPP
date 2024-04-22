@@ -22,7 +22,12 @@ spin freely from '0' to '9' in one turn.
 
 ## Approach
 - BFS
-1. For each 4 digit combo, perform BFS on increment AND decrement on each digit
-2. If value is in deadend, pop()
-3. If value is the target, return iteration
-4. Else push value into queue.
+1. Due to the large possible size of "deadends", it is best to convert it to a set for quicker lookups
+2. Implement a queue for BFS
+    - Queue of <string, int> tracking the combination and degree of relationship(moves)
+3. Need another set to track if combo has been visited, to prevent overlap
+4. While (!queue.empty()) loop to perform BFS
+5. Loop through each digit of combo where each combo is incremented or decremented by 1
+6. Check "new" in/decremented value against "visited" and "deadend"
+7. If not either, add to queue and visited
+8. Finally, if the loop manages to exit that mean there is no possible combination; return -1
