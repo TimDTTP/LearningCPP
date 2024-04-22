@@ -14,28 +14,27 @@ std::vector<std::vector<int>> test() {
 }
 
 class Solution {
+private:
+  int dfs(std::vector<std::vector<int>> grid, int r, int c) {
+    if (r < 0 || r >= grid.size() || c < 0 || c >= grid[0].size() ||
+        grid[r][c] == 0)
+      return 1;
+
+    return (dfs(grid, r - 1, c) + dfs(grid, r + 1, c) + dfs(grid, r, c - 1) +
+            dfs(grid, r, c + 1));
+  }
+
 public:
   int islandPerimeter(std::vector<std::vector<int>> &grid) {
+    size_t row{grid.size()};
+    size_t col{grid[0].size()};
     int perimeter{0};
-    std::unordered_set<int> previous{};
-    std::unordered_set<int> current{};
 
-    for (int row{0}; row < grid.size(); ++row) {
-      std::cout << "row: " << row << '\n';
-      for (int col{0}; col < grid[0].size(); ++col) {
-        if (grid[row][col] == 1)
-          current.insert(col);
-
-        // if found in vector
-        if (previous.find(col) != previous.end()) {
-          perimeter -= 2;
-          std::cout << "found " << col << '\n';
-        }
+    for (int i{0}; i < row; ++i) {
+      for (int j{0}; j < col; ++j) {
+        if (grid[i][j] == 1)
+          perimeter += dfs(grid, row, col);
       }
-      perimeter += current.size() * 2 + 2;
-
-      previous = current;
-      current.clear();
     }
 
     return perimeter;
