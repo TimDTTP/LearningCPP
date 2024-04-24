@@ -1,4 +1,3 @@
-// NOTE: Reminder to stash changes, could not pull 18:26 03/06/24
 
 #include <algorithm>
 #include <array>

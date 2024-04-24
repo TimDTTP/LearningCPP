@@ -97,7 +97,6 @@ Length operator*(const Length &l1, const int i) {
 
 // friend function for operator/
 Length operator/(const Length &l1, const int i) {
-  // FIX:
   // disclaimer: Only does floor division, so it rounds down!!
   int feetDiv{static_cast<int>(l1.m_feet / i)};
   int inchDiv{static_cast<int>(l1.m_inches / i)};
