@@ -7,8 +7,9 @@ Given...
 Return...
 - A integer
 
-Which is the length of the longest "ideal substring". The ideal substring is a string which
-the difference of adjacent letters in alphabetical order is less than or equal to 'k'.
+Which is the length of the longest "ideal substring". The ideal substring is a 
+string which the difference of adjacent letters in alphabetical order is less 
+than or equal to 'k'.
 
 [\#2370 Longest ideal subsequence](https://leetcode.com/problems/longest-ideal-subsequence/description/)
 
