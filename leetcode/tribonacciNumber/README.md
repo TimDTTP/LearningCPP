@@ -14,4 +14,7 @@ which the given value is the n'th number of the tribonacci sequence. Find the va
     Thus regular `int` will suffice
 
 ## Approach
-
+- Array
+1. Traverse through values and add tribonacci value to array
+2. Add the previous 3 values to get next value of the sequence
+3. Run loop +1 extra to get the answer
