@@ -18,3 +18,7 @@ which the given value is the n'th number of the tribonacci sequence. Find the va
 1. Traverse through values and add tribonacci value to array
 2. Add the previous 3 values to get next value of the sequence
 3. Run loop +1 extra to get the answer
+
+## Online Solution
+Little to no major improvements
+- Instead of initializing an array, just track the last 3 values for better memory efficiency
