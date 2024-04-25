@@ -20,3 +20,9 @@ than or equal to 'k'.
 - 1 <= s.length <= 10^5
 
 ## Approach
+1. Iterate through string (i < s.length() - 2)
+2. If ((index + 1) - index) <= k 
+    then ++counter
+3. Else compare current largest length
+4. Reset 'counter'
+Time comp: O(n)
