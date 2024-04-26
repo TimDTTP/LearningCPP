@@ -15,8 +15,10 @@ adjacent chosen elements share the same column.
 - 1 <= n <= 200
 - -99 <= grid{i}{j} <= 99
 
-## Approach
+## Approach (FAILED)
 - DFS
 1. Add grid[0] to stack
 2. Run while !stack.empty()
 3. Pop top of stack and add to sum + add next row into stack
+
+Failure to come to a solution with the 1 hour time limit
