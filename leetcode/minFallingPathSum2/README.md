@@ -16,3 +16,7 @@ adjacent chosen elements share the same column.
 - -99 <= grid{i}{j} <= 99
 
 ## Approach
+- DFS
+1. Add grid[0] to stack
+2. Run while !stack.empty()
+3. Pop top of stack and add to sum + add next row into stack
