@@ -22,3 +22,10 @@ adjacent chosen elements share the same column.
 3. Pop top of stack and add to sum + add next row into stack
 
 Failure to come to a solution with the 1 hour time limit
+
+## Solution
+- Dynamic programming
+Solve by mirroring array and for each row below the first, find minimum path
+that is not adjacently above. At the end you should have an array with all the
+sums of the minimum path for each column. Return the minimum value in the last
+row.
