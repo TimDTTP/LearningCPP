@@ -18,4 +18,6 @@ to make ALL values in nums XOR equal k
 - 0 <= k <= 10^6
 
 ## Approach
-
+1. Find the XOR value of all values
+2. Compare bits between final and k
+3. Number of differences is the answer
