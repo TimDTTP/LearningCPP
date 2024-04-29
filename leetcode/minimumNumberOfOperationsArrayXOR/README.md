@@ -21,3 +21,7 @@ to make ALL values in nums XOR equal k
 1. Find the XOR value of all values
 2. Compare bits between final and k
 3. Number of differences is the answer
+
+## Online Solutions
+Online solution proposes slightly more performant code but much less logical,
+in my opinion.
