@@ -207,8 +207,29 @@ public:
   }
 };
 
+class Online {
+public:
+  long long wonderfulSubstrings(std::string word) {
+    std::unordered_map<int, int> count{};
+    int mask = 0;
+    count[0] = 1;
+    long long result = 0;
+
+    for (char ch : word) {
+      mask ^= 1 << (ch - 'a');
+      result += count[mask];
+      for (int i{0}; i < 10; ++i) {
+        result += count[mask ^ (1 << i)];
+      }
+      ++count[mask];
+    }
+
+    return result;
+  }
+};
+
 int main() {
-  Solution answer = Solution();
+  Online answer = Online();
 
   TestCase input{test4()};
   long long actual{answer.wonderfulSubstrings(input.word)};
