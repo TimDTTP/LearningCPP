@@ -33,6 +33,149 @@ TestCase test3() {
   return obj;
 }
 
+TestCase test4() {
+  TestCase obj;
+  obj.word =
+      "iibhicfjiejfcejhaiebdcefjdcjfafcdcaiecddhfjaffidihdcbacfgjacbdjddfcjhaib"
+      "hebfijbabheifjeejfgbgccfgibabbejaieafiejibghicdfhbcgjceejgijiebjdbbhhicd"
+      "jggegacdcbiaacdijgbhdjacdbddgbfccfhiiddjadhebagedhjcfgaajcdfedfjfbhaaehe"
+      "dfggeiddjcccefbbfjejfcjbgcjcchijigfgadfcgfjchjadfihbdbdibbbbdgjiidhajggb"
+      "hdfgccgegbgehibahfiebiefhdghbbabagjbdfieehdcjchadjghbbgcdgfgjifeggicefac"
+      "iiigehiehdchcjfdghfbbfdihjhajgbddggjfafjdcbfhhgbaididcaadcafhabgdabdgeda"
+      "fhhehbjbefedjjfejbbbhaeeceejifdecbjhjihafbfigbjhgedaeiebjadjbdhbhhhhabch"
+      "iedbieabeegfabijfeccbdjefggajiejhigdhbfjbifjchhbdfffbddgcjadbaahbagedace"
+      "fjfchadjdabcaehahbjahfchbcgchjbddjcbebjcgjabiiibdeaedajdhiagebaichdciigg"
+      "edbigeibgadjbgabafjiifbhceaaiefcdgfcbcahhhicegfiiggbbabfabajeeddgfdeafcc"
+      "ibaihahcbifeeeabdicihhahfjjidhbfecgehhggcebjbcbihccfdejfjdjcbfegiajfciij"
+      "dfdfaecbbccdbhechgeedbigefdjhcdbghgafebahaceghgbaheheigjhgchhjafjdacegfc"
+      "jbidbajejhghfdccebiaaehcegbadgbicjcbhjbdfigceajhbaafgebfaabfjibedeghicbd"
+      "geeeccbadebdcffhcafdcfgcdiiheidbaadaiifefeijhhebiebgahjbefejbiebebcjjaci"
+      "fcbaagdbddigbacdfeidajefahbfcidiaffbaaaddhgcjbcebaafcbechbaagidgeegcaahi"
+      "hedaheacbahbbeigchgdhachcffdbjejehebbahcfdaabiefecabdffgfdbjbeehfgabebif"
+      "cjdajjgbfdihbagbidbefdjdbedchhdaigghehfdfajcefecdhdghhbdicidedeeicciehcj"
+      "ecehfjiaebecdaefdgdjahgfdjgbegiaejcghjcabcifbaigjbdgfiaaffgddeccedcgecfe"
+      "eiceajhcfejhecdcfdhjjeiafgbbebfdacjcebjebahgbbbajedeidbaeeijafdaidgccfdc"
+      "dgjeeibdbdgejgbjeegegjjgabdgjghicfeecdhegfhdhhbihjefhfadiigefefjcdijhche"
+      "ehbggbhhcgchchafgdgedjdhdiijcieaeddbhedfeidhbifjddgahjafjfaiehabfhejhjgi"
+      "gfhcfdjfdfhggjeaiijeiajgghjijjicibfedafgciffgifbeajgddbejffhcdafchbecabi"
+      "ecedaehggaacabhgfeihaabehggbfjcgajgjfceaifcigcfhbbbdcieiihadabhhfaejjbdf"
+      "fhabehhefadcaabdffeggfhgcgifcgaceacccgaaiagaafcdijdggeaeahafhjichecgddbi"
+      "icgdjbaajcciehfihdgdihiicehdafdadegabbifddggahgbiedfdbhfebiggdcijajgedef"
+      "jbfcjedijjbagcifjfcacjfhahjjbdgfaifehfhhbfbceecccigfbfjhcgbdgjhadfcjicda"
+      "ggjbhfaaeahihiehaabbgfebcdgdbihbhfheajedigfigeebdhigaicgbgbhjgigddfagiea"
+      "chdfijbbbcigebhhheaiicjdaabjaidjjibcjdjbbgccecdbdfdachaeigdeihbdijceggjc"
+      "cgfcigcefgebehbhfdjccjadfhdeejgaddhdfihjcbibbjcabbcgddfffgcbhehjggjafdjd"
+      "dcebfajjccfhedbiecbbbjbceiifcfddiaiffacedgfgjbjhcbahjeedfghbjijcceedcdga"
+      "acccgdaichjhaffcfcfijjhchfiecgbajjjgacifffajhadgaicgdhdffijhjeaddgdjeagd"
+      "ihjbfiffdbeheadbaicgcbhjgbddhbcagehffgecijdjejacafheheefhjfeihigjafddccg"
+      "bcgjaehgjefidbhbifedgejcjhddfbfchegjagbagafihfceihijidejgegcfcdejfddchdf"
+      "cdhhfifjefifaddcggaheiiicahjihhehjbiebiiaegbbbgfehiifgiddgdfgghjiehddgfg"
+      "dgigbfeaefccfegajiaegaheffaiiejacjiifhgjcahbjdidiffbbdhjdifihfbhjaeehghb"
+      "ccjbahbeifabcjiibejcjcdgceiigjcacjbicafadbejiecchfbajjhadcfhgbcbfeccjiii"
+      "ejjhijdhidbadaagbihaeafiafibejcjdhbgibiagdhijhjeefeccdfaheejcdiiadfjeeae"
+      "jeaaidiggjghggagcgcbffehadafhgegfcciegjbdiabagcffbfadecjaaeifgfidcfbhhib"
+      "gbhfggjfgccdccabfaacbgjfijbgaaejjbhgifedcbafddiabfhehdabdjjiadgfjdjeaeca"
+      "hhhgijdcfaajjjeegcfidfbbggcbbafeddjbieeahfaccjdfhjhdhddbfhhafagddhhgbgbh"
+      "cfiefdhfdgjbbbjdddcdfjdagcichfijedffigeijjgchdiihadagjbgidcegfhaeaiheaac"
+      "jhfhbdbfgajagececefddcadfbhihgjciaddgjiijbadehiddaighheigfghggcgagehjiaa"
+      "hcgcfecheddehcijffgiidjjcfidjeifaicbaaiddjedhcihhabcidggjeaceehiiieecigf"
+      "cibcffjdjbbbgieefhdieddjchegicigajdebieiiabdbadfdcjigegdcgdjbdbggjidajhb"
+      "fcigihdefgfcfjidhdeejahfachiaaiiecfcgdbcdiiigbgbfbghfgfifhbeehegigfchafj"
+      "bjgieeiechdbidcijfjeciechidfcfgfciaaafcbdgbhdbgdcijeddfbgchbgjeeggidiiga"
+      "ijacejijfiejbhebicagcgjdbjefefegejdachfjjeaifeacadfcffeegbidaieicedjjihd"
+      "igbjffcfedchhfhjcgjeceiaajgecifgdahcacjchjgafcfibjicegfahdgicbagaedacgag"
+      "cijddgbbhiafeiaijcidebfbhjgaegdajjgiiediaejijfcdbjieaficdbddjgheageiffjf"
+      "eggdghheijbdcbcfcicaccdhhcehfbiafcgdajeefjajijgbefjebehaffjhfgjifhheadgi"
+      "jijgfefbgifbabjjbdfgfbhcgdgdcjcgdfjacebdhcacjfchhhegedceggdjjdaigbbcajhi"
+      "ahffjbiajeahgibjecfdbffgjgeehacggjiejfhhjchcghicgggdbhacdfdadiggdcfifcbf"
+      "aaecihagdeffhdhgehbjbabdadcgicdhjeecibeicjbbhahebjjgjjjjbhfcibcgehjbbgid"
+      "dgciiaaaijadbaechjdjbfaiffbabjhggjecgggbdihifibadbafhfcbdaddaccjigjcdggh"
+      "bbbcajccifecfbabaedaiaccdhihbffdegahhhaaiidhdijidfghcdddfgfihfdecijhjdie"
+      "jjbhjjbeghhhejafhegjjhbecjgbcdbcjcgcdfedcehhecfcefbhagcchegabacedfdcagfb"
+      "iebhfajhdedgfiebihdbfachfaaheichaffcdeefhacdiafdddhfhbbjjbifjegcefjegfbj"
+      "dgfedfcbcddfeajjdadbhajjjacgahcjeeibiedhgedhccaiadadjcjjbaddiefbcegcgcjb"
+      "egfadijicgjcedcjhhbgjijgjhbhhhjifdhddhgcefjjjihebffdfejjaajicfcdfdabjbfe"
+      "fhjcjahidagbchddibjdgdcjfhhagfacfghdeagddbieeeifhbdjjdgafcfdbbgfadeigige"
+      "fijjghggbecaidgaagefefcebgebeaajadjcfcfhgcdjcbbiegdhchcaheijcggajjbjfcic"
+      "ahafjbbbahfeecejibgbfjeichffcdhfhfefciahjcbddbhaaijjfjchhbjicdhcccdccifd"
+      "gfjehhjdecdcagijdddhggfhfbgagfefdfbabcdbiaeeiibgabfjheaajccfjjhjbijchafj"
+      "fibdedegchdcbhieaiccegbacgdihdjigdcagaffhjghhejceaeaeiaadfhbgbdbdgjccjia"
+      "cjijfjbecedeahcfbabjhiidihcjbgeefdiabgaiffabiajifcigfjgehcbjahbefjcadijh"
+      "hhbgdfdhhdgbabjagfbcjfagffjdgaadfjibedjcjfhjbccdhbfdeaegefachbebjbiijcde"
+      "ddbeiacdigbgbfaaiajhcccagehadjiibjfejdeacihhbgajcagbacabhcfdeifeiaegfgie"
+      "ahbeifccahheifjjbfejgiadjbifebbaidaaaiiddibhaidbabhgfeijdafjafhcfbhdhjgd"
+      "igddaeheheecbiighabcabjgbgbaiiccjgcgejafdhaaiadcdebegjaidhghdjahbihabaif"
+      "cdjhhaicecaibiciejchiajfiegddejaehfbgcfaadegcjhjheecigjdfhiehcihjdiaiehc"
+      "gcgdabcfedbcgbbecghidcejecbeffddhhfbidhbhdcfhcbcjbefdahifihfhdhgjbiaejfa"
+      "fjfijdbiagfiijjhaiadehjgghcaajjefjddhbdhcbjahhaehiddffcfbdeggegdfeieafig"
+      "ehhjccbjijegbcaahbejhahaiacghibhdjbiefgihbgecdajdfdjfdbjjceajdadhfgdfjib"
+      "eeajibhijbfegfhiijjggcbcagffbcgieeechbghgbaagagehbghafhbideahghchfdjhfdb"
+      "iebhigjedjibdcjfeedbgjbgcibbbhdigihjjcegcebejahefifigebefcdgegeabbcegffc"
+      "dbafijfbabefecgafjdfhbiggeffbcfbjiciceebhgbeahghihahgefigdfjbcdbjgiabceg"
+      "dhhaiiiabcbcdhcjccgggbadefieagcaegbdddcihciagagjeafdafeedjegaccgghifbhed"
+      "agdgdidbgfcjadegcaebbbddaebjifbidfefbgbajdfacecaddgfebdiaagijedhjjfiggjc"
+      "bjhhbciigfdecfebdddejjiafbbfchdbaehfaeaefbfjbcebheahdjafccaibbfiagfccidj"
+      "hbicfachbahcecbgdieideaajhcfcgifebedeffdiibhceidaihjejjdacccgbfeggghgebb"
+      "ebeadjahbhcjidjfcibeaehhbbbdfchbhjbichdfghgbejadffadhbjicijdjeidhbfbaacb"
+      "jbiegifdfbeajajaejiafhfghjegbjafdgfiggjecaeehaicegcbfghfeeechaebdjbihdac"
+      "jdebjjaigdajdbghhbjiigffedfdadfchcibaibgdfhhchgcaigbhbefgdcafhhghiadifed"
+      "agedjbgcfcbigeafjffajhcdddchiidhhgdjijgcccgejcgdfagbceeeiidcbdfaigdeiafe"
+      "gihdjgdiijbjifihaifbddibdjbhfejjjcdhabafdfbcajjdfjfhacadfbcbjhafbjgdgeii"
+      "jjhffgdifjegfhehfbabhhjhadediggdaabibbhjajbajbddegjjagihbcefcfdegjbgaafd"
+      "bahbjgabfhdbheebbajccfbaeiefbghjcefjjjhihiacagajfjaajicfggfbfggaheieddfd"
+      "ihbdfchecdchcggabchbcahdiahdghhfabcdejbfgjgdaajhfdcbecbcbjbbjgchbgcdjgbh"
+      "iaicccbhaihfbebaijiichhfgfahhhefieheihfcbcegiffhfjfgfjcdejiijhhedjdccdea"
+      "bjahjjceecihbbfhdcdgccbdiffiiiacajdheadbeihcgabeaeegecjgdjafbjeggbafahff"
+      "dcjafdbjaifeagefjdcfabibbgdbfejgahjhibbdacbiggjaacihidjdfaidhjiihbcbfcbb"
+      "cfijgcchbgedaiicjfiiicbbbbdihgdbgbjfgibbfaacjfhcehfadbabbgjcdijiidehjjgc"
+      "iiceedibbjidacbchcihiifcihccjgcfahaecgjdijgeegdgcgejjiadeijgdeedjdbdebjh"
+      "ddgciiegddfabfaccbdcjggiidjfehdgcegdahecejdifcedijajigcdhdjhbdiacehiegbd"
+      "bhhihjejgahjecgdciabjgcegjiegaiibfjgafaacbjabcddghcegjeibhjfcgahdedeifbd"
+      "bhiiiffjbhieaadfcebdficfabbifjbjjfdaahchighcfjgjhchcghejjdbghhecgdahjhaj"
+      "dcdfidgdehjjeehidhgabeidejbcjcjbdigeegabahfcjjfdgiaadidfjigdfhbgejfifhid"
+      "dcahagdabdaaeagifgjahjhdgajfhfffijjfgdibdafjhiiihbddfbgjfjbddbiddcihhdhd"
+      "adhfhbjbhghbadecfiegfichjcfdedbiaeigcbbgdcicajbfifjdbbdfhddfegiiebcccbjf"
+      "gibjgjhahihcacchefhddbefgchcecjhaebgabfjiciichecggidcgjggdcagaibdichdfcc"
+      "hhbjgciijbbjihcdhgcijeibaggiifiiafhhebbabhhhccigbaafjjjjfaeeebcgjcfjhjib"
+      "beihfbfbbiajafbjiciibfbgfeaacfcfgbbddfagdehbbdabbbgdfiagicgehaffhhiggdea"
+      "fjajfejcbjfjchigfhheegbhjhiccaghehjdeihgdaibdfdfeaefaeijhhabbjebcfgdaege"
+      "jhhdedagehebfebjigiijfiibdcgadecgfgdceiihiebjijhhdhhjheaffhchggeiajiggef"
+      "aheacibejefdjfajjccjfaeifabaicigfhdaeddehcdeahgjfbaffcchjajdgicdbeiebied"
+      "afjcifegadecigahhaggabddfgadcbgdhaechadgbjefajdbcjiddjhefjiiadjifcfiiifg"
+      "jejjeihbhciajfjifadejcdbdgagagchcbfaehcdhcafdeegbgfdbdjedefchcbiiihfhejg"
+      "iijffbajcfgdgdhegicbefcbahhfgfbdegjefjejbeefahdggibhaaigibbedghhgcchjfbg"
+      "aicdaejjcijebifbbacehdfbbaaajciejgeecgjdhieiaadeeejieagecjijbgdejecbcccj"
+      "bgjadabiiidgegjhchaiacegaiaeeagbfjdficbgifefjagideiibbcfgcacdcgichdiaeje"
+      "jahgiiaiidfhfadaagjcchiajchhcghjgfiddffegdcfgbegiaideebffiiabjjhbcecgcag"
+      "bfcchcbcgcbaijfdbfghagdffbhbjajdcjidiihejdjbcaaaeaaibdagjfagaajhiijcbiib"
+      "ifgdfihfdahgggecagbgghhdjgjgjhbiihhjgiabdibfidfecgfjhghebbaadbihceeicdca"
+      "hheddddebdjfigcgdejjdbbcijijfchdedibjegaeahccfhhcfcejhiihaacgdbigedebadb"
+      "iafadchjcjciibaaafgacadfgbaebcbceedaihhebfjfefjigdfhhbdbhcahdbjigahafeid"
+      "ehgbdiihhdaahjddiafghagdfabcdafdjgdahhehjheibghjhbgjchcbgdahafaiebajgggb"
+      "dgbfjdjghjfefhhabjfcbgbabedfidafiheigjjgjicajaeigcbafcbijhhbgddhggbechbj"
+      "gcadffhcdffgfbgffdbbhdfgggcbgjdfbggefhbbaccahfdaibdcggaddacchghhbdafjaea"
+      "fjeiefejddihhccfdaddbhibjaddehjbeibjidedajigjeeefhehejjjdffggfjdbhgcdigf"
+      "ejabjjicbcheiffigdgdeejjecbajdffecagfaejdhicaagbfjjddggagahjdfgcjiihibfb"
+      "iahhcgggjagdeiifhccdbbafeefgfdadgbchcdicefhejidfaeaddfichdebbdeeajfdhffa"
+      "gchebhhhbbeaahefaeccfdfdagahhadfifgbdfjbffbfjehfieddbhhbfdccahiadgbfijhc"
+      "bjjgcchhdecafafbefbfeahjefbhhgffjagijbdehiiefdfejfbfjeeiacgajabgafdfiejf"
+      "ffdhbgdhhfehbehfiiieehbegjhijaidcifcdceibibgjfjbdifdhdciadhagdgdgebhjabg"
+      "bdafcaajeiiifaddaicaideiebhfehehebfcbaaebhcejfechaiiifbbbbdfdfcdfdbheiid"
+      "ffhbffdaeabbgjgfgcghchigeaehbfcdfgcfhgifjjejcdjehjhjjibbjbbageheihgeehee"
+      "ejajhafhahcddiajgbbhhhgfafhccdjjajeccbijiaadhecfejgdjfacghfjjdciiagdgecf"
+      "ifbefifhdcjiigchcjggffghcbcefhafhadccahbahdgeeafjfdiehhdijjcjccjcbeeacci"
+      "ebffjeaedacfdihgcdiihegefbeeedeeddihahhjhafgiccjhjjfifecacajdegbjfeaicei"
+      "hhabdhjfdhjjcgdaedccbefhddicdgbeigdhhcgegghijdeedfgaigeijejgegeahifabbbc"
+      "ihjfcechcjibfdghgbhhccfaafaifaebfcjbafgfjaiiedecefgighehjihhjdhhgbaijfje"
+      "bcbejgfjfchdacadjcibaghgeiifdjdcecbbgbeaefbcjegecebdfjajfhjbejejdeadaccf"
+      "gbfbhbchehfiiijdhdhbfcjjdjbjhijdfdecdeecjcbiacbjdcaahahaceejhaifgefcdhah"
+      "cgbdbgecefgbdjfcdgbaehhdeddcbbjdhahadjfdefffehahageggbcbgjgfaajjeagbbeeh"
+      "hiie";
+  obj.expected = 2;
+
+  return obj;
+}
+
 class Solution {
 public:
   long long wonderfulSubstrings(std::string word) {
@@ -58,10 +201,6 @@ public:
         if (isOdd.size() <= 1)
           ++counter;
       }
-
-      // clear containers
-      map.clear();
-      isOdd.clear();
     }
 
     return counter;
@@ -71,7 +210,7 @@ public:
 int main() {
   Solution answer = Solution();
 
-  TestCase input{test3()};
+  TestCase input{test4()};
   long long actual{answer.wonderfulSubstrings(input.word)};
 
   std::cout << "Expected: " << '\n' << input.expected << '\n';
