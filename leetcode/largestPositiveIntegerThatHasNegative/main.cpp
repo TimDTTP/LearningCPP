@@ -1,6 +1,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <unordered_set>
 #include <vector>
 
 struct TestCase {
@@ -42,7 +43,6 @@ public:
     size_t ptr2{nums.size() - 1};
 
     while (ptr1 < ptr2) {
-      std::cout << nums[ptr1] << ',' << nums[ptr2] << '\n';
       if (nums[ptr1] > 0 || nums[ptr2] < 0)
         return -1;
       else if (0 + (0 - nums[ptr1]) == nums[ptr2])
@@ -58,6 +58,21 @@ public:
   }
 };
 
+class OnlineSolution {
+public:
+  int findMaxK(std::vector<int> &nums) {
+    int result = -1;
+    std::unordered_set<int> table{nums.begin(), nums.end()};
+
+    for (int num : table) {
+      if (table.find(num * -1) != table.end())
+        result = std::max(result, num);
+    }
+
+    return result;
+  }
+};
+
 int main() {
   TestCase input{test3()};
   Solution answer = Solution();
@@ -66,6 +81,11 @@ int main() {
 
   std::cout << "Expected: " << '\n' << input.expected << "\n\n";
   std::cout << "Actual: " << '\n' << output << "\n\n";
+
+  // online solution
+  OnlineSolution online = OnlineSolution();
+  output = online.findMaxK(input.nums);
+  std::cout << "Online: " << '\n' << output << "\n\n";
 
   return 0;
 }

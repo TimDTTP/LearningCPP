@@ -27,5 +27,8 @@ Which is the value of the largest value that has a negative equivalent.
 6. Else return -1
 
 ## Submission
-Time: 15ms Beats 79.95%
-Memory: 22.94MB Beats 51.86%
+Time: 11ms Beats 94.06%
+Memory: 22.87MB Beats 65.72%
+
+## Online solutions
+Using hash set instead for O(n) time complexity
