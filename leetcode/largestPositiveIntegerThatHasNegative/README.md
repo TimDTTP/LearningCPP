@@ -25,3 +25,7 @@ Which is the value of the largest value that has a negative equivalent.
 5. If 0 + (0 - ptr1) < ptr2
     --ptr2
 6. Else return -1
+
+## Submission
+Time: 15ms Beats 79.95%
+Memory: 22.94MB Beats 51.86%
