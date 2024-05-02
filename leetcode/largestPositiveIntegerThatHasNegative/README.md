@@ -16,4 +16,12 @@ Which is the value of the largest value that has a negative equivalent.
 - nums[i] != 0
 
 ## Approach
-
+1. Sort array from lowest to highest
+2. Use 2 pointer to navigate array from each end
+3. If 0 + (0 - ptr1) > ptr2
+    ++ptr1
+4. If 0 + (0 - ptr1) == ptr2
+    return ptr2
+5. If 0 + (0 - ptr1) < ptr2
+    --ptr2
+6. Else return -1
