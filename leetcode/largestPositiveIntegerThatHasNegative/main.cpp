@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -34,11 +35,31 @@ TestCase test3() {
 
 class Solution {
 public:
-  int findMaxK(std::vector<int> &nums) { return 0; }
+  int findMaxK(std::vector<int> &nums) {
+    std::sort(nums.begin(), nums.end());
+
+    int ptr1{0};
+    size_t ptr2{nums.size() - 1};
+
+    while (ptr1 < ptr2) {
+      std::cout << nums[ptr1] << ',' << nums[ptr2] << '\n';
+      if (nums[ptr1] > 0 || nums[ptr2] < 0)
+        return -1;
+      else if (0 + (0 - nums[ptr1]) == nums[ptr2])
+        return nums[ptr2];
+      else if (0 + (0 - nums[ptr1]) >= nums[ptr2])
+        ++ptr1;
+      else if (0 + (0 - nums[ptr1]) <= nums[ptr2])
+        --ptr2;
+    }
+
+    // if no match
+    return -1;
+  }
 };
 
 int main() {
-  TestCase input{test1()};
+  TestCase input{test3()};
   Solution answer = Solution();
 
   int output{answer.findMaxK(input.nums)};
