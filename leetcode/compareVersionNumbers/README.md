@@ -25,3 +25,6 @@ else, return 0
     sum = sum * 10 + string[i]
 2. Return corresponding value based on comparison
 3. At the end return 0 since they are the same
+
+## Online solution
+Minimal to no significant improvements
