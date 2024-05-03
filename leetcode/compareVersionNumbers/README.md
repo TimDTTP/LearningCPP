@@ -21,4 +21,7 @@ else, return 0
 - all values can be stored in 32-bit int
 
 ## Approach
-
+1. Iterate through each string tracking the sum until decimal or end of str
+    sum = sum * 10 + string[i]
+2. Return corresponding value based on comparison
+3. At the end return 0 since they are the same
