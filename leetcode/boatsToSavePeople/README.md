@@ -18,3 +18,10 @@ and the combined weight cannot surpass the 'limit'.
 - 1 <= people[i] <= limit <= 3 * 10^4
 
 ## Approach
+- Two pointers, at beginning and end
+- If both pointers add and is less than limit
+    - Increment boat #
+    - Increment beginning pointer
+    - Decrement end pointer
+- Repeat until >= 1 left
+- If pointer are at the same one add 1 and return
