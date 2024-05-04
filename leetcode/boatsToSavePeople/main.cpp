@@ -37,7 +37,29 @@ TestCase test3() {
 
 class Solution {
 public:
-  int numRescueBoats(std::vector<int> &people, int limit) { return 0; }
+  int numRescueBoats(std::vector<int> &people, int limit) {
+    int numBoats{0};
+    int ptrStart{0};
+    int ptrEnd = people.size() - 1;
+
+    std::sort(people.begin(), people.end());
+
+    while (ptrStart < ptrEnd) {
+      if ((people[ptrStart] + people[ptrEnd]) <= limit)
+        ++ptrStart;
+
+      ++numBoats;
+      --ptrEnd;
+    }
+
+    // if 1 remaining
+    if (ptrStart == ptrEnd)
+      ++numBoats;
+
+    // else ptrStart has surpassed ptrEnd
+
+    return numBoats;
+  }
 };
 
 int main() {
