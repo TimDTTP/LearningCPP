@@ -26,3 +26,11 @@ and the combined weight cannot surpass the 'limit'.
     - Decrement end pointer
 - Repeat until >= 1 left
 - If pointer are at the same one add 1 and return
+
+## Results
+Passed:
+Time 50ms Beats 89.23%
+Memory 45.36MB Beats 85.44%
+
+## Online solutions
+Little to no significant improvements
