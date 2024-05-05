@@ -1,5 +1,6 @@
 
 #include "list.h" // listNode + basic operations
+#include <iostream>
 #include <vector>
 
 struct TestCase {
@@ -43,7 +44,19 @@ TestCase test2() {
 
 class Solution {
 public:
-  void deleteNode(ListNode *node) {}
+  void deleteNode(ListNode *node) {
+    ListNode *track{node->next};
+
+    while (track->next) {
+      node->val = node->next->val;
+      node = track;
+      track = track->next;
+    }
+
+    // replace and delete last node
+    node->val = node->next->val;
+    node->next = NULL;
+  }
 };
 
 int main() {
@@ -51,8 +64,15 @@ int main() {
   Solution answer{};
   ListOperations listOp{};
 
-  answer.deleteNode(input.node);
+  std::cout << "Before: " << '\n';
   listOp.printList(input.list);
+  std::cout << '\n';
+
+  answer.deleteNode(input.node);
+
+  std::cout << "After: " << '\n';
+  listOp.printList(input.list);
+  std::cout << '\n';
 
   return 0;
 }
