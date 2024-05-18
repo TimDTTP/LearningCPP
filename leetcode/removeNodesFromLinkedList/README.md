@@ -15,3 +15,9 @@ Which no node to the right of it is greater that itself.
 - 1 <= number of nodes <= 10^5
 
 ## Approach
+1. Iterate through linked list
+2. Add value and "index" to ordered map
+3. Sort map by value
+4. Iterate through map and add to new linked list
+    - If index is greater than current + add to linked list
+5. Return new linked list
