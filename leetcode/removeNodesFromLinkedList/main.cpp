@@ -1,5 +1,7 @@
 
 #include "list.h"
+#include <algorithm>
+#include <map>
 #include <vector>
 
 // test cases
@@ -14,8 +16,34 @@ std::vector<int> test2() {
 }
 
 class Solution {
+  // sorting map in descending order based on value
+  bool mapCmp(std::pair<int, int> lhs, std::pair<int, int> rhs) const {
+    return lhs.second > rhs.second;
+  }
+
 public:
-  ListNode *removeNodes(ListNode *head) {}
+  ListNode *removeNodes(ListNode *head) {
+    int count{1};
+
+    // <key, value> :: <val, index>
+    std::map<int, int> valMap{};
+
+    // loop through list and add
+    while (head) {
+      valMap[count] = head->val;
+      ++count;
+    }
+
+    // sort map
+    std::sort(valMap.begin(), valMap.end(), mapCmp);
+
+    // add to new list
+    ListNode *newList;
+    valMap[0];
+
+    // FIX: change return value
+    return head;
+  }
 };
 
 int main() {
