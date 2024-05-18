@@ -14,8 +14,10 @@ struct ListNode {
 };
 
 // suplementary list operations (self defined)
-class ListMethods {
-public:
+class List {
+private:
+  ListNode *m_head{};
+
   // vector to list
   ListNode *create(std::vector<int> input) {
     ListNode *head = new ListNode();
@@ -35,12 +37,16 @@ public:
     return head;
   }
 
+public:
+  // constructor
+  List(std::vector<int> vec) : m_head{create(vec)} {}
+
   // print list
-  void print(ListNode *head) {
+  void print() {
     std::cout << "Printing list: " << '\n';
-    while (head) {
-      std::cout << head->val << ' ';
-      head = head->next;
+    while (m_head) {
+      std::cout << m_head->val << ' ';
+      m_head = m_head->next;
     }
     std::cout << '\n';
   }
