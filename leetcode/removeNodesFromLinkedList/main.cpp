@@ -17,10 +17,11 @@ std::vector<int> test2() {
 
 class Solution {
   // sorting map in descending order based on value
-  bool mapCmp(std::pair<int, int> lhs, std::pair<int, int> rhs) const {
+  static bool mapCmp(std::pair<int, int> &lhs, std::pair<int, int> &rhs) {
     return lhs.second > rhs.second;
   }
 
+private:
 public:
   ListNode *removeNodes(ListNode *head) {
     int count{1};
@@ -37,9 +38,11 @@ public:
     // sort map
     std::sort(valMap.begin(), valMap.end(), mapCmp);
 
+    // test print sort map
+    for (const auto &[k, v] : valMap) {
+      std::cout << '[' << k << ',' << v << ']' << '\n';
+    }
     // add to new list
-    ListNode *newList;
-    valMap[0];
 
     // FIX: change return value
     return head;
@@ -53,7 +56,7 @@ int main() {
 
   // run operation here
 
-  input.print();
+  // input.print();
 
   return 0;
 }
