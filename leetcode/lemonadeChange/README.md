@@ -32,4 +32,5 @@ The every order in line are able to be returned the exact change.
  5. At the end return bool toggle
 
 ## Online Solution
-
+- Little to no significant improvements
+- Lack of efficiency due to usage of map instead of 2 int variables to track bills
