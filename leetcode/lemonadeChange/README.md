@@ -24,5 +24,10 @@ The every order in line are able to be returned the exact change.
 - Dicts
  1. Iterate through vector
  2. Check if proper change is available
- 3. Add bill to dict
- 4. 
+ 3. If 20, split possibilities
+    - Attempt to use 10 + 5 first
+    - If failed...
+        - Flip bool
+        - Exit
+ 4. If possible add bill to dict
+ 5. At the end return bool toggle
