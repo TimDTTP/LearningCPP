@@ -70,7 +70,6 @@ public:
     return max;
   }
 
-  // TEST: REMOVE BEFORE SUBMITTING
   std::string testPrivate(std::string s, int index) {
     std::string testStr{expandEven(s, index)};
     return testStr;
