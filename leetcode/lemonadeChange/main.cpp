@@ -1,30 +1,48 @@
 
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
 class Solution {
 public:
   bool lemonadeChange(std::vector<int> &bills) {
     const int cost{5};
-    bool track{false};
+    bool track{true};
     int change{0};
+    std::unordered_map<int, int> reserve = {
+        {5, 0},
+        {10, 0},
+    };
 
     // iterate through vector
     for (int i{0}; i < bills.size(); ++i) {
-      /*
-       * If exact change...
-       * - Add 5 to dictionary
-       *
-       * If 10...
-       * - Check if 5
-       * - Remove 5 and add 10
-       *
-       * If 20...
-       * - Attempt to return 10 + 5
-       * - Else attempt to return 5 x 3
-       */
-
+      // Given $5 bill
       if (bills[i] == 5)
+        ++reserve[5];
+
+      // Given $10 bill
+      else if (bills[i] == 10) {
+        if (reserve[5] > 0) {
+          --reserve[5];
+          ++reserve[10];
+        } else {
+          track = false;
+          break;
+        }
+      }
+
+      // Given $20 bill
+      else {
+        if (reserve[10] >= 1 && reserve[5] >= 1) {
+          --reserve[10];
+          --reserve[5];
+        } else if (reserve[5] >= 3) {
+          reserve[5] -= 3;
+        } else {
+          track = false;
+          break;
+        }
+      }
     }
 
     return track;

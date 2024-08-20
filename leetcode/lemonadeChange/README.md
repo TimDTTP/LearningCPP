@@ -25,9 +25,11 @@ The every order in line are able to be returned the exact change.
  1. Iterate through vector
  2. Check if proper change is available
  3. If 20, split possibilities
-    - Attempt to use 10 + 5 first
-    - If failed...
-        - Flip bool
-        - Exit
+    - Prioritize using 10 + 5
+    - Else use 5 x 3
+    - B/c only 20 bills require 10 bill change
  4. If possible add bill to dict
  5. At the end return bool toggle
+
+## Online Solution
+
