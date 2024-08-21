@@ -26,3 +26,6 @@ string "haystack"
 matches needle[0]
 - Reset needle pointer
 - If haystack does not already have one, start for furthest point and find next
+
+## Online solutions
+- Offered little to no improvements
