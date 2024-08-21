@@ -41,8 +41,32 @@ test testD() {
 }
 
 class Solution {
+private:
+  int countTurns(std::string s, int start, int end, int counter) {
+    // find repeat
+    while (s[end] != s[start] && start < end)
+      --end;
+
+    ++counter;
+    if (start >= end)
+      return counter;
+    ++start;
+    --end;
+
+    return countTurns(s, start, end, counter);
+  }
+
 public:
-  int strangerPrinter(std::string s) {}
+  int strangerPrinter(std::string s) {
+    const int len{static_cast<int>(s.size())};
+    int start{0};
+    int end{len - 1};
+    int turns{0};
+
+    turns = countTurns(s, start, end, turns);
+
+    return turns;
+  }
 };
 
 int main() {
