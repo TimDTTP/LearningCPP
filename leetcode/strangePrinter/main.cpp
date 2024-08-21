@@ -40,6 +40,14 @@ test testD() {
   return obj;
 }
 
+test testE() {
+  test obj;
+  obj.s = "abc";
+  obj.turns = 3;
+
+  return obj;
+}
+
 class Solution {
 private:
   int countTurns(std::string s, int start, int end, int counter) {
@@ -65,6 +73,11 @@ public:
 
     turns = countTurns(s, start, end, turns);
 
+    // find repeat
+    // call function
+    // use end as next start
+    // end when start == end
+
     return turns;
   }
 };
@@ -76,23 +89,30 @@ int main() {
   test caseB{testB()};
   test caseC{testC()};
   test caseD{testD()};
+  test caseE{testE()};
 
-  if (cur.strangerPrinter(caseA.s) == caseA.turns)
-    std::cout << "Success!" << '\n' << std::endl;
-  else
-    std::cout << "Fail!" << '\n' << std::endl;
+  // if (cur.strangerPrinter(caseA.s) == caseA.turns)
+  //   std::cout << "Success!" << '\n' << std::endl;
+  // else
+  //   std::cout << "Fail!" << '\n' << std::endl;
+  //
+  // if (cur.strangerPrinter(caseB.s) == caseB.turns)
+  //   std::cout << "Success!" << '\n' << std::endl;
+  // else
+  //   std::cout << "Fail!" << '\n' << std::endl;
+  //
+  // if (cur.strangerPrinter(caseC.s) == caseC.turns)
+  //   std::cout << "Success!" << '\n' << std::endl;
+  // else
+  //   std::cout << "Fail!" << '\n' << std::endl;
+  //
+  // if (cur.strangerPrinter(caseD.s) == caseD.turns)
+  //   std::cout << "Success!" << '\n' << std::endl;
+  // else
+  //   std::cout << "Fail!" << '\n' << std::endl;
 
-  if (cur.strangerPrinter(caseB.s) == caseB.turns)
-    std::cout << "Success!" << '\n' << std::endl;
-  else
-    std::cout << "Fail!" << '\n' << std::endl;
-
-  if (cur.strangerPrinter(caseC.s) == caseC.turns)
-    std::cout << "Success!" << '\n' << std::endl;
-  else
-    std::cout << "Fail!" << '\n' << std::endl;
-
-  if (cur.strangerPrinter(caseD.s) == caseD.turns)
+  std::cout << cur.strangerPrinter(caseE.s) << '\n';
+  if (cur.strangerPrinter(caseE.s) == caseE.turns)
     std::cout << "Success!" << '\n' << std::endl;
   else
     std::cout << "Fail!" << '\n' << std::endl;
