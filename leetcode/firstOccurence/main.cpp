@@ -16,13 +16,16 @@ private:
   }
 
 public:
-  // FIX:
   int strStr(std::string haystack, std::string needle) {
     int lenNeedle{static_cast<int>(needle.size())};
     int stackPtr{0};
     int needlePtr{0};
     std::queue<int> initialOccurence;
     int found{-1};
+
+    // edge case needle > haystack
+    if (needle.size() > haystack.size())
+      return found;
 
     // get first occurence of first letter
     stackPtr = findInitial(needle[0], stackPtr, haystack);
@@ -57,7 +60,7 @@ public:
       }
     }
 
-    return found;
+    return -1;
   }
 };
 
@@ -86,6 +89,24 @@ tests testB() {
   return obj;
 }
 
+tests testC() {
+  tests obj;
+  obj.h = "aaa";
+  obj.n = "aaaa";
+  obj.output = -1;
+
+  return obj;
+}
+
+tests testD() {
+  tests obj;
+  obj.h = "mississippi";
+  obj.n = "issispi";
+  obj.output = -1;
+
+  return obj;
+}
+
 int main() {
   // set up
   Solution cur = Solution();
@@ -95,7 +116,6 @@ int main() {
   std::cout << "Test 1" << '\n';
   test = testA();
   output = cur.strStr(test.h, test.n);
-  std::cout << "Output: " << output << '\n';
   if (output == test.output)
     std::cout << "Success!" << '\n' << std::endl;
   else
@@ -104,7 +124,22 @@ int main() {
   std::cout << "Test 2" << '\n';
   test = testB();
   output = cur.strStr(test.h, test.n);
-  std::cout << "Output: " << output << '\n';
+  if (output == test.output)
+    std::cout << "Success!" << '\n' << std::endl;
+  else
+    std::cout << "Fail!" << '\n' << std::endl;
+
+  std::cout << "Test 3" << '\n';
+  test = testC();
+  output = cur.strStr(test.h, test.n);
+  if (output == test.output)
+    std::cout << "Success!" << '\n' << std::endl;
+  else
+    std::cout << "Fail!" << '\n' << std::endl;
+
+  std::cout << "Test 4" << '\n';
+  test = testD();
+  output = cur.strStr(test.h, test.n);
   if (output == test.output)
     std::cout << "Success!" << '\n' << std::endl;
   else
