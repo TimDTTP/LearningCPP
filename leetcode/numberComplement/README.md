@@ -20,7 +20,3 @@ Brute force
 - Flip bits
 - Convert back to numerical
 
-Bitwise AND
-- Return bitwise num AND 0
-- Any shared 0 is flipped to 1
-- Non-zero are flipped to zero
