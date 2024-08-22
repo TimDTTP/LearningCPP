@@ -17,6 +17,11 @@ test testB() {
   return obj;
 }
 
+test testC() {
+  test obj{7, 0};
+  return obj;
+}
+
 class Solution {
 private:
   int decToBin(int num) {
@@ -81,6 +86,7 @@ int main() {
   Solution cur = Solution();
   test caseA{testA()};
   test caseB{testB()};
+  test caseC{testC()};
 
   int resA{cur.findComplement(caseA.input)};
   std::cout << resA << '\n';
@@ -92,6 +98,13 @@ int main() {
   int resB{cur.findComplement(caseB.input)};
   std::cout << resB << '\n';
   if (resB == caseB.output)
+    std::cout << "Success!\n" << std::endl;
+  else
+    std::cout << "Failed!\n" << std::endl;
+
+  int resC{cur.findComplement(caseC.input)};
+  std::cout << resC << '\n';
+  if (resC == caseC.output)
     std::cout << "Success!\n" << std::endl;
   else
     std::cout << "Failed!\n" << std::endl;
