@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include <string>
+#include <stack>
 
 struct test {
   int input;
@@ -51,12 +51,26 @@ private:
     return compBin;
   }
 
-  // int binToDec(std::string bin) {}
+  int binToDec(int bin) {
+    // assuming leading 0's dropped
+    std::stack<int> nums{};
+    while (bin != 0) {
+      nums.push(bin % 10);
+      bin /= 10;
+    }
+    while (!nums.empty()) {
+      bin = bin * 2 + nums.top();
+      nums.pop();
+    }
+
+    return bin;
+  }
 
 public:
   int findComplement(int num) {
     int result{decToBin(num)};
     result = complement(result);
+    result = binToDec(result);
 
     return result;
   }
