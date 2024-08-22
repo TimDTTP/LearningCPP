@@ -32,13 +32,31 @@ private:
     return bin;
   }
 
-  // std::string complement(std::string bin) {}
-  //
+  int complement(int bin) {
+    int bit{};
+    int compBin{};
+    while (bin != 0) {
+      bit = bin % 10;
+      bin /= 10;
+
+      // flip
+      if (bit == 1)
+        bit = 0;
+      else
+        bit = 1;
+
+      compBin = compBin * 10 + bit;
+    }
+
+    return compBin;
+  }
+
   // int binToDec(std::string bin) {}
 
 public:
   int findComplement(int num) {
     int result{decToBin(num)};
+    result = complement(result);
 
     return result;
   }
@@ -51,12 +69,14 @@ int main() {
   test caseB{testB()};
 
   int resA{cur.findComplement(caseA.input)};
+  std::cout << resA << '\n';
   if (resA == caseA.output)
     std::cout << "Success!\n" << std::endl;
   else
     std::cout << "Failed!\n" << std::endl;
 
   int resB{cur.findComplement(caseB.input)};
+  std::cout << resB << '\n';
   if (resB == caseB.output)
     std::cout << "Success!\n" << std::endl;
   else
