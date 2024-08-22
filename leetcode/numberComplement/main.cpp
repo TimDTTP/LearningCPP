@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <string>
 
 struct test {
   int input;
@@ -17,8 +18,30 @@ test testB() {
 }
 
 class Solution {
+private:
+  int decToBin(int num) {
+    int bin{};
+    int rem{};
+
+    while (num != 0) {
+      rem = num % 2;
+      num /= 2;
+      bin = bin * 10 + rem;
+    }
+
+    return bin;
+  }
+
+  // std::string complement(std::string bin) {}
+  //
+  // int binToDec(std::string bin) {}
+
 public:
-  int findComplement(int num) { return num; }
+  int findComplement(int num) {
+    int result{decToBin(num)};
+
+    return result;
+  }
 };
 
 int main() {
@@ -27,12 +50,14 @@ int main() {
   test caseA{testA()};
   test caseB{testB()};
 
-  if (cur.findComplement(caseA.input) == caseA.output)
+  int resA{cur.findComplement(caseA.input)};
+  if (resA == caseA.output)
     std::cout << "Success!\n" << std::endl;
   else
     std::cout << "Failed!\n" << std::endl;
 
-  if (cur.findComplement(caseB.input) == caseB.output)
+  int resB{cur.findComplement(caseB.input)};
+  if (resB == caseB.output)
     std::cout << "Success!\n" << std::endl;
   else
     std::cout << "Failed!\n" << std::endl;
