@@ -1,6 +1,8 @@
 
+#include <bitset>
 #include <iostream>
 #include <stack>
+#include <string>
 
 struct test {
   int input;
@@ -22,62 +24,32 @@ test testC() {
   return obj;
 }
 
+test testD() {
+  test obj{2, 1};
+  return obj;
+}
+
 class Solution {
-private:
-  int decToBin(int num) {
-    int bin{};
-    int rem{};
-
-    while (num != 0) {
-      rem = num % 2;
-      num /= 2;
-      bin = bin * 10 + rem;
-    }
-
-    return bin;
-  }
-
-  int complement(int bin) {
-    int bit{};
-    int compBin{};
-    while (bin != 0) {
-      bit = bin % 10;
-      bin /= 10;
-
-      // flip
-      if (bit == 1)
-        bit = 0;
-      else
-        bit = 1;
-
-      compBin = compBin * 10 + bit;
-    }
-
-    return compBin;
-  }
-
-  int binToDec(int bin) {
-    // assuming leading 0's dropped
-    std::stack<int> nums{};
-    while (bin != 0) {
-      nums.push(bin % 10);
-      bin /= 10;
-    }
-    while (!nums.empty()) {
-      bin = bin * 2 + nums.top();
-      nums.pop();
-    }
-
-    return bin;
-  }
-
 public:
   int findComplement(int num) {
-    int result{decToBin(num)};
-    result = complement(result);
-    result = binToDec(result);
+    // convert into binary
+    std::string bin{std::bitset<32>(num).to_string()};
 
-    return result;
+    // strip leading zeros
+    bin.erase(bin.begin(), bin.begin() + bin.find_first_not_of('0'));
+
+    // flip bits
+    for (char &i : bin) {
+      if (i == '0')
+        i = '1';
+      else
+        i = '0';
+    }
+
+    // convert into decimal
+    unsigned long dec{std::bitset<32>(bin).to_ulong()};
+
+    return dec;
   }
 };
 
@@ -87,6 +59,7 @@ int main() {
   test caseA{testA()};
   test caseB{testB()};
   test caseC{testC()};
+  test caseD{testD()};
 
   int resA{cur.findComplement(caseA.input)};
   std::cout << resA << '\n';
@@ -105,6 +78,13 @@ int main() {
   int resC{cur.findComplement(caseC.input)};
   std::cout << resC << '\n';
   if (resC == caseC.output)
+    std::cout << "Success!\n" << std::endl;
+  else
+    std::cout << "Failed!\n" << std::endl;
+
+  int resD{cur.findComplement(caseD.input)};
+  std::cout << resD << '\n';
+  if (resD == caseD.output)
     std::cout << "Success!\n" << std::endl;
   else
     std::cout << "Failed!\n" << std::endl;
