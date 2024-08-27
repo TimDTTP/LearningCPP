@@ -86,7 +86,6 @@ public:
     std::vector<const int> obj{1, -1, 3, 2, 4, -1, 5, 6};
 
     Node *objTree{tree(obj)};
-    printTree(objTree);
 
     return objTree;
   }
@@ -96,16 +95,21 @@ public:
                                9, 10, -1, -1, 11, -1, 12, -1, 13, -1, -1, 14};
 
     Node *objTree{tree(obj)};
-    printTree(objTree);
 
     return objTree;
   }
 };
 
 class Solution {
+private:
+  std::vector<Node *> getChildren(Node *parent) { return parent->children; }
+
 public:
   std::vector<int> postorder(Node *root) {
     std::vector<int> result{};
+
+    for (Node *i : root->children) {
+    }
 
     return result;
   }
