@@ -17,3 +17,10 @@ the return vector is a series of int values in postorder, using the root node.
 - Height of tree <= 1000
 
 ## Approach
+- For each node, starting from root iterate over children nodes
+- Each parent add value to vector from end
+- Repeat recursively with child node instead of parent
+
+## Online solution
+- Reduced clutter using std::function
+- lambda function allows 1 less std::vector initialization

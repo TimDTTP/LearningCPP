@@ -128,6 +128,32 @@ public:
   }
 };
 
+class OnlineSolution {
+public:
+  std::vector<int> postorder(Node *root) {
+    // if root is null, return empty vector
+    if (!root)
+      return {};
+
+    std::vector<int> res;
+
+    // define DFS function
+    std::function<void(Node *)> dfs = [&](Node *node) {
+      // Recursively call DFS for each child
+      for (Node *child : node->children) {
+        dfs(child);
+      }
+
+      // append val to resultant vector
+      res.push_back(node->val);
+    };
+
+    dfs(root);
+
+    return res;
+  }
+};
+
 int main() {
   Test testCur = Test();
   Node *caseA{testCur.testB()};
