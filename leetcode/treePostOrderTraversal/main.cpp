@@ -109,6 +109,10 @@ public:
     std::vector<int> result{};
 
     for (Node *i : root->children) {
+      std::vector<int> temp{postorder(i)};
+      for (int j : temp) {
+        result.push_back(j);
+      }
     }
 
     return result;
@@ -118,6 +122,13 @@ public:
 int main() {
   Test testCur = Test();
   Node *caseA{testCur.testB()};
+
+  Solution cur = Solution();
+  std::vector<int> res{cur.postorder(caseA)};
+
+  for (int i : res) {
+    std::cout << i << ' ';
+  }
 
   return 0;
 }
