@@ -27,3 +27,17 @@ A sub island is where all pieces of land of a given island on grid 2 is simutane
 - grid[\m][\n] are either 1 or 0
 
 ## Approach
+- Separate land pieces on grid2 by "island"
+    - Init vector<vector<\int>> to track visited units
+    - Iterate through unvisited units till unit == 1
+    - Increment counter, add to a vector of islands
+    - Perform BFS on ONLY unvisited nodes, and add as coordinates to initial point
+    - Any "land" founds through BFS should also be marked as visited 
+- Iterate through and find if islands on grid2 match up with land on grid1
+    - Set a flag to track all comparisons
+    - Iterate through grid2's islands
+    - If grid1[\m][\n] != grid2[\m][\n]
+        - flip flag
+        - continue to next island
+    - At the end if flag is still true, increment counter
+- For every island increment count
