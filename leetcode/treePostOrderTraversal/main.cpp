@@ -102,18 +102,27 @@ public:
 
 class Solution {
 private:
-  std::vector<Node *> getChildren(Node *parent) { return parent->children; }
+  std::vector<int> recursive(Node *parent, std::vector<int> &res) {
+    if (parent == nullptr)
+      return res;
+
+    for (Node *i : parent->children) {
+      std::vector<int> temp{recursive(i, res)};
+      res.push_back(i->val);
+    }
+
+    return res;
+  }
 
 public:
   std::vector<int> postorder(Node *root) {
     std::vector<int> result{};
 
-    for (Node *i : root->children) {
-      std::vector<int> temp{postorder(i)};
-      for (int j : temp) {
-        result.push_back(j);
-      }
-    }
+    if (root == nullptr)
+      return result;
+    result = recursive(root, result);
+
+    result.push_back(root->val);
 
     return result;
   }
@@ -125,6 +134,9 @@ int main() {
 
   Solution cur = Solution();
   std::vector<int> res{cur.postorder(caseA)};
+
+  if (res.empty())
+    std::cout << "EMPTY\n" << std::endl;
 
   for (int i : res) {
     std::cout << i << ' ';
