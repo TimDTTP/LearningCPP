@@ -58,6 +58,21 @@ private:
       BFS(n, m - 1, islandCounter, foundIslands, grid2, visited);
   }
 
+  bool compareSubislands(std::vector<std::pair<int, int>> base,
+                         std::vector<std::vector<int>> cmp) {
+    bool allIn{true};
+    for (std::pair<int, int> coord : base) {
+      int n{coord.first};
+      int m{coord.second};
+
+      if (cmp[n][m] != 1) {
+        return false;
+      }
+    }
+
+    return allIn;
+  }
+
   // WARNING: Delete when submitting
   void printVecVecInt(std::vector<std::vector<int>> vec) {
     for (std::vector<int> a : vec) {
@@ -107,7 +122,15 @@ public:
       }
     }
 
-    return 0;
+    // Now compare foundIslands vs grid1
+    int subIslands{};
+    for (std::vector<std::pair<int, int>> islands : foundIslands) {
+      bool temp{compareSubislands(islands, grid1)};
+      if (temp)
+        ++subIslands;
+    }
+
+    return subIslands;
   }
 };
 
@@ -116,7 +139,9 @@ int main() {
 
   testCase test{testA()};
 
-  cursor.countSubIslands(test.grid1, test.grid2);
+  int out = cursor.countSubIslands(test.grid1, test.grid2);
+
+  std::cout << out << '\n';
 
   return 0;
 }
