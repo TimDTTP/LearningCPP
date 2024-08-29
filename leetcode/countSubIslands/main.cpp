@@ -1,5 +1,6 @@
 
 #include <functional>
+#include <iostream>
 #include <vector>
 
 struct testCase {
@@ -27,69 +28,77 @@ testCase testA() {
 }
 
 class Solution {
+private:
+  void BFS(int n, int m, int islandCounter,
+           std::vector<std::vector<std::pair<int, int>>> &foundIslands,
+           std::vector<std::vector<int>> &grid2,
+           std::vector<std::vector<int>> &visited) {
+    // base case; if already visited
+    if (visited[n][m] == 1)
+      return;
+
+    // if land
+    if (grid2[n][m] == 1) {
+      visited[n][m] = 1;
+      foundIslands[islandCounter - 1].push_back({n, m});
+    }
+
+    // check above
+    if (n > 0)
+      BFS(n - 1, m, islandCounter, foundIslands, grid2, visited);
+    // check right
+    if (m < grid2[0].size() - 1)
+      BFS(n, m + 1, islandCounter, foundIslands, grid2, visited);
+    // check down
+    if (n < grid2.size() - 1)
+      BFS(n + 1, m, islandCounter, foundIslands, grid2, visited);
+    // check left
+    if (m > 0)
+      BFS(n, m - 1, islandCounter, foundIslands, grid2, visited);
+  }
+
+  // WARNING: Delete when submitting
+  void printVecVecInt(std::vector<std::vector<int>> vec) {
+    for (std::vector<int> a : vec) {
+      for (int b : a) {
+        std::cout << b << ' ';
+      }
+      std::cout << '\n';
+    }
+  }
+
+public:
   int countSubIslands(std::vector<std::vector<int>> &grid1,
                       std::vector<std::vector<int>> &grid2) {
     // find all islands on grid2
     //
     // Track all visited nodes
-    std::vector<std::vector<int>> visited;
-    for (int i{0}; i < grid1.size(); ++i) {
-      for (int j{0}; j < grid2.size(); ++j) {
-        visited[i][j] = 0;
+    std::vector<std::vector<int>> visited{};
+    for (int i{0}; i < grid2.size(); i++) {
+      visited.push_back({});
+      for (int j{0}; j < grid2[0].size(); j++) {
+        visited[i].push_back(0);
       }
     }
 
     // store coordinate of found islands on grid2
     int islandCounter{0};
-    std::vector<std::vector<std::pair<int, int>>> foundIslands;
+    std::vector<std::vector<std::pair<int, int>>> foundIslands{};
 
     // iterate through and find land
     for (int n{0}; n < grid2.size(); ++n) {
-      for (int m{0}; m < grid2.size(); ++m) {
+      for (int m{0}; m < grid2[0].size(); ++m) {
         // skip if already visited
         if (visited[n][m] == 1)
           continue;
-
-        // mark visited unit
-        visited[n][m] = 1;
 
         // if land is founded, add to vector islands and perform BFS
         if (grid2[n][m] == 1) {
           // counter tracks how many islands thus far
           ++islandCounter;
 
-          // perform BFS on unvisited units
-          std::function<void(
-              int, int, int, std::vector<std::vector<std::pair<int, int>>> &,
-              std::vector<std::vector<int>> &, std::vector<std::vector<int>> &)>
-              BFS = [&](int n, int m, int islandCounter,
-                        std::vector<std::vector<std::pair<int, int>>>
-                            &foundIslands,
-                        std::vector<std::vector<int>> &grid2,
-                        std::vector<std::vector<int>> &visited) {
-                // base case; if already visited
-                if (visited[n][m] == 1)
-                  return;
-
-                // if land
-                if (grid2[n][m] == 1) {
-                  visited[n][m] = 1;
-                  foundIslands[islandCounter].push_back({n, m});
-                }
-
-                // check above
-                if (n > 0)
-                  BFS(n - 1, m, islandCounter, foundIslands, grid2, visited);
-                // check right
-                if (m < grid2[0].size() - 1)
-                  BFS(n, m + 1, islandCounter, foundIslands, grid2, visited);
-                // check down
-                if (n < grid2.size() - 1)
-                  BFS(n + 1, m, islandCounter, foundIslands, grid2, visited);
-                // check left
-                if (m > 0)
-                  BFS(n, m - 1, islandCounter, foundIslands, grid2, visited);
-              };
+          // init vector
+          foundIslands.push_back({});
 
           // invoke lambda function
           BFS(n, m, islandCounter, foundIslands, grid2, visited);
@@ -97,8 +106,24 @@ class Solution {
       }
     }
 
+    // WARNING: Delete before submitting
+    if (!foundIslands.empty()) {
+      std::cout << "Island found!" << '\n';
+      for (std::pair<int, int> coord : foundIslands[1]) {
+        std::cout << coord.first << ',' << coord.second << '\n';
+      }
+    }
+
     return 0;
   }
 };
 
-int main() { return 0; }
+int main() {
+  Solution cursor = Solution();
+
+  testCase test{testA()};
+
+  cursor.countSubIslands(test.grid1, test.grid2);
+
+  return 0;
+}
