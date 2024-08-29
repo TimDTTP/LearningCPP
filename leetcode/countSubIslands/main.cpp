@@ -33,8 +33,8 @@ private:
            std::vector<std::vector<std::pair<int, int>>> &foundIslands,
            std::vector<std::vector<int>> &grid2,
            std::vector<std::vector<int>> &visited) {
-    // base case; if already visited
-    if (visited[n][m] == 1)
+    // base case; if already visited or is NOT land
+    if (visited[n][m] == 1 || grid2[n][m] == 0)
       return;
 
     // if land
@@ -50,8 +50,9 @@ private:
     if (m < grid2[0].size() - 1)
       BFS(n, m + 1, islandCounter, foundIslands, grid2, visited);
     // check down
-    if (n < grid2.size() - 1)
+    if (n < grid2.size() - 1) {
       BFS(n + 1, m, islandCounter, foundIslands, grid2, visited);
+    }
     // check left
     if (m > 0)
       BFS(n, m - 1, islandCounter, foundIslands, grid2, visited);
@@ -103,14 +104,6 @@ public:
           // invoke lambda function
           BFS(n, m, islandCounter, foundIslands, grid2, visited);
         }
-      }
-    }
-
-    // WARNING: Delete before submitting
-    if (!foundIslands.empty()) {
-      std::cout << "Island found!" << '\n';
-      for (std::pair<int, int> coord : foundIslands[1]) {
-        std::cout << coord.first << ',' << coord.second << '\n';
       }
     }
 
