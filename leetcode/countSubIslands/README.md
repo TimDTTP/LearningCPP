@@ -41,3 +41,17 @@ A sub island is where all pieces of land of a given island on grid 2 is simutane
         - continue to next island
     - At the end if flag is still true, increment counter
 - For every island increment count
+
+## Problems
+- BFS not recognizing land; 1
+- Memory limit exceeded
+
+## Revised Approach v1.1
+- Instead of storing all coordinates in a matrix, we implement sub-island check
+for each island during BFS
+
+Reasoning:
+This should provide significant improvement as this eliminates a large matrix;
+vector<vector<pair<int>>>. This comes at the cost of losing modularity of
+having separated island coordinates and sub-island checking function. A 
+feasible exchange due to lack of necessity for island coordinates.

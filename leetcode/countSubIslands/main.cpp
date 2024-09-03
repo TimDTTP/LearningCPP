@@ -1,5 +1,4 @@
 
-#include <functional>
 #include <iostream>
 #include <vector>
 
@@ -21,6 +20,24 @@ testCase testA() {
                {0, 1, 0, 0, 0},
                {1, 0, 1, 1, 0},
                {0, 1, 0, 1, 0}};
+
+  obj.expectedSolution = 3;
+
+  return obj;
+}
+
+testCase testB() {
+  testCase obj;
+  obj.grid1 = {{1, 0, 1, 0, 1},
+               {1, 1, 1, 1, 1},
+               {0, 0, 0, 0, 0},
+               {1, 1, 1, 1, 1},
+               {1, 0, 1, 0, 1}};
+  obj.grid2 = {{0, 0, 0, 0, 0},
+               {1, 1, 1, 1, 1},
+               {0, 1, 0, 1, 0},
+               {0, 1, 0, 1, 0},
+               {1, 0, 0, 0, 0}};
 
   obj.expectedSolution = 3;
 
@@ -141,7 +158,10 @@ int main() {
 
   int out = cursor.countSubIslands(test.grid1, test.grid2);
 
-  std::cout << out << '\n';
+  if (test.expectedSolution == out)
+    std::cout << "Success!\n" << std::endl;
+  else
+    std::cout << "Fail!\n" << std::endl;
 
   return 0;
 }
