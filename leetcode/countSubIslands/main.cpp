@@ -37,57 +37,44 @@ testCase testB() {
                {1, 1, 1, 1, 1},
                {0, 1, 0, 1, 0},
                {0, 1, 0, 1, 0},
-               {1, 0, 0, 0, 0}};
+               {1, 0, 0, 0, 1}};
 
-  obj.expectedSolution = 3;
+  obj.expectedSolution = 2;
 
   return obj;
 }
 
 class Solution {
 private:
-  void BFS(int n, int m, int islandCounter,
-           std::vector<std::vector<std::pair<int, int>>> &foundIslands,
+  bool BFS(int n, int m, bool cmp, std::vector<std::vector<int>> &grid1,
            std::vector<std::vector<int>> &grid2,
            std::vector<std::vector<int>> &visited) {
     // base case; if already visited or is NOT land
     if (visited[n][m] == 1 || grid2[n][m] == 0)
-      return;
+      return cmp;
 
-    // if land
+    // if land and if grid1 is not land
     if (grid2[n][m] == 1) {
       visited[n][m] = 1;
-      foundIslands[islandCounter - 1].push_back({n, m});
+
+      if (grid1[n][m] != 1)
+        cmp = false;
     }
 
     // check above
     if (n > 0)
-      BFS(n - 1, m, islandCounter, foundIslands, grid2, visited);
+      cmp = BFS(n - 1, m, cmp, grid1, grid2, visited);
     // check right
     if (m < grid2[0].size() - 1)
-      BFS(n, m + 1, islandCounter, foundIslands, grid2, visited);
+      cmp = BFS(n, m + 1, cmp, grid1, grid2, visited);
     // check down
-    if (n < grid2.size() - 1) {
-      BFS(n + 1, m, islandCounter, foundIslands, grid2, visited);
-    }
+    if (n < grid2.size() - 1)
+      cmp = BFS(n + 1, m, cmp, grid1, grid2, visited);
     // check left
     if (m > 0)
-      BFS(n, m - 1, islandCounter, foundIslands, grid2, visited);
-  }
+      cmp = BFS(n, m - 1, cmp, grid1, grid2, visited);
 
-  bool compareSubislands(std::vector<std::pair<int, int>> base,
-                         std::vector<std::vector<int>> cmp) {
-    bool allIn{true};
-    for (std::pair<int, int> coord : base) {
-      int n{coord.first};
-      int m{coord.second};
-
-      if (cmp[n][m] != 1) {
-        return false;
-      }
-    }
-
-    return allIn;
+    return cmp;
   }
 
   // WARNING: Delete when submitting
@@ -103,6 +90,7 @@ private:
 public:
   int countSubIslands(std::vector<std::vector<int>> &grid1,
                       std::vector<std::vector<int>> &grid2) {
+    int subIslands{0};
     // find all islands on grid2
     //
     // Track all visited nodes
@@ -114,10 +102,8 @@ public:
       }
     }
 
-    // store coordinate of found islands on grid2
-    int islandCounter{0};
-    std::vector<std::vector<std::pair<int, int>>> foundIslands{};
-
+    // per island if all land is in grid2
+    bool cmp;
     // iterate through and find land
     for (int n{0}; n < grid2.size(); ++n) {
       for (int m{0}; m < grid2[0].size(); ++m) {
@@ -125,26 +111,15 @@ public:
         if (visited[n][m] == 1)
           continue;
 
-        // if land is founded, add to vector islands and perform BFS
+        // if land is founded, perform BFS
         if (grid2[n][m] == 1) {
-          // counter tracks how many islands thus far
-          ++islandCounter;
-
-          // init vector
-          foundIslands.push_back({});
-
-          // invoke lambda function
-          BFS(n, m, islandCounter, foundIslands, grid2, visited);
+          cmp = true;
+          if (BFS(n, m, cmp, grid1, grid2, visited))
+            ++subIslands;
         }
-      }
-    }
 
-    // Now compare foundIslands vs grid1
-    int subIslands{};
-    for (std::vector<std::pair<int, int>> islands : foundIslands) {
-      bool temp{compareSubislands(islands, grid1)};
-      if (temp)
-        ++subIslands;
+        visited[n][m] = 1;
+      }
     }
 
     return subIslands;
@@ -160,8 +135,11 @@ int main() {
 
   if (test.expectedSolution == out)
     std::cout << "Success!\n" << std::endl;
-  else
-    std::cout << "Fail!\n" << std::endl;
+  else {
+    std::cout << "Fail!\n";
+    std::cout << "Expected: " << test.expectedSolution << '\n';
+    std::cout << "Actual: " << out << '\n' << std::endl;
+  }
 
   return 0;
 }
