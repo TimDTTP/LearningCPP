@@ -55,3 +55,7 @@ This should provide significant improvement as this eliminates a large matrix;
 vector<vector<pair<int>>>. This comes at the cost of losing modularity of
 having separated island coordinates and sub-island checking function. A 
 feasible exchange due to lack of necessity for island coordinates.
+
+## Online Solutions
+- Instead of instantiating another vector<vector<int>>, just use value '2' to indicate unit has been visited
+- Optimally, should've used union find to solve problem
