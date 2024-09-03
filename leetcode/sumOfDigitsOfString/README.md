@@ -24,3 +24,8 @@ Return the sum of the letters after k number of transforms
 - For k, iterate over and add values
 - Take value and split into digits
 - Push values into vector
+
+## Online Solutions
+- Yield little to no improvements
+- Alternate approach to use std::stoi and utilize string concatenation
+    - used in conjunction with std::to_string
