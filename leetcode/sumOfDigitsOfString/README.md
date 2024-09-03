@@ -19,4 +19,8 @@ Return the sum of the letters after k number of transforms
 - s consists of lowercase English letters
 
 ## Approach
-
+- Convert letters into values
+- Push values into vector
+- For k, iterate over and add values
+- Take value and split into digits
+- Push values into vector
