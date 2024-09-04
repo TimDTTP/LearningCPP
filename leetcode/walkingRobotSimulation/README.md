@@ -48,3 +48,5 @@ If command = -2; turn left 90 degrees
     - If south decrement y
     - If west decrement x
 
+- Obstacle handling function
+    - WIP
