@@ -1,6 +1,40 @@
 
 #include <array>
+#include <iostream>
 #include <vector>
+
+struct TestCase {
+  std::vector<int> commands;
+  std::vector<std::vector<int>> obstacles;
+  int expected;
+};
+
+TestCase testA() {
+  TestCase obj;
+  obj.commands = {4, -1, 3};
+  obj.obstacles = {};
+  obj.expected = 25;
+
+  return obj;
+}
+
+TestCase testB() {
+  TestCase obj;
+  obj.commands = {4, -1, 4, -2, 4};
+  obj.obstacles = {{2, 4}};
+  obj.expected = 65;
+
+  return obj;
+}
+
+TestCase testC() {
+  TestCase obj;
+  obj.commands = {6, -1, -1, 6};
+  obj.obstacles = {};
+  obj.expected = 36;
+
+  return obj;
+}
 
 class Solution {
 private:
@@ -54,4 +88,18 @@ public:
   }
 };
 
-int main() { return 0; }
+int main() {
+  TestCase test{testA()};
+  Solution cursor = Solution();
+
+  int output{cursor.robotSim(test.commands, test.obstacles)};
+  if (output == test.expected)
+    std::cout << "Success!\n" << std::endl;
+  else {
+    std::cout << "Failed!\n";
+    std::cout << "Expected: " << test.expected << '\n';
+    std::cout << "Actual: " << output << '\n';
+  }
+
+  return 0;
+}
