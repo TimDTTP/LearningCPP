@@ -21,3 +21,12 @@ dice), and final observations must have an average of mean.
 - 1 <= rolls[\i], mean <= 6
 
 ## Approach
+- Base cases
+    - Sum missing > (6 * n)
+        - Return {};
+    - Sum missing < (1 * n)
+        - Return {};
+- Divisor = rolls.size + n
+- Sum missing = means * divisor - sum(rolls)
+- Find a set of values of length "divisor", which totals to "sum missing"
+- 
