@@ -68,4 +68,9 @@ If command = -2; turn left 90 degrees
 53.18MB 16.03%
 
 ## Online Solutions
-
+- Using unordered_set
+- Very similar logic
+- Only large data structure needed to store obstacles
+    - By multiplying x by a large value
+    - Then adding value to y
+    - It allows fast and very low chance of collision
