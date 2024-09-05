@@ -1,6 +1,8 @@
 
 #include <array>
 #include <iostream>
+#include <set>
+#include <unordered_map>
 #include <vector>
 
 struct TestCase {
@@ -38,6 +40,8 @@ TestCase testC() {
 
 class Solution {
 private:
+  std::unordered_map<int, std::set<int>> obsCoord{};
+
   char direction(std::array<char, 4> &dir, int curr, int rightLeft) {
     if (rightLeft == -1)
       curr += 1;
@@ -52,19 +56,61 @@ private:
     return curr;
   }
 
-  void walking(std::pair<int, int> location, char direction, int distance) {
+  // dictionary of obstacles per axis basis
+  void occupyMap(std::vector<std::vector<int>> obstacles) {
+    for (std::vector<int> coordinates : obstacles) {
+      obsCoord[coordinates[0]].insert(coordinates[1]);
+    }
+  }
+
+  // obstacle checking
+  bool obstacleCheck(int x, int y) {
+    return (obsCoord[x].find(y) != obsCoord[x].end());
+  }
+
+  void walking(std::pair<int, int> &location, char direction, int distance) {
+    int uninterferedDistance{0};
+
     switch (direction) {
     case 'n':
-      location.second += distance;
+      for (int i = 1; i <= distance; ++i) {
+        if (!obstacleCheck(location.first, location.second + i)) {
+          ++uninterferedDistance;
+        } else
+          break;
+      }
+      location.second += uninterferedDistance;
+
       break;
     case 'e':
-      location.first += distance;
+      for (int i = 1; i <= distance; ++i) {
+        if (!obstacleCheck(location.first + i, location.second)) {
+          ++uninterferedDistance;
+        } else
+          break;
+      }
+      location.first += uninterferedDistance;
+
       break;
     case 's':
-      location.first -= distance;
+      for (int i = 1; i <= distance; ++i) {
+        if (!obstacleCheck(location.first, location.second - i)) {
+          ++uninterferedDistance;
+        } else
+          break;
+      }
+      location.second -= uninterferedDistance;
+
       break;
     case 'w':
-      location.second -= distance;
+      for (int i = 1; i <= distance; ++i) {
+        if (!obstacleCheck(location.first - i, location.second)) {
+          ++uninterferedDistance;
+        } else
+          break;
+      }
+      location.first -= uninterferedDistance;
+
       break;
     }
   }
@@ -75,16 +121,24 @@ public:
     std::array<char, 4> dir{'n', 'e', 's', 'w'};
     int point{0};
     std::pair<int, int> location{0, 0};
+    int distance{0};
+    int maxDistance{0};
 
+    // map obstacle coordinates
+    occupyMap(obstacles);
+
+    // loop through each command
     for (int instruction : commands) {
       if (instruction < 0) {
         point = direction(dir, point, instruction);
       } else {
         walking(location, dir[point], instruction);
+        distance = (pow(location.first, 2) + pow(location.second, 2));
+        maxDistance = std::max(maxDistance, distance);
       }
     }
 
-    return 0;
+    return maxDistance;
   }
 };
 

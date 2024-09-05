@@ -35,18 +35,37 @@ If command = -2; turn left 90 degrees
 - Iterate through commands
     - if change direction, function call direction function
     - if 1-9, call walking function
+    - Each command, take the max distance
 
 - Direction function
     - If -1, increment array + 1
     - If -2, decrement array - 1
     - If out of bounds, return to other end
 
+- Obstacle handling function
+    - Init map<int, set<int>>
+    - Occupy map with coordinates for fast lookup
+    - Return true if obstacle is present
+
 - Walking function
     - Given a number and direction
+    - Loop through each step and check if there is an obstacle
     - If north increment y
     - If eash increment x
     - If south decrement y
     - If west decrement x
 
-- Obstacle handling function
-    - WIP
+## Notes:
+- Could be more efficient by checking greatest value between current and greatest
+    possible value for each command, then checking greatest possible obstacle per
+    axis between those 2 values
+
+## Submission
+- Runtime
+89ms 45.11%
+
+- Memory
+53.18MB 16.03%
+
+## Online Solutions
+
