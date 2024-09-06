@@ -1,5 +1,39 @@
 
+#include <iostream>
 #include <vector>
+
+struct TestCase {
+  std::vector<int> rolls;
+  int mean;
+  int n;
+};
+
+TestCase testA() {
+  TestCase obj;
+  obj.rolls = {3, 2, 4, 3};
+  obj.mean = 4;
+  obj.n = 2;
+
+  return obj;
+}
+
+TestCase testB() {
+  TestCase obj;
+  obj.rolls = {1, 5, 6};
+  obj.mean = 3;
+  obj.n = 4;
+
+  return obj;
+}
+
+TestCase testC() {
+  TestCase obj;
+  obj.rolls = {1, 2, 3, 4};
+  obj.mean = 6;
+  obj.n = 4;
+
+  return obj;
+}
 
 class Solution {
 public:
@@ -32,4 +66,13 @@ public:
   }
 };
 
-int main() { return 0; }
+int main() {
+  Solution cursor = Solution();
+  TestCase test{testA()};
+  std::vector<int> output{cursor.missingRolls(test.rolls, test.mean, test.n)};
+  for (int i : output)
+    std::cout << i << ' ';
+  std::cout << '\n';
+
+  return 0;
+}
