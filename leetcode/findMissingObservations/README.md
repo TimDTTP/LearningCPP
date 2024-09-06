@@ -29,4 +29,9 @@ dice), and final observations must have an average of mean.
 - Divisor = rolls.size + n
 - Sum missing = means * divisor - sum(rolls)
 - Find a set of values of length "divisor", which totals to "sum missing"
-- 
+- To get possible numbers:
+    - Divide sum missing by n, this is to get baseline
+    - For (sum missing - n * baseline)
+        - Iterate through vector and add 1
+
+
