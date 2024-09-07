@@ -22,4 +22,14 @@ removed from head
 - There is at least one value in head that is not present in nums
 
 ## Approach
-
+- Migrate nums into set for faster lookup
+- Use 2 pointer method
+- First pointer is verified not in nums
+- Second pointer tests if next node.val is in nums
+- If not
+    - First pointer = second pointer
+    - second pointer = pointer.next
+- If yes
+    - Second pointer = pointer.next
+    - First pointer.next = second pointer
+- Repeat until second pointer = nullptr
