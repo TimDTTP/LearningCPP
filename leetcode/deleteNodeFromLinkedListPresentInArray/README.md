@@ -24,6 +24,7 @@ removed from head
 ## Approach
 - Migrate nums into set for faster lookup
 - Use 2 pointer method
+- If head is in nums, loop till head is not in nums
 - First pointer is verified not in nums
 - Second pointer tests if next node.val is in nums
 - If not
