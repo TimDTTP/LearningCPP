@@ -45,18 +45,20 @@ public:
       sum += i;
     int sumMissing{mean * divisor - sum};
 
-    // base case
+    // base cases
     if (sumMissing < (n * 1) || sumMissing > (n * 6)) {
       return {};
     }
 
-    // find a possible solution of missing values
+    // find a possible solutions of missing values
     std::vector<int> possibleVals;
     possibleVals.reserve(n);
 
+    // Base values
     for (int i{0}; i < n; ++i)
       possibleVals.push_back(sumMissing / n);
 
+    // tack on additional load to meet average
     sum = sumMissing % n;
     for (int i{0}; i < sum; ++i) {
       ++possibleVals[i];
