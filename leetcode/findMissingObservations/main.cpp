@@ -57,7 +57,7 @@ public:
     for (int i{0}; i < n; ++i)
       possibleVals.push_back(sumMissing / n);
 
-    sum = (sumMissing / n) * n;
+    sum = sumMissing % n;
     for (int i{0}; i < sum; ++i) {
       ++possibleVals[i];
     }
@@ -68,7 +68,7 @@ public:
 
 int main() {
   Solution cursor = Solution();
-  TestCase test{testA()};
+  TestCase test{testC()};
   std::vector<int> output{cursor.missingRolls(test.rolls, test.mean, test.n)};
   for (int i : output)
     std::cout << i << ' ';
