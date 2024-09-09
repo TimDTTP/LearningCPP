@@ -20,5 +20,17 @@ clockwise spiral order, starting from top-left.
 - Number of nodes in head is between [1, m*n]
 - 0 <= Node.val <= 1000
 
+## Notes
+- Remaining units should be -1
+- No need to bound check if num will fit in matrix
+- Val will fit int
+
 ## Approach
+- Init matrix using .reserve m x n
+- Occupy each value with -1
+- Iterate through linked list while != nullptr
+    - Iterate through lower bound row
+    - Iterate through upper bound col
+    - Iterate through upper bound row
+    - Iterate through lower bound col
 
