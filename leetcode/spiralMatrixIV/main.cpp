@@ -73,6 +73,21 @@ public:
 
     return obj;
   }
+
+  TestCase testD() {
+    TestCase obj;
+
+    obj.m = 10;
+    obj.n = 1;
+    int size{obj.m * obj.n};
+
+    std::vector<int> vec;
+    vec.reserve(size);
+    vec = {8, 24, 5, 21, 10, 11, 11, 12, 6, 17};
+    obj.head = vectorToList(vec);
+
+    return obj;
+  }
 };
 
 void printMatrix(std::vector<std::vector<int>> &matrix) {
@@ -121,7 +136,7 @@ public:
       dirN = (dirN + 1) % 4;
     };
 
-    while (head) {
+    while (head != nullptr) {
       matrix[pos.first][pos.second] = head->val;
 
       // try next position
@@ -130,23 +145,11 @@ public:
 
       // if out of bounds of matrix
       if (pos.first >= m || pos.first < 0 || pos.second >= n ||
-          pos.second < 0) {
+          pos.second < 0 || matrix[pos.first][pos.second] != -1) {
         // reverse attempt
         pos.first -= direction[dirM];
         pos.second -= direction[dirN];
 
-        changeDir();
-
-        pos.first += direction[dirM];
-        pos.second += direction[dirN];
-      }
-      // if already occupied
-      if (matrix[pos.first][pos.second] != -1) {
-        // reverse attempt
-        pos.first -= direction[dirM];
-        pos.second -= direction[dirN];
-
-        // change direction
         changeDir();
 
         pos.first += direction[dirM];
@@ -162,7 +165,7 @@ public:
 
 int main() {
   TestCase test = TestCase();
-  TestCase unit{test.testC()};
+  TestCase unit{test.testD()};
 
   Solution cursor = Solution();
   ListNode *head = unit.head;
