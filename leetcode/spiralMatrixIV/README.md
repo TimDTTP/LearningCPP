@@ -29,8 +29,5 @@ clockwise spiral order, starting from top-left.
 - Init matrix using .reserve m x n
 - Occupy each value with -1
 - Iterate through linked list while != nullptr
-    - Iterate through lower bound row
-    - Iterate through upper bound col
-    - Iterate through upper bound row
-    - Iterate through lower bound col
+- Change value as long as it is == -1
 
