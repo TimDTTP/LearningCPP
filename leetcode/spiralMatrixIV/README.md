@@ -31,3 +31,12 @@ clockwise spiral order, starting from top-left.
 - Iterate through linked list while != nullptr
 - Change value as long as it is == -1
 
+Runtime:
+188ms beats 6.66%
+140.80mb beats 5.23%
+
+## Online Solution
+Instead of checking if each position is -1, it would of been more efficient to
+just iterate based on boundaries of all 4 directions
+
+
