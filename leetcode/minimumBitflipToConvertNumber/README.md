@@ -17,3 +17,6 @@ The return value is the number of bits needed to be flipped in order for start
 - 0 <= start, goal <= 10^9
 
 ## Approach
+- Convert start and goal to bits using 'bitset'
+- Strip to length of goal
+- Count number of differences using loop
