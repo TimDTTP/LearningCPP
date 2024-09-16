@@ -20,3 +20,9 @@ The return value is the number of bits needed to be flipped in order for start
 - Convert start and goal to bits using 'bitset'
 - Strip to length of goal
 - Count number of differences using loop
+
+runtime 0ms beats 100%
+memory 7.46mB beats 92.77%
+
+## Online Solution
+- Instead of using for loop, using XOR would've been more coherent
