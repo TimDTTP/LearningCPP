@@ -71,11 +71,60 @@ public:
   }
 };
 
+class OnlineSolution {
+private:
+  const int minInHour{60};
+  const int hourInDay{24};
+
+  int shortestPath(int base, int cmp) {
+    int greater{std::max(base, cmp)};
+    int lesser{std::min(base, cmp)};
+
+    int path{greater - lesser};
+
+    if (path > (minInHour * (hourInDay / 2))) {
+      path = (((hourInDay * minInHour) - greater) + lesser);
+    }
+
+    return path;
+  }
+
+public:
+  int findMinDifference(std::vector<std::string> &timePoints) {
+
+    // convert time points into flat integers
+    int hours, minutes;
+    std::vector<int> pointInMins;
+    int temp;
+    for (std::string time : timePoints) {
+      hours = std::stoi(time.substr(0, 2));
+      minutes = std::stoi(time.substr(3, 5));
+      temp = (hours * minInHour) + minutes;
+      pointInMins.push_back(temp);
+    }
+
+    // sort vector
+    // in acending order
+    std::sort(pointInMins.begin(), pointInMins.end());
+
+    int minPath{hourInDay * minInHour};
+    for (int base{0}; base < pointInMins.size() - 1; ++base) {
+      minPath = std::min(
+          minPath, shortestPath(pointInMins[base], pointInMins[base + 1]));
+    }
+    minPath =
+        std::min(minPath, shortestPath(pointInMins[0],
+                                       pointInMins[pointInMins.size() - 1]));
+
+    return minPath;
+  }
+};
+
 int main() {
   Tests testCur = Tests();
-  Solution solCur = Solution();
+  OnlineSolution solCur = OnlineSolution();
 
-  Tests::testCase test{testCur.testB()};
+  Tests::testCase test{testCur.testA()};
 
   int output{solCur.findMinDifference(test.input)};
 

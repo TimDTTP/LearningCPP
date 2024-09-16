@@ -31,4 +31,6 @@ runtime 1345ms beats 5.78%
 memory 17.65mB beats 59.75%
 
 ## Online Solution
+- Would be more efficient if the list of time values was sorted
+- Reduce comparison overhead to just adjacent time values
 
