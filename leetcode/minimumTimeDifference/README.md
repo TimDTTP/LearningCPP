@@ -26,3 +26,9 @@ The return value is the minimum time difference amongst the given timePoints
     - 720 is max possible return value; 12 * 60
     - AKA; (24 - max) + min
 
+## Submission
+runtime 1345ms beats 5.78%
+memory 17.65mB beats 59.75%
+
+## Online Solution
+
