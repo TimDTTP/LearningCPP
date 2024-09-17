@@ -1,4 +1,5 @@
 
+#include <ios>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -46,19 +47,20 @@ public:
 
     // find matches
     bool flag{false}; // track if current base is repeated
-    bool continueFind{true};
-    for (int i{0}; i < s1.size() - 1; ++i) {
-      flag = false;
-      if (words.end() != std::find(words.begin() + i, words.end(), words[i])) {
-        words.erase(std::find(words.begin() + i, words.end(), words[i]));
+
+    for (int i{0}; i < words.size(); ++i) {
+      std::vector<std::string>::iterator found{
+          std::find(words.begin() + i + 1, words.end(), words[i])};
+      flag = (found == words.end()) ? false : true;
+
+      // delete here
+      words.erase(found);
+
+      // if found repeat search
+      if (flag) {
         --i;
       }
     }
-
-    for (std::string word : words) {
-      std::cout << word << ' ';
-    }
-    std::cout << '\n';
 
     return words;
   }
