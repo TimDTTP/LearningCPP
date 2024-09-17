@@ -31,9 +31,36 @@ class Solution {
 public:
   std::vector<std::string> uncommonFromSentences(std::string s1,
                                                  std::string s2) {
-    std::vector<std::string> unique;
+    std::vector<std::string> words;
 
-    return unique;
+    // combine to 1 string
+    s1 += ' ' + s2;
+
+    // add s1 to vector
+    std::size_t search{};
+    while (search != std::string::npos) {
+      search = s1.find(' ');
+      words.push_back(s1.substr(0, search));
+      s1.erase(0, search + 1);
+    }
+
+    // find matches
+    bool flag{false}; // track if current base is repeated
+    bool continueFind{true};
+    for (int i{0}; i < s1.size() - 1; ++i) {
+      flag = false;
+      if (words.end() != std::find(words.begin() + i, words.end(), words[i])) {
+        words.erase(std::find(words.begin() + i, words.end(), words[i]));
+        --i;
+      }
+    }
+
+    for (std::string word : words) {
+      std::cout << word << ' ';
+    }
+    std::cout << '\n';
+
+    return words;
   }
 };
 
