@@ -45,23 +45,6 @@ public:
       s1.erase(0, search + 1);
     }
 
-    // find matches
-    bool flag{false}; // track if current base is repeated
-
-    for (int i{0}; i < words.size(); ++i) {
-      std::vector<std::string>::iterator found{
-          std::find(words.begin() + i + 1, words.end(), words[i])};
-      flag = (found == words.end()) ? false : true;
-
-      // delete here
-      words.erase(found);
-
-      // if found repeat search
-      if (flag) {
-        --i;
-      }
-    }
-
     return words;
   }
 };
