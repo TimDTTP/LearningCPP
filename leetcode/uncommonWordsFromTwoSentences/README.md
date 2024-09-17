@@ -20,3 +20,8 @@ An uncommon word is a letter that appears only once in both sentences.
 - All words in s1, s2 are separated by a single space
 
 ## Approach
+- Add all words to a single vector w/o whitespace
+- Nest for loop with 2 pointer method
+- If repeating, remove occurences of the word
+- Return vector
+
