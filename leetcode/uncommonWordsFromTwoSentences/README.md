@@ -23,3 +23,10 @@ An uncommon word is a letter that appears only once in both sentences.
 - Combine to one string
 - Iterate through and add to a map "string : occurence"
 - If occurence > 1, not uncommon
+
+Runtime 0ms beats 100%
+Memory 9.32mB beats 16.21%
+
+## Online Solution
+- No performance improvment but approach is noteworthy
+    - Use stringstream to manipulate strings into map instead of indexing
