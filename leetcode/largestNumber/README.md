@@ -24,3 +24,7 @@ the return value is the largest value possible when nums is rearranged.
 - This is to get even base for all values to compare
 - sort vector by pair.second in descending order
 - iterate through vector and append string to solution
+
+Edit:
+Values that have the same level of priority should prioritize the "shorter"
+values. This is so that the trailing zero is at the end.
