@@ -28,3 +28,7 @@ the return value is the largest value possible when nums is rearranged.
 Edit:
 Values that have the same level of priority should prioritize the "shorter"
 values. This is so that the trailing zero is at the end.
+
+V2
+- Sort values by number of digits, lowest to greatest number of digits
+- Within the same sizes, order from largest value to smallest
