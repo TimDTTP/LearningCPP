@@ -1,7 +1,7 @@
 
-#include <ios>
 #include <iostream>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 class TestCases {
@@ -32,20 +32,44 @@ class Solution {
 public:
   std::vector<std::string> uncommonFromSentences(std::string s1,
                                                  std::string s2) {
-    std::vector<std::string> words;
+    std::vector<std::string> out;
+    std::unordered_map<std::string, int> word;
 
     // combine to 1 string
     s1 += ' ' + s2;
 
+    // lambda function to check if word is pre-existing
+    auto check = [&](std::unordered_map<std::string, int> &word,
+                     std::string temp) {
+      if (word.count(temp)) {
+        ++word[temp];
+      } else {
+        word[temp] = 1;
+      }
+    };
+
     // add s1 to vector
     std::size_t search{};
-    while (search != std::string::npos) {
+    std::string temp{};
+    while (!s1.empty()) {
       search = s1.find(' ');
-      words.push_back(s1.substr(0, search));
-      s1.erase(0, search + 1);
+      if (search == std::string::npos) {
+        temp = s1;
+        check(word, temp);
+        s1.clear();
+      } else {
+        temp = s1.substr(0, search);
+        check(word, temp);
+        s1.erase(0, search + 1);
+      }
     }
 
-    return words;
+    for (std::pair<std::string, int> occur : word) {
+      if (occur.second == 1)
+        out.push_back(occur.first);
+    }
+
+    return out;
   }
 };
 
@@ -56,6 +80,10 @@ int main() {
   TestCases::Sample input{testCur.testA()};
   std::vector<std::string> output{
       solCur.uncommonFromSentences(input.s1, input.s2)};
+
+  for (std::string i : output)
+    std::cout << i << ' ';
+  std::cout << '\n';
 
   return 0;
 }
