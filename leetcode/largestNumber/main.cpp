@@ -22,7 +22,7 @@ public:
   TestCase testB() {
     TestCase obj;
     obj.input = {3, 30, 34, 5, 9};
-    obj.output = "9534303";
+    obj.output = "9534330";
 
     return obj;
   }
@@ -34,7 +34,9 @@ private:
                   std::pair<std::string, int> second) {
     if (first.second > second.second)
       return true;
-    else
+    else if (first.second == second.second) {
+      return (first.first.size() > second.first.size()) ? false : true;
+    } else
       return false;
   };
 
@@ -74,7 +76,8 @@ int main() {
     std::cout << "Success!\n";
   } else {
     std::cout << "Failed!\n";
-    std::cout << output << '\n' << std::endl;
+    std::cout << "Expected: " << test.output << '\n';
+    std::cout << "Actual: " << output << '\n' << std::endl;
   }
 
   return 0;
