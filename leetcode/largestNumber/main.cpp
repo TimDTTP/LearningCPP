@@ -1,7 +1,32 @@
 
 #include <algorithm>
+#include <iostream>
 #include <string>
 #include <vector>
+
+class TestingOnly {
+public:
+  struct TestCase {
+    std::vector<int> input;
+    std::string output;
+  };
+
+  TestCase testA() {
+    TestCase obj;
+    obj.input = {10, 2};
+    obj.output = "210";
+
+    return obj;
+  }
+
+  TestCase testB() {
+    TestCase obj;
+    obj.input = {3, 30, 34, 5, 9};
+    obj.output = "9534303";
+
+    return obj;
+  }
+};
 
 class Solution {
 private:
@@ -37,3 +62,20 @@ public:
     return out;
   }
 };
+
+int main() {
+  TestingOnly testCur = TestingOnly();
+  Solution solCur = Solution();
+
+  TestingOnly::TestCase test{testCur.testA()};
+  std::string output{solCur.largestNumber(test.input)};
+
+  if (output == test.output) {
+    std::cout << "Success!\n";
+  } else {
+    std::cout << "Failed!\n";
+    std::cout << output << '\n' << std::endl;
+  }
+
+  return 0;
+}
