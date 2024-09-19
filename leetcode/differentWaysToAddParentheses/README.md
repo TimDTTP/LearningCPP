@@ -19,3 +19,6 @@ to group the values and operators in expression
 - all integer values do not have - or + denoting the sign
 
 ## Approach
+- Iterate through string
+- Combine each value to next value using operator
+- Recursively call function until string is only one value, which add to output
