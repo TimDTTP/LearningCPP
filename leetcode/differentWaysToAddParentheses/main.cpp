@@ -37,11 +37,74 @@ std::vector<testUtils::Case> test() {
 }
 
 class Solution {
+private:
+  int intManipulation(int first, int second, char op) {
+    int returnVal;
+    switch (op) {
+    case '+':
+      returnVal = first + second;
+      break;
+    case '-':
+      returnVal = first - second;
+      break;
+    case '*':
+      returnVal = first * second;
+      break;
+    }
+    std::cout << first << ' ' << op << ' ' << second;
+    std::cout << " = " << returnVal << '\n';
+    return returnVal;
+  }
+
+  void combine(std::vector<int> nums, std::vector<char> operators,
+               std::vector<int> &solutions) {
+    std::vector<int> nextNums{nums};
+    std::vector<char> nextOps{operators};
+
+    // conditional to stop recursive call
+    if (nums.size() == 1) {
+      solutions.push_back(nums[0]);
+      std::cout << "Adding: " << nums[0] << '\n';
+      return;
+    }
+
+    // iterate through until second last num
+    for (int val{0}; val < nextNums.size() - 1; ++val) {
+      // combine current value with next value && delete
+      nextNums[val] =
+          intManipulation(nextNums[val], nextNums[val + 1], nextOps[val]);
+      nextNums.erase(nextNums.begin() + (val + 1));
+      nextOps.erase(nextOps.begin() + val);
+      combine(nextNums, nextOps, solutions);
+    }
+  }
+
 public:
   std::vector<int> diffWaysToCompute(std::string expression) {
-    std::vector<int> solution;
+    std::vector<int> solutions;
 
-    return solution;
+    // separate operator vs values
+    std::vector<int> nums;
+    std::vector<char> operators;
+
+    std::string temp;
+    for (char i : expression) {
+      if (i >= 48 && i <= 57)
+        temp += i;
+
+      else {
+        operators.push_back(i);
+        nums.push_back(std::stoi(temp));
+        temp = "";
+      }
+    }
+    if (!temp.empty())
+      nums.push_back(std::stoi(temp));
+
+    // iterate through and combine
+    combine(nums, operators, solutions);
+
+    return solutions;
   }
 };
 
@@ -58,6 +121,8 @@ int main() {
   };
 
   int testNum{1};
+  solCur.diffWaysToCompute(testCases[0].input);
+  /*
   for (testUtils::Case cases : testCases) {
     std::cout << "Test #" << testNum << ' ';
     output = solCur.diffWaysToCompute(cases.input);
@@ -74,6 +139,7 @@ int main() {
     }
     ++testNum;
   }
+  */
 
   return 0;
 }
