@@ -58,31 +58,26 @@ public:
 
 class Solution {
 private:
-  bool static cmp(int first, int second) {
-    std::string firstPriority{std::to_string(first) + std::to_string(second)};
-    std::string secondPriority{std::to_string(second) + std::to_string(first)};
-
-    bool greater{
-        std::stoul(firstPriority) > std::stoul(secondPriority) ? true : false};
-
-    return greater;
+  bool static cmp(std::string first, std::string second) {
+    return (first + second) > (second + first);
   }
 
 public:
   std::string largestNumber(std::vector<int> &nums) {
     std::string out{""};
+    std::vector<std::string> numStr;
 
-    std::sort(nums.begin(), nums.end(), cmp);
-    std::cout << "here" << '\n';
+    for (int num : nums)
+      numStr.push_back(std::to_string(num));
 
-    // trim leading zeros
-    while (std::find(nums.begin(), nums.end(), 0) == nums.begin() &&
-           nums.size() > 1) {
-      nums.erase(nums.begin());
-    }
+    std::sort(numStr.begin(), numStr.end(), cmp);
 
-    for (int num : nums) {
-      out += std::to_string(num);
+    // if greatest value == 0 return 0
+    if (numStr[0] == "0")
+      return "0";
+
+    for (std::string i : numStr) {
+      out += i;
     }
 
     return out;
