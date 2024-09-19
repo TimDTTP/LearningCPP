@@ -16,10 +16,8 @@ the return value is the largest value possible when nums is rearranged.
 - 0 <= nums[\i] <= 10^9
 
 ## Approach
-- Set std::vector<std::vector<\int>>
-- Set all spaces to -1
-- Re-set all values based on values going down
-- Traverse by column
-- Find largest values and add to string
-- If multiple equal, compare to adjacent right value
-- If adjacent is == -1, it is higher
+- Loop through and sort values
+- Sorting process
+    - Try to append both values
+    - Whichever is greater should be in front
+- Iterate through and append to output string

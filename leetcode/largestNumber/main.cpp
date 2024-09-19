@@ -37,8 +37,20 @@ public:
 
   TestCase testD() {
     TestCase obj;
-    obj.input = {10, 2};
-    obj.output = "210";
+    obj.input = {0, 0};
+    obj.output = "0";
+
+    return obj;
+  }
+
+  TestCase testE() {
+    TestCase obj;
+    obj.input = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    obj.output = "0";
 
     return obj;
   }
@@ -46,53 +58,31 @@ public:
 
 class Solution {
 private:
-  bool static cmp(std::vector<int> first, std::vector<int> second) {
-    // if matched && next value is greater than initial value
-    for (int index{0}; index < first.size(); ++index) {
-      if (first[index] == -1) {
-        return (second[index] > second[0]) ? false : true;
-      } else if (second[index] == -1) {
-        return (first[index] > first[0]) ? true : false;
-      } else if (first[index] != second[index])
-        return (first[index] > second[index] ? true : false);
-    }
+  bool static cmp(int first, int second) {
+    std::string firstPriority{std::to_string(first) + std::to_string(second)};
+    std::string secondPriority{std::to_string(second) + std::to_string(first)};
 
-    return true;
+    bool greater{
+        std::stoul(firstPriority) > std::stoul(secondPriority) ? true : false};
+
+    return greater;
   }
 
 public:
   std::string largestNumber(std::vector<int> &nums) {
     std::string out{""};
-    std::vector<std::vector<int>> table;
-    table.reserve(nums.size());
-    table[0].reserve(10);
 
-    // fill table with -1
-    for (int i{0}; i < nums.size(); ++i) {
-      table.push_back({});
-      for (int j{0}; j < 10; ++j) {
-        table[i].push_back(-1);
-      }
+    std::sort(nums.begin(), nums.end(), cmp);
+    std::cout << "here" << '\n';
+
+    // trim leading zeros
+    while (std::find(nums.begin(), nums.end(), 0) == nums.begin() &&
+           nums.size() > 1) {
+      nums.erase(nums.begin());
     }
 
-    // add values to table
-    std::string temp;
-    for (int num{0}; num < nums.size(); ++num) {
-      temp = std::to_string(nums[num]);
-      for (int digit{0}; digit < temp.size(); ++digit) {
-        table[num][digit] = temp[digit] - '0';
-      }
-    }
-
-    // sort
-    std::sort(table.begin(), table.end(), cmp);
-
-    // append to string
-    for (int row{0}; row < table.size(); ++row) {
-      for (int col{0}; col < table[0].size(); ++col) {
-        if (table[row][col] != -1)
-          out += std::to_string(table[row][col]);
-      }
+    for (int num : nums) {
+      out += std::to_string(num);
     }
 
     return out;
@@ -103,7 +93,7 @@ int main() {
   TestingOnly testCur = TestingOnly();
   Solution solCur = Solution();
 
-  TestingOnly::TestCase test{testCur.testD()};
+  TestingOnly::TestCase test{testCur.testE()};
   std::string output{solCur.largestNumber(test.input)};
 
   if (output == test.output) {
