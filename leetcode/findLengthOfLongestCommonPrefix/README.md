@@ -18,4 +18,14 @@ arr2. Return 0 if no commonalities.
 - 1 <= arr1[\i], arr2[\2] <= 10^8
 
 ## Approach
-
+Approach using a tree approach
+- Traverse through arr2
+- For each value, traverse digits
+- For each digit try to find the digits in the tree
+- If it does not exist, add to vector of nodes
+- This tree will be base search tree to search against
+- Traverse arr1 and for each value traverse digits
+- By digit, try to find value in tree
+- If match, narrow down scope and increment counter
+- If not a match, check if current counter is greater than max
+- At the end return max counter
