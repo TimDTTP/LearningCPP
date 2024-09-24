@@ -1,8 +1,8 @@
 
 # Problem
 Given...
-- Vector<\int>, "arr1"
-- Vector<\int>, "arr2"
+- Vector\<int\>, "arr1"
+- Vector\<int\>, "arr2"
 
 Return...
 - Int
@@ -15,7 +15,7 @@ arr2. Return 0 if no commonalities.
 
 ## Constraints
 - 1 <= arr1.length, arr2.length <= 5 * 10^4
-- 1 <= arr1[\i], arr2[\2] <= 10^8
+- 1 <= arr1\[i\], arr2\[2\] <= 10^8
 
 ## Approach
 Approach using a tree approach
