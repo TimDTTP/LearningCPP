@@ -16,4 +16,9 @@ the return value is the rank of the 'int' in arr
 - 10^-9 <= arr[\i] <= 10^9
 
 ## Approach
-
+- Init a duplicate vector and sort
+- Init map and int counter
+- Iterate over sort vector and add to map, \{key : counter}
+    - If duplicate value just skip
+- Loop over original vector
+- Match value to map key and append value pair
