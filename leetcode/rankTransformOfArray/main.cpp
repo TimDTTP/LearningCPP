@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <unordered_map>
 #include <vector>
@@ -79,6 +80,30 @@ public:
     }
 
     return output;
+  }
+};
+
+class OnlineSolution {
+public:
+  std::vector<int> arrayRankTransform(std::vector<int> &arr) {
+    std::vector<int> sorted{arr};
+    std::sort(sorted.begin(), sorted.end());
+    sorted.erase(std::unique(sorted.begin(), sorted.end(), sorted.end()));
+
+    std::unordered_map<int, int> pos;
+
+    // adding to map
+    // {num : pos}
+    for (int i{0}; i < sorted.size(); ++i) {
+      pos[sorted[i]] = i;
+    }
+
+    // loop over original and append pos to vector
+    for (int i{0}; i < arr.size(); ++i) {
+      arr[i] = pos[arr[i]];
+    }
+
+    return arr;
   }
 };
 

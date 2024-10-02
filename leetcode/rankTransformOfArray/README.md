@@ -27,3 +27,8 @@ the return value is the rank of the 'int' in arr
 Runtime 66ms Beats 69.97%
 Memory 44.41 Beats 32.26%
 
+## Online submissions
+- Instead of using dedicated counter, using for loop init + increment
+- Emplacing original array instead of initializing another new array for the resultant
+- Using 'std::unique' to remove duplicates (minor)
+
