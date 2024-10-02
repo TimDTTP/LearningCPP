@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
 class Test {
@@ -55,14 +56,37 @@ public:
 
 class Solution {
 public:
-  std::vector<int> arrayRankTransform(std::vector<int> &arr) {}
+  std::vector<int> arrayRankTransform(std::vector<int> &arr) {
+    std::vector<int> sorted{arr};
+    std::sort(sorted.begin(), sorted.end());
+
+    int counter{1};
+    std::unordered_map<int, int> pos;
+
+    // adding to map
+    // {num : pos}
+    for (int num : sorted) {
+      if (pos.find(num) == pos.end()) {
+        pos[num] = counter;
+        ++counter;
+      }
+    }
+
+    // loop over original and append pos to vector
+    std::vector<int> output;
+    for (int num : arr) {
+      output.push_back(pos[num]);
+    }
+
+    return output;
+  }
 };
 
 int main() {
   Test testCur = Test();
   Solution solCur = Solution();
 
-  Test::Unit testCase{testCur.testA()};
+  Test::Unit testCase{testCur.testC()};
   std::vector<int> output{solCur.arrayRankTransform(testCase.input)};
   testCur.checker(testCase.output, output);
 }

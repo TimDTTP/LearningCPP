@@ -22,3 +22,8 @@ the return value is the rank of the 'int' in arr
     - If duplicate value just skip
 - Loop over original vector
 - Match value to map key and append value pair
+
+## Submission
+Runtime 66ms Beats 69.97%
+Memory 44.41 Beats 32.26%
+
