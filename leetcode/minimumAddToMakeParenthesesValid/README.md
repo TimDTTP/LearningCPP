@@ -20,3 +20,9 @@ The return value is the minimum number of moves to make s valid
 - If ')', pop top of stack
     - If stack is empty then increment counter and continue
 - Finally if stack is !empty, counter += stack.size
+
+runtime 4ms Beats 18.73%
+memory 7.79mB Beats 81.46%
+
+## Online Approach
+Little to no significant improvements

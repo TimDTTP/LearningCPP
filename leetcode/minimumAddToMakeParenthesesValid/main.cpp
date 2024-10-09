@@ -30,6 +30,6 @@ public:
 int main() {
   Solution solCur = Solution();
 
-  int output{solCur.minAddToMakeValid("())")};
+  int output{solCur.minAddToMakeValid("(((")};
   std::cout << output << '\n';
 }
