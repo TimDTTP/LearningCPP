@@ -1,19 +1,16 @@
 
 #include <iostream>
-#include <sstream>
 #include <string>
 
 class Solution {
 public:
   int minAddToMakeValid(std::string s) {
-    std::stringstream ss{s};
-    char c;
     std::stack<char> currParentheses;
-    int counter;
+    int counter{0};
 
-    while (ss >> c) {
-      if (c == '(')
-        currParentheses.push(c);
+    for (char parentheses : s) {
+      if (parentheses == '(')
+        currParentheses.push(parentheses);
       else {
         if (currParentheses.empty())
           counter++;
@@ -33,6 +30,6 @@ public:
 int main() {
   Solution solCur = Solution();
 
-  int output{solCur.minAddToMakeValid("(((")};
+  int output{solCur.minAddToMakeValid("())")};
   std::cout << output << '\n';
 }
