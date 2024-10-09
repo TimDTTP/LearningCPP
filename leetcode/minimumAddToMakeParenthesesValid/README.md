@@ -16,4 +16,7 @@ The return value is the minimum number of moves to make s valid
 - s\[i] is either '(' or ')'
 
 ## Approach
-
+- Iterate through string and add '(' parentheses to stack
+- If ')', pop top of stack
+    - If stack is empty then increment counter and continue
+- Finally if stack is !empty, counter += stack.size
