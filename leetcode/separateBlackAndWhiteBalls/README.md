@@ -19,4 +19,6 @@ right and all the white balls to the left.
 - s\[i] is either '0' or '1'
 
 ## Approach
-
+- Traverse through string
+- Count number of black balls whilst traversing
+- If white ball, add number of black balls to move counter
