@@ -22,3 +22,13 @@ right and all the white balls to the left.
 - Traverse through string
 - Count number of black balls whilst traversing
 - If white ball, add number of black balls to move counter
+
+Runtime 31ms Beats 73.43%
+Memory 15.58mB Beats 76.03%
+
+## Online Solutions
+Little to no significant improvements.
+
+Such a simple problem, many online solutions are almost identical to personal 
+solution.
+
