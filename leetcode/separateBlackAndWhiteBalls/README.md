@@ -1,0 +1,22 @@
+
+# Problem
+Given...
+- string, s
+
+Return...
+- long long
+
+Where...
+The return value is the numbers of move in order to move all black balls to the
+right and all the white balls to the left.
+- Moves can only be two adjacent balls at a time
+- 's' will only have 1 or 0, black and white balls respectively
+
+[#2938 Separate Black and White Balls](https://leetcode.com/problems/separate-black-and-white-balls/description/)
+
+## Constraints
+- 1 <= n == s.length <= 10^5
+- s\[i] is either '0' or '1'
+
+## Approach
+
