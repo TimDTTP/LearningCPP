@@ -1,6 +1,6 @@
 
-#include <array>
 #include <iostream>
+#include <map>
 #include <string>
 
 class Test {
@@ -26,32 +26,44 @@ public:
     obj.c = 0;
     return obj;
   }
+
+  TestCase testC() {
+    TestCase obj;
+    obj.a = 76;
+    obj.b = 69;
+    obj.c = 92;
+    return obj;
+  }
 };
 
 class Solution {
+private:
+  bool static cmp(std::pair<char, int> &a, std::pair<char, int> &b) {
+    return a.second > b.second;
+  }
+
+  int numPos(int a) { return ((a / 2) + (a % 2)); }
+
 public:
   std::string longestDiverseString(int a, int b, int c) {
-    std::array<std::pair<int, int>, 3> moves;
-
-    // add values to array
-    moves[0].second = a;
-    moves[1].second = b;
-    moves[2].second = c;
+    std::vector<std::pair<char, int>> table{{'a', a}, {'b', b}, {'c', c}};
 
     // sort array from greatest to least
-    std::sort(moves.begin(), moves.end(),
-              [](std::pair<int, int> a, std::pair<int, int> b) {
-                return a.second > b.second;
-              });
+    std::sort(table.begin(), table.end(), cmp);
 
     // WARN: print current array
-    for (std::pair<int, int> letters : moves) {
-      std::cout << letters.second << std::endl;
+    std::cout << "Current array\n";
+    for (std::pair<char, int> i : table) {
+      std::cout << i.first << '\n';
+    }
+    std::cout << std::endl;
+
+    int maxPos{numPos(table[0].second)};
+
+    if (table[1].second < maxPos) {
     }
 
-    // reduce moves
-
-    return "";
+    return "SAMPLE";
   }
 };
 

@@ -25,16 +25,10 @@ Return "" if there are no happy substrings.
 - a + b + c > 0
 
 ## Approach
-- Group a, b, c into pairs which simplifies the numbers
-- pair.first is a / 2
-- pair.second is a % 2
-- Number of possible move = pair.first + pair.second
-- Sort by number of possibles moves
-- If delta between each is 1 or 0
-    - Just iterate through each (easy)
-- Else,
-    - Group 2 lowest occurences together and get number of moves closest to the
-    greatest
-    - When forming string, alternate between the two lowest values between
-    the greatest values
-
+- Form a struct to enable easier manipulation
+    - letter
+    - pair<double, single>
+- Add number of occurences to singles for each letter
+- Add structs to array and sort
+- Iterate through and add the largest value that is NOT the last one added
+- If number of moves = 0, remove
