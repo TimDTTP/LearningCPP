@@ -1,6 +1,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <queue>
 #include <string>
 #include <vector>
 
@@ -57,59 +58,41 @@ public:
     }
     std::cout << std::endl;
 
-    // to double up or not
-    bool doubleUp{table[0].second > (table[1].second + table[2].second)};
     std::string output{""};
+    std::queue<char> temp;
 
-    if (!doubleUp) {
-      int xz{table[0].second - table[1].second};
-      int xyz{table[2].second - xz};
+    for (int i{0}; i < table[1].second; i++) {
+      temp.push(table[0].first);
+      table[0].second--;
+      temp.push(table[1].first);
+      table[1].second--;
+    }
+    std::cout << "size: " << temp.size() << '\n';
 
-      // string creation
-      for (int i{0}; i < (xyz + xz); i++) {
-        if (xyz > 0) {
-          output += table[0].first;
-          output += table[1].first;
-          output += table[2].first;
-          xyz--;
-        } else {
-          output += table[0].first;
-          output += table[2].first;
-          xz--;
-        }
-      }
+    for (int i{0}; i < std::min(table[0].second, table[2].second); i++) {
+      temp.push(table[0].first);
+      table[0].second--;
+      temp.push(table[2].first);
+      table[2].second--;
+    }
 
-      return output;
+    int target;
+    int change;
+    if (table[0].second) {
+      target = 0;
+      change = 0;
     } else {
-      std::cout << "here" << '\n';
-      int doubleLargest{};
-      int maxPosition{table[1].second + table[2].second + 1};
-      if (table[0].second * 2 > maxPosition)
-        table[0].second = maxPosition * 2;
+      target = 1;
+      change = 2;
+    }
 
-      doubleLargest = table[0].second - maxPosition;
-
-      // string creation
-      while (table[0].second > 0 || table[1].second > 0 ||
-             table[2].second > 0) {
-        if (doubleLargest > 0) {
-          output += table[0].first;
-          output += table[0].first;
-          doubleLargest--;
-          table[0].second -= 2;
-        } else {
-          output += table[0].first;
-        }
-        if (table[1].second > 0) {
-          output += table[1].first;
-          table[1].second--;
-        } else if (table[2].second > 0) {
-          output += table[2].first;
-          table[2].second--;
-        }
+    while (!temp.empty()) {
+      output += temp.front();
+      if (temp.front() == table[target].first && table[change].second > 0) {
+        output += table[change].first;
+        table[change].second--;
       }
-
-      return output;
+      temp.pop();
     }
 
     return output;
