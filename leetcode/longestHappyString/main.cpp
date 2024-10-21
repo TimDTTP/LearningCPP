@@ -51,25 +51,19 @@ public:
     // sort array from greatest to least
     std::sort(table.begin(), table.end(), cmp);
 
-    // WARN: print current array
-    std::cout << "Current array\n";
-    for (std::pair<char, int> i : table) {
-      std::cout << i.first << '\n';
-    }
-    std::cout << std::endl;
-
     std::string output{""};
     std::queue<char> temp;
 
-    for (int i{0}; i < table[1].second; i++) {
+    int iterations{table[1].second};
+    for (int i{0}; i < iterations; i++) {
       temp.push(table[0].first);
       table[0].second--;
       temp.push(table[1].first);
       table[1].second--;
     }
-    std::cout << "size: " << temp.size() << '\n';
 
-    for (int i{0}; i < std::min(table[0].second, table[2].second); i++) {
+    iterations = std::min(table[0].second, table[2].second);
+    for (int i{0}; i < iterations; i++) {
       temp.push(table[0].first);
       table[0].second--;
       temp.push(table[2].first);
@@ -95,6 +89,14 @@ public:
       temp.pop();
     }
 
+    // residule x
+    if (table[0].second) {
+      iterations = std::min(2, table[0].second);
+      for (int i{0}; i < iterations; i++) {
+        output += table[0].first;
+      }
+    }
+
     return output;
   }
 };
@@ -103,7 +105,7 @@ int main() {
   Test testCur = Test();
   Solution solCur = Solution();
 
-  Test::TestCase input{testCur.testC()};
+  Test::TestCase input{testCur.testA()};
   std::string output{solCur.longestDiverseString(input.a, input.b, input.c)};
   std::cout << output << std::endl;
 
