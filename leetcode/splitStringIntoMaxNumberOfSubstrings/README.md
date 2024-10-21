@@ -17,3 +17,11 @@ the return value is the max number of unique substrings that can be created from
 - 's' only contain lower case English letters
 
 ## Approach
+Map method
+- Iterate through string by char
+- If char is not in map
+    - counter++
+- If char is already in map
+    - Add next char and recheck
+    - Repeat until satisfied
+- Return counter
