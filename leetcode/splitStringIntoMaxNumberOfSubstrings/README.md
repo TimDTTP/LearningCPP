@@ -25,3 +25,12 @@ Map method
     - Add next char and recheck
     - Repeat until satisfied
 - Return counter
+
+Problem: Doesn't optimize max amount
+
+Try every permutation tracking using set
+- Iterate through length of string
+- Test every combination 
+- Track max amount
+- Recursive call back to function with new limits
+- Dump set at end of loop
