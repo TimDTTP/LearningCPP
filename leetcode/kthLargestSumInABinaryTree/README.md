@@ -19,3 +19,9 @@ The return value is the 'k'th largest level sum.
 - 1 <= k <= n
 
 ## Approach
+- Perform level order traversal
+- Sum up values per level
+- Add sum to vector
+- If k > vector.size return -1
+- Sort values in descending order
+- Return vector\[k]
