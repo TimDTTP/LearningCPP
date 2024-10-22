@@ -43,7 +43,7 @@ public:
     long long tempSum{0};
 
     // perform level order traversal
-    while (!parent.empty() || !children.empty()) {
+    while (!parent.empty()) {
       tempSum += parent.front()->val;
       if (parent.front()->left)
         children.push(parent.front()->left);
