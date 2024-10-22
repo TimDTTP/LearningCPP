@@ -43,7 +43,7 @@ public:
     long long tempSum{0};
 
     // perform level order traversal
-    while (!parent.empty() && !children.empty()) {
+    while (!parent.empty() || !children.empty()) {
       tempSum += parent.front()->val;
       if (parent.front()->left)
         children.push(parent.front()->left);
@@ -62,12 +62,14 @@ public:
     }
 
     // if k > sums.size() return -1
+    if (k > sums.size())
+      return -1;
 
     // sort descending order
+    std::sort(sums.begin(), sums.end(), [](int a, int b) { return a > b; });
 
-    // return sums\[k]
-
-    return 0;
+    // sub 1 because of 1 index
+    return sums[k - 1];
   }
 };
 
