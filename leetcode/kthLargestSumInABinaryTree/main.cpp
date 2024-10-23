@@ -1,5 +1,6 @@
 
 #include "node.h"
+#include <algorithm>
 #include <iostream>
 #include <queue>
 #include <vector>
