@@ -28,3 +28,10 @@ Nodes are cousins if they have the same depth with different parents.
     - Add node.left && node.right to end
 - Return root
 
+Runtime 10ms Beats 98.66%
+Memory 321.92mB Beats 25.17%
+
+## Online Solutions
+Very similar logic, but potentially more performant due to usage of recursive behaviour
+instead of usage of for loop. Otherwise, same overall steps and little to no significant
+performance improvements. (Probably more memory efficient due to recursive = less ram)
