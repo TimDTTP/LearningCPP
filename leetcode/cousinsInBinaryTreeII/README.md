@@ -19,4 +19,12 @@ Nodes are cousins if they have the same depth with different parents.
 - 1 <= Node.val <= 10^4
 
 ## Approach
+- Add root to queue
+- For size queue, pop and push back into queue
+    - Whilst add node.children.left && right to temp sum
+- For size queue, pop and push back into queue
+    - Whilst assign child of each node 
+        - val = sum - node.left->val - node.right->val
+    - Add node.left && node.right to end
+- Return root
 
