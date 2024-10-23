@@ -67,7 +67,7 @@ public:
       return -1;
 
     // sort descending order
-    std::sort(sums.begin(), sums.end(), [](int a, int b) { return a > b; });
+    std::sort(sums.begin(), sums.end(), std::greater());
 
     // sub 1 because of 1 index
     return sums[k - 1];
