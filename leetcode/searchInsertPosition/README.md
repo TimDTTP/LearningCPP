@@ -20,4 +20,15 @@ was to be inserted.
 - -10^4 <= target <= 10^4
 
 ## Approach
-- 
+Merge sort approach
+- Size = nums.size
+- 2 pointer at each end
+- loop till pointerA - pointerB < 2
+- pivot = pointer A + (pointer B - pointer A)
+- if target > pivot
+    - pointer A = pivot
+- if target < pivot
+    - pointer B = pivot
+- if target = pivot
+    - return pivot
+- return pivot if not found and pointer A - pointer B < 2
