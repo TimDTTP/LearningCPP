@@ -20,4 +20,10 @@ was to be inserted.
 - -10^4 <= target <= 10^4
 
 ## Approach
-- 
+Quick sort
+- 2 ptrs, start and end
+- 1 ptr is the pivot, ~middle of start and end
+- If pivot == target, return pivot
+- If pivot > target, end = pivot
+- If pivot < target, start = pivot
+- Continue until start - end == 1
