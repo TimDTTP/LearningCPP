@@ -27,4 +27,12 @@ before
 - while maxCount > remaining values
 - if values^2 exists; counter++
 
+Runtime
+83ms beat 68.89%
+Memory
+108.77 beat 80.39%
+
+## Online Solution
+- Since the contraint ceiling is so low, it would be more efficient to init an array of 100,000 than to use an set
+- `foo * foo` is probably more efficient than `std::pow(foo, 2)`
 
