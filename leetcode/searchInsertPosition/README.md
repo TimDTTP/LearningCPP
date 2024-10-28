@@ -26,4 +26,14 @@ Quick sort
 - If pivot == target, return pivot
 - If pivot > target, end = pivot
 - If pivot < target, start = pivot
-- Continue until start - end == 1
+- Continue until start - end <= 2
+- Iterate through remaining vector
+- If val == target; return val's index
+- If val >  target, return val's index - 1
+- If end, return last index + 1
+
+Runtime
+0ms Beats 100%
+
+Memory
+12.45mB Beats 6.91%
