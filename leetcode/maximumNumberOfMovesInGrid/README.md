@@ -26,4 +26,10 @@ rules.
 - 1 <= grid\[i]\[j] <= 10^6
 
 ## Approach
-
+Recursive DFS
+- Loop through first column
+- Call recusive function for each
+- Bound check each direction before going
+- If last column and is greater, return counter
+- Check above, middle, then below
+- If cell is greater than current, call recursive function with new parameters
