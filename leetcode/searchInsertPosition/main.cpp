@@ -5,74 +5,56 @@
 class Test {
 public:
   struct TestCase {
-    std::vector<int> nums;
+    std::vector<int> input;
     int target;
     int output;
   };
 
   TestCase testA() {
-    TestCase obj{{2, 4, 6, 8, 10}, 4, 1};
+    TestCase obj;
+    obj.input = {1, 3, 5, 6};
+    obj.target = 5;
+    obj.output = 2;
+
     return obj;
   }
 
   TestCase testB() {
-    TestCase obj{{1, 3, 5, 6}, 2, 1};
+    TestCase obj;
+    obj.input = {1, 3, 5, 6};
+    obj.target = 2;
+    obj.output = 1;
+
     return obj;
   }
 
   TestCase testC() {
-    TestCase obj{{1, 3, 5, 6}, 5, 2};
-    return obj;
-  }
+    TestCase obj;
+    obj.input = {1, 3, 5, 6};
+    obj.target = 7;
+    obj.output = 4;
 
-  TestCase testD() {
-    TestCase obj{{1, 3, 5, 6}, 7, 4};
     return obj;
   }
 };
 
 class Solution {
 public:
-  int searchInsert(std::vector<int> &nums, int target) {
-    int start{0};
-    int end = nums.size() - 1;
-    int pivot;
-
-    while (end - start > 2) {
-      pivot = start + ((end - start) / 2);
-
-      if (nums[pivot] == target)
-        return pivot;
-      else if (nums[pivot] > target)
-        end = pivot;
-      else
-        start = pivot;
-    }
-
-    // iterate through vector
-    for (int i{start}; i <= end; i++) {
-      if (nums[i] == target)
-        return i;
-      else if (nums[i] > target)
-        return i;
-    }
-
-    return end + 1;
-  }
+  int searchInsert(std::vector<int> &nums, int target) {}
 };
 
 int main() {
-  Solution solCur{Solution()};
   Test testCur{Test()};
+  Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
-  int output{solCur.searchInsert(unit.nums, unit.target)};
+  Test::TestCase input{testCur.testA()};
+  int output{solCur.searchInsert(input.input, input.target)};
 
-  if (unit.output == output)
+  if (output == input.output) {
     std::cout << "Success!\n";
-  else {
+  } else {
     std::cout << "Failed!\n";
-    std::cout << "Expected: " << unit.output << '\n';
+    std::cout << "Expected: " << input.output << '\n';
     std::cout << "Actual: " << output << '\n';
   }
   std::cout << std::endl;
