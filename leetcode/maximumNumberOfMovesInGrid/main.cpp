@@ -1,4 +1,5 @@
 
+#include <array>
 #include <iostream>
 #include <vector>
 
@@ -25,8 +26,44 @@ public:
 };
 
 class Solution {
+private:
+  void maxPerCell(std::vector<std::vector<int>> &grid, std::pair<int, int> cell,
+                  int &max, int counter) {
+    int moves{counter + 1};
+    std::array<int, 3> directions{-1, 0, 1};
+
+    for (int i : directions) {
+      // bound check
+      // x axis
+      if (cell.first + 1 > grid.size())
+        return;
+
+      // y axis
+      if (cell.second + i < 0 || cell.second + i >= grid[0].size())
+        continue;
+
+      // if greater than
+      if (grid[cell.second + i][cell.first + 1] >
+          grid[cell.second][cell.first]) {
+        maxPerCell(grid, {cell.first + 1, cell.second + i}, max, moves);
+      } else {
+        max = std::max(max, counter);
+      }
+    }
+  }
+
 public:
-  int maxMoves(std::vector<std::vector<int>> &grid) {}
+  int maxMoves(std::vector<std::vector<int>> &grid) {
+    int max{0};
+    int counter{0};
+
+    for (int i{0}; i < grid.size(); i++) {
+      counter = 0;
+      maxPerCell(grid, {0, i}, max, counter);
+    }
+
+    return max;
+  }
 };
 
 int main() {
