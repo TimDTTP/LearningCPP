@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -18,67 +19,62 @@ public:
     TestCase obj{{2, 1, 1, 5, 6, 2, 3, 1}, 3};
     return obj;
   }
+
+  TestCase testC() {
+    TestCase obj{{23, 47, 63, 72, 81, 99, 88, 55, 21, 33, 32}, 1};
+    return obj;
+  }
+
+  TestCase testD() {
+    TestCase obj{{100, 92, 89, 77, 74, 66, 64, 66, 64}, 6};
+    return obj;
+  }
 };
 
 class Solution {
+private:
+  std::vector<int> increasingSequence(std::vector<int> &nums) {
+    int numGreaterThan;
+    // traverse from left to right tracking values to its left
+    std::vector<int> allGreater{};
+    allGreater.resize(nums.size(), 0);
+    for (int i{1}; i < nums.size() - 1; i++) {
+      numGreaterThan = 0;
+      // traverse backward and find first value it is greater than
+      for (int j{i - 1}; j >= 0; j--) {
+        // if value is greater add 1 to found pos
+        if (nums[i] > nums[j] && allGreater[j] >= numGreaterThan) {
+          allGreater[i] = allGreater[j] + 1;
+          numGreaterThan = allGreater[j];
+        }
+      }
+    }
+
+    return allGreater;
+  }
+
 public:
   int minimumMountainRemovals(std::vector<int> &nums) {
     const int start = 0;
     const int end = nums.size();
+    int numGreaterThan;
 
-    // traverse from left to right tracking values to its left
-    std::vector<int> left{};
-    left.resize(end, 0);
-    for (int i{start + 1}; i < end - 1; i++) {
-      // traverse backward and find first value it is greater than
-      for (int j{i - 1}; j >= start; j--) {
-        // if value is greater add 1 to found pos
-        if (nums[i] > nums[j]) {
-          left[i] = left[j] + 1;
-          break;
-        }
-      }
-      std::cout << nums[i] << ' ';
-    }
-    std::cout << std::endl;
+    std::vector<int> left{increasingSequence(nums)};
 
-    // WARNING: printing left
-    for (int i : left) {
-      std::cout << i << ' ';
-    }
-    std::cout << std::endl;
-
-    // traverse from right to left tracking values to its right
-    std::vector<int> right{};
-    right.resize(end, 0);
-    for (int i{end - 2}; i > start; i--) {
-      // traverse backward and find first value it is greater than
-      for (int j{i + 1}; j < end; j++) {
-        // if value is greater add 1 to found pos
-        if (nums[i] > nums[j]) {
-          right[i] = right[j] + 1;
-          break;
-        }
-      }
-      std::cout << nums[i] << ' ';
-    }
-    std::cout << std::endl;
-
-    // WARNING: printing right
-    for (int i : right) {
-      std::cout << i << ' ';
-    }
-    std::cout << std::endl;
+    std::reverse(nums.begin(), nums.end());
+    std::vector<int> right{increasingSequence(nums)};
+    std::reverse(right.begin(), right.end());
 
     // compare found values and take peak of largest mountain
     int mountainSize{0};
+    int temp{0};
     for (int i{0}; i < end; i++) {
-      if (left[i] + right[i] + 1 > mountainSize) {
-        mountainSize = left[i] + right[i] + 1;
-      }
+      if (left[i] != 0 && right[i] != 0)
+        temp = left[i] + right[i] + 1;
+
+      mountainSize = std::max(mountainSize, temp);
     }
 
-    // WARNING: 0 is a placeholder value
     return end - mountainSize;
   }
 };
@@ -87,7 +83,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testB()};
+  Test::TestCase unit{testCur.testD()};
   int output{solCur.minimumMountainRemovals(unit.array)};
 
   if (output == unit.output)

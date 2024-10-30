@@ -31,3 +31,9 @@ Ex. \[1, 3, 5, 4, 2] Valid
 - The index with the greatest value left + right is will be the peak
 - Size - peak.left - peak.right is the minimum number of values needed to remove
 
+Modification:
+- When searching backwards, prioritize numbers with more numbers lesser than it
+- When comparing, perform check that both sides for each != 0
+
+Runtime 40ms Beats 66.67%
+Memory 14.90mB Beats 67.26%
