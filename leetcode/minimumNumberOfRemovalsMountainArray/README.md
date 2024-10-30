@@ -26,3 +26,8 @@ Ex. \[1, 3, 5, 4, 2] Valid
 - Guaranteed to make a mountain out of "nums"
 
 ## Approach
+- Traverse left to right, keeping track of number of values less than itself in order
+- Traverse the opposite direction doing the same
+- The index with the greatest value left + right is will be the peak
+- Size - peak.left - peak.right is the minimum number of values needed to remove
+
