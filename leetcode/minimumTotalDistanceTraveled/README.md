@@ -22,5 +22,9 @@ the factories.
 - All test cases will have all robots able to be repaired
 - Moving robots will never collide
 - If a robot passes a factory that has reached its limit, it will cross it
+- 1 <= robot.length, factory.length <= 100
+- factoy\[j].length == 2
+-  -10^9 <= robot\[i], position <= 10^9
+- 0 <= limit <= robot.length
 
 ## Approach
