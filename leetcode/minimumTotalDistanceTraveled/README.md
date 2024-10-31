@@ -1,4 +1,5 @@
 
+FAILED: PASSED ALLOTTED TIME LIMIT TO SOLVE; REVISIT
 # Problem
 Given...
 - A vector\<int>, robot
@@ -28,3 +29,9 @@ the factories.
 - 0 <= limit <= robot.length
 
 ## Approach
+- For each robot find closest factory and "assign" it
+    - Should be the same distance afterwards
+- Sort both factory and robot by position in ascending order
+
+## Online solution
+- added to main.cpp
