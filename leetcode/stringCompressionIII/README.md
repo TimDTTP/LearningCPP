@@ -18,3 +18,16 @@ time.
 ## Constraints
 - 1 <= word.length <= 2 * 10^5
 - "word" consists of only lowercase English letters.
+
+## Approach
+Two pointer
+- Both pointer start at index 0
+- Traverse second pointer to next index
+- If char == char under first pointer, keep going and counter++
+- Else or end
+    - Append counter then char
+    - Shift first pointer to second pointer
+- Return comp
+
+Runtime 36ms Beats 57.27%
+Memory 39.98mB Beats 6.10%
