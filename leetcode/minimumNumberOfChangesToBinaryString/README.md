@@ -21,4 +21,12 @@ Requirements to be beautiful...
 - s\[i] is either '0' or '1'
 
 ## Approach
-
+- There is a limited amount of options for patterns of odds and evens
+- Thus, with constraints in mind, we can just account for the order of odds and evens
+- Traverse through string, and account of if substrings are odd or even amount
+- Add odd or even in a queue
+- Traverse queue
+- If odd, evaluate the next in queue
+    - If odd, add 1 to counter
+    - If even, count how many even till we reach odd
+        - Add number of even till odd +1 to counter
