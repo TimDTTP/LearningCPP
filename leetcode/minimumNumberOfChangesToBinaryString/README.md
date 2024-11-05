@@ -33,3 +33,8 @@ Requirements to be beautiful...
 
 Runtime 3ms Beats 43.24%
 Memory 14.36mB Beats 17.58%
+
+## Online solution
+Significant improvement
+- Better insight into pattern recognition
+- Iterate by 2, if the next value is not the same, increment counter

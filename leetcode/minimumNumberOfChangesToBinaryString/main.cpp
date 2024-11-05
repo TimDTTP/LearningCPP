@@ -76,6 +76,20 @@ public:
   }
 };
 
+class OnlineSolution {
+public:
+  int minChanges(std::string s) {
+    int n = s.size();
+    // we will check for the consecutive
+    int count = 0;
+    for (int i = 0; i < n; i += 2) {
+      if (s[i] != s[i + 1])
+        count++;
+    }
+    return count;
+  }
+};
+
 int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
