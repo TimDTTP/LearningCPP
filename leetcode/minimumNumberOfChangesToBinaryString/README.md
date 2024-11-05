@@ -30,3 +30,6 @@ Requirements to be beautiful...
     - If odd, add 1 to counter
     - If even, count how many even till we reach odd
         - Add number of even till odd +1 to counter
+
+Runtime 3ms Beats 43.24%
+Memory 14.36mB Beats 17.58%
