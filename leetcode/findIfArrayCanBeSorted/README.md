@@ -19,4 +19,13 @@ condition...
 - 1 <= nums\[i] <= 2^8
 
 ## Approach
-
+- Track if current iteration performed any swaps
+    - Default should be false
+- Separate array for # of set bits for each num
+- Do while \(swapped == true)
+    - For int in vector
+        - If int\[i] > int\[i + 1] && setBit\(num\[i]) == setBit\(num\[i + 1])
+            - swap num\[i] && num\[i + 1]
+            - swapped = true
+- Reverse array and repeat
+- If either way = sorted, return true
