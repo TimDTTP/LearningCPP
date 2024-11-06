@@ -27,5 +27,12 @@ condition...
         - If int\[i] > int\[i + 1] && setBit\(num\[i]) == setBit\(num\[i + 1])
             - swap num\[i] && num\[i + 1]
             - swapped = true
+DEPRECATED
 - Reverse array and repeat
 - If either way = sorted, return true
+
+EDIT:
+- Problem only allows sorting via ascending order
+
+Runtime: 0ms Beats 100%
+Memory: 32.71 Beats 16.89%

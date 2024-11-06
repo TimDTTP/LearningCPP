@@ -1,5 +1,6 @@
 
 #include <algorithm>
+#include <ios>
 #include <iostream>
 #include <vector>
 
@@ -24,20 +25,28 @@ public:
     TestCase obj{{3, 16, 8, 4, 2}, false};
     return obj;
   }
+
+  TestCase testD() {
+    TestCase obj{{20, 16}, false};
+    return obj;
+  }
 };
 
 class Solution {
-private:
-  unsigned int countSetBit(int num) {
-    unsigned int count{0};
-    while (num) {
-      count += num & 1;
-      num >>= 1;
+public:
+  bool canSortArray(std::vector<int> &nums) {
+    // track number of set bits
+    std::vector<int> setBits{};
+    unsigned int count;
+    for (int num : nums) {
+      count = 0;
+      while (num) {
+        count += num & 1;
+        num >>= 1;
+      }
+      setBits.push_back(count);
     }
-    return count;
-  }
 
-  bool check(std::vector<int> &nums, std::vector<int> &setBits) {
     // sort with same number of set bits
     int start{0};
     for (int end{0}; end < setBits.size(); end++) {
@@ -58,26 +67,6 @@ private:
 
     return true;
   }
-
-public:
-  bool canSortArray(std::vector<int> &nums) {
-    // track number of set bits
-    std::vector<int> setBits{};
-    for (int num : nums)
-      setBits.push_back(countSetBit(num));
-
-    // check sorting forwards
-    bool forward{check(nums, setBits)};
-
-    // reverse vector
-    std::reverse(nums.begin(), nums.end());
-    std::reverse(setBits.begin(), setBits.end());
-
-    // check again
-    bool backwards{check(nums, setBits)};
-
-    return (forward || backwards);
-  }
 };
 
 int main() {
@@ -87,6 +76,7 @@ int main() {
   Test::TestCase unit{testCur.testC()};
   bool output{solCur.canSortArray(unit.nums)};
 
+  std::cout << std::boolalpha;
   if (output == unit.output)
     std::cout << "Success!\n";
   else {
