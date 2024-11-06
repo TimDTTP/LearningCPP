@@ -6,6 +6,8 @@ public:
   struct TestCase {
     void output;
   };
+
+  TestCase testA() {}
 };
 
 class Solution {
@@ -16,8 +18,8 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{};
-  void output{};
+  Test::TestCase unit{testCur};
+  void output{solCur};
 
   if (output == unit.output)
     std::cout << "Success!\n";
