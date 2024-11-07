@@ -17,3 +17,14 @@ performing bitwise AND, is still greater than 0.
 - 1 <= candidates\[i] <= 10^7
 
 ## Approach
+- Create array matrix of size, 24 x  candidates.size
+- Occupy table with 0
+- Iterate through candidates and for each value add binary value to table
+    - Starting at the right hand side = num % 2
+    - num /= 2
+- Iterate through each column in matrix and count number of 1's
+- Return count
+
+Passed but slow and inefficient.
+Runtime 321ms Beats 5.13%
+Memory 201.49mB Beats 5.12%
