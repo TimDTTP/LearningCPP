@@ -28,3 +28,12 @@ performing bitwise AND, is still greater than 0.
 Passed but slow and inefficient.
 Runtime 321ms Beats 5.13%
 Memory 201.49mB Beats 5.12%
+
+## Online Solution
+Massive performance improvments
+- Instead of instantiating a full matrix, use one vector of max size and 
+increment index position of binary that is equal to 1
+- Instead of calculating bits manually, just use '&' operator to get first 
+bit and ">>=" operator to shift bit to the left
+- Use "std::max_element" to get max element in array instead of manually 
+iterating over array
