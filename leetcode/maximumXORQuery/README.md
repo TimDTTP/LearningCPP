@@ -31,3 +31,9 @@ the return vector is the following n times query:
 
 Runtime 10ms Beats 20.56%
 Memory 95.38mB Beats 88.70%
+
+## Online solutions
+- Made a mistake in not clearly analyzing the constraints
+    - Personal approach unnecessarily performed bounds checking when nums\[i]
+    is already contrainted to be less than 2^maximumBit
+    - Could have been much more efficient otherwise
