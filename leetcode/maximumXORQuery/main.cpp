@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <sys/types.h>
 #include <vector>
 
 class Test {
@@ -29,6 +30,25 @@ public:
 class Solution {
 public:
   std::vector<int> getMaximumXor(std::vector<int> &nums, int maximumBit) {
+    int last;
+    int temp;
+
+    for (int i{0}; i < nums.size(); i++) {
+      // XOR values
+      if (i != 0) {
+        nums[i] = last ^ nums[i];
+      }
+      last = nums[i];
+
+      // flip bits
+      std::bitset<20> num(nums[i]);
+      for (int j{0}; j < maximumBit; j++) {
+        num[j].flip();
+      }
+      nums[i] = (int)(num.to_ulong());
+    }
+    std::reverse(nums.begin(), nums.end());
+
     return nums;
   }
 };
@@ -44,7 +64,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testC()};
   std::vector<int> output{solCur.getMaximumXor(unit.nums, unit.maximumBit)};
 
   if (output == unit.output)

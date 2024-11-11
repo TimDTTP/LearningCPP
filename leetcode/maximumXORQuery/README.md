@@ -23,4 +23,11 @@ the return vector is the following n times query:
 - nums is sorted in ascending order
 
 ## Approach
+- Iterate over nums
+- Get XOR of current value and previous
+- Take first "maximumBit"s and flip bit 
+- Replace current index with new value
+- Return nums.reverse
 
+Runtime 10ms Beats 20.56%
+Memory 95.38mB Beats 88.70%
