@@ -29,3 +29,12 @@ Refine data, query
 
 Runtime 1477ms Beats 5.43%
 Memory 425.09mB Beats 5.00%
+
+## Online Solution
+Had the correct overall approach and thought process but fell short when 
+approaching the handling of data retrieval.
+- Instead of searching each value independently, a better approach would 
+be to dictate a range of values in which the maxBeauty is applicable.
+- Ex. \{{0,0,2}, {2,5,9}, {9,8,INT_MAX}}
+- Would result in a much shorter array to search through dramatically 
+cutting time complexity
