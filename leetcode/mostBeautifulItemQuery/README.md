@@ -19,4 +19,13 @@ equal to the integer in "queries"
 - 1 <= price, beauty, queries\[j] <= 10^9
 
 ## Approach
+Refine data, query
+- Sort "items" by price in ascending order
+- Traverse by price append to another array the price and highest beauty
+- Traverse new array, if drag along highest beauty onto the next till not
+- Append array to unordered_map for O\(1) lookup
+- Begin query traversal
+- For each query, traverse down price to find highest beauty, else return 0
 
+Runtime 1477ms Beats 5.43%
+Memory 425.09mB Beats 5.00%
