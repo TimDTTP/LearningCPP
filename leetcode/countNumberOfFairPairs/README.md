@@ -24,5 +24,15 @@ A pair \(i, j) if fair if...
 - -10^9 <= lower <= upper <= 10^9
 
 ## Approach
+Nest for loop
+- Traverse through "nums"
+- Traverse through values preceeding
+- If sum of 2 values are within lower and upper, increment count
+- Return count
 
-
+Pre-process
+- Sort values in "nums" in ascending order
+- Dictate the lower bound and upper bound in reference to first value
+- For loop through array till lB > lower
+- Each iteration, add to counter the gap between uB and lB
+- Return count
