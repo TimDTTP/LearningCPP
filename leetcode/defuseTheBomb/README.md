@@ -21,4 +21,16 @@ the sum of the next/previous 'k' values, this is used circularly
 - -\(n - 1) <= k <= n - 1
 
 ## Approach
+Two pointer
+- Ptr1 +1 direction going
+- Ptr2 +k direction going
+- Sum = sum of next k int
+- Iterate through array
+- Replace value with sum
+- Sum - ptr1
+- Increment both ptrs
+- Sum + ptr2
+- return array
 
+Runtime 0ms Beats 100.00%
+Memory 10.29mB Beats 84.00%

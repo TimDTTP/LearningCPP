@@ -1,5 +1,7 @@
 
+#include <cstddef>
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 class Test {
@@ -27,10 +29,48 @@ public:
 };
 
 class Solution {
+private:
+  void incPtr(int &curr, int size) {
+    if (curr == size - 1)
+      curr = 0;
+    else
+      curr++;
+  }
+
 public:
   std::vector<int> decrypt(std::vector<int> &code, int k) {
-    std::vector<int> out;
-    return out;
+    int size = code.size();
+    int ptr1, ptr2;
+
+    if (k == 0) {
+      for (int i{0}; i < size; i++) {
+        code[i] = 0;
+      }
+      return code;
+    } else if (k > 0) {
+      ptr1 = 1;
+      ptr2 = k;
+    } else {
+      ptr1 = size + k;
+      ptr2 = size - 1;
+    }
+
+    int sum{std::accumulate(code.begin() + ptr1, code.end() - (size - ptr2 - 1),
+                            0)};
+
+    std::vector<int> output{};
+    for (int i{0}; i < size; i++) {
+      output.push_back(sum);
+
+      sum -= code[ptr1];
+
+      incPtr(ptr1, size);
+      incPtr(ptr2, size);
+
+      sum += code[ptr2];
+    }
+
+    return output;
   }
 };
 
@@ -44,7 +84,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testC()};
   std::vector<int> output{solCur.decrypt(unit.code, unit.k)};
 
   if (output == unit.output)
