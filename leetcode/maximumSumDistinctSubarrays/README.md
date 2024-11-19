@@ -21,4 +21,11 @@ If no subarray meet the requirements, return 0
 - 1 <= nums\[i] <= 10^5
 
 ## Approach
+2 ptr system
+- ptr1 at 0
+- ptr2 at k
+- Use set to track current values within range
+- If value already existed, stop and increment to next subarray
+- Compare each and track the largest sum
+
 
