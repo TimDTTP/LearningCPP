@@ -28,4 +28,12 @@ unoccupied cells that are not guarded.
 - All positions in `guards` and `walls` are unique
 
 ## Approach
+- Create array to track guarded nodes
+- Iterate through walls and remove positions
+- Iterate through guards and traverse each direction if possible
+- If encounter wall or guard, stop
+- Else remove from array
+- Count unguarded pos in array and return
 
+Runtime 742ms Beats 5.82%
+Memory 338.92mB Beats 5.10%
