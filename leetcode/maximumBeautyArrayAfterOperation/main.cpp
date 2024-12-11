@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 
 class Test {
@@ -17,8 +18,19 @@ public:
 class Solution {
 public:
   int maximumBeauty(std::vector<int> &nums, int k) {
-    int out;
-    return out;
+    std::unordered_map<int, int> freq;
+
+    for (int num : nums) {
+      for (int start{num - k}; start <= num + k; ++start) {
+        ++freq[start];
+      }
+    }
+
+    return std::max_element(freq.begin(), freq.end(),
+                            [](std::pair<int, int> a, std::pair<int, int> b) {
+                              return a.second < b.second;
+                            })
+        ->second;
   }
 };
 

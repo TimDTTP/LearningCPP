@@ -25,4 +25,8 @@ changing the order of the remaining elements.
 - 0 <= nums\[i], k <= 10^5
 
 ## Approach
+- For num in nums\[i], increment frequency of all values from
+    - nums\[i] - k to nums\[i] + k
+- return max value of frequency array
 
+Update: Approach failed due to time limit exceeded
