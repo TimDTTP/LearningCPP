@@ -30,3 +30,12 @@ changing the order of the remaining elements.
 - return max value of frequency array
 
 Update: Approach failed due to time limit exceeded
+
+- Sort nums
+- Count number of values that satisfies the following...
+    - nums\[i] + 2k >= nums\[i + x]
+- Return max count
+
+Update: Approach succeeded
+Runtime: 55ms Beats 54.73%
+Memory: 122.93MB Beats 39.95%

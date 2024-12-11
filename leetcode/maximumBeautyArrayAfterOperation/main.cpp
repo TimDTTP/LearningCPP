@@ -18,15 +18,31 @@ public:
 class Solution {
 public:
   int maximumBeauty(std::vector<int> &nums, int k) {
-    std::unordered_map<int, int> freq;
+    const int overhead{k * 2};
+    const int size = nums.size();
+    std::sort(nums.begin(), nums.end());
 
-    for (int num : nums) {
-      for (int start{num - k}; start <= num + k; ++start) {
-        ++freq[start];
+    // first: max overhead
+    // second: # of values that satisfy limit
+    std::vector<std::pair<int, int>> table{};
+    int tracker{0};
+
+    table.push_back({nums[0] + overhead, 1});
+    for (int i{1}; i < size; ++i) {
+      table.push_back({nums[i] + overhead, 0});
+
+      while (nums[i] > table[tracker].first) {
+        table[tracker].second = i - tracker;
+        ++tracker;
       }
     }
 
-    return std::max_element(freq.begin(), freq.end(),
+    // handle remaining values that are leftover when loop fully iterates
+    for (int i{tracker}; i < size; ++i) {
+      table[i].second = size - i;
+    }
+
+    return std::max_element(table.begin(), table.end(),
                             [](std::pair<int, int> a, std::pair<int, int> b) {
                               return a.second < b.second;
                             })
@@ -38,7 +54,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testB()};
   int output{solCur.maximumBeauty(unit.nums, unit.k)};
 
   if (output == unit.output)
