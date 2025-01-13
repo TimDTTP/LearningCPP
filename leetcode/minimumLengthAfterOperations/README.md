@@ -31,3 +31,9 @@ The only required information is the character and the frequency.
 Runtime 126ms Beats 15.32%
 Memory 32.50mB Beats 36.69%
 
+Optimizations
+- Since there is only 26 possible characters, use an array instead of a map
+- Test whether calculating at the end or during will be faster
+
+Runtime 4ms Beats 98.39%
+Memory 32.27mB Beats 52.42%

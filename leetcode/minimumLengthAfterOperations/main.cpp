@@ -1,7 +1,7 @@
 
 #include <iostream>
+#include <numeric>
 #include <string>
-#include <unordered_map>
 
 class Test {
 public:
@@ -18,25 +18,14 @@ public:
 class Solution {
 public:
   int minimumLength(std::string s) {
-    int count{0};
-    std::unordered_map<char, bool> occurence;
+    int occurences[26]{};
 
     for (char c : s) {
-      if (!occurence.count(c)) {
-        occurence[c] = false;
-        ++count;
-      } else {
-        if (occurence[c]) {
-          occurence[c] = false;
-          --count;
-        } else {
-          occurence[c] = true;
-          ++count;
-        }
-      }
+      occurences[c - 'a'] = (occurences[c - 'a'] == 1)
+                                ? occurences[c - 'a'] = 2
+                                : occurences[c - 'a'] = 1;
     }
-
-    return count;
+    return std::accumulate(std::begin(occurences), std::end(occurences), 0);
   }
 };
 
