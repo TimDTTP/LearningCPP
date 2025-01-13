@@ -20,4 +20,14 @@ This can be repeated any number of times.
 - s consists only of lowercase English letters
 
 ## Approach
+From an analysis, it seems that the order of the characters can be disregarded.
+The only required information is the character and the frequency. 
+- Iterate through string
+- Track characters appearance through a dictionary and a bool
+- If new char, increment count
+- If current char appears and odd amount of times, that is reduced to 1
+- If current char appears and even amount of time, that is equivalent to 2
+
+Runtime 126ms Beats 15.32%
+Memory 32.50mB Beats 36.69%
 
