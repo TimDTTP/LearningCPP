@@ -24,3 +24,6 @@ decrement counter
 4. If the end is hit and counter is greater than 0, go backwards and set bits 
 and decrement counter
 5. Convert temp value to integer and return
+
+Runtime 0ms Beats 100%
+Memory 7.97mB Beats 64.02%

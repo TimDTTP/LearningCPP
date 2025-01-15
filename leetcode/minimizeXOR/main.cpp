@@ -22,28 +22,25 @@ public:
     std::bitset<30> bitNum2(num2);
     std::bitset<30> bitTemp;
     int count(bitNum2.count());
-    int pos{0};
+    int pos{29};
 
     // left to right, setting bits to match highest set bits
-    while (count && (pos != 29)) {
+    while (count && (pos >= 0)) {
       if (bitNum1[pos]) {
         bitTemp[pos].flip();
         --count;
       }
-      ++pos;
+      --pos;
     }
-    std::cout << count << '\n';
-    std::cout << bitTemp << '\n';
 
     // right to left, setting residual bits to slowly increment
+    pos = 0;
     while (count) {
-      std::cout << bitNum1[pos] << '\n';
       if (!bitNum1[pos]) {
         bitTemp[pos].flip();
         --count;
-        std::cout << pos << '\n';
       }
-      --pos;
+      ++pos;
     }
 
     return std::stoi(bitTemp.to_string(), nullptr, 2);
@@ -54,7 +51,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testB()};
+  Test::TestCase unit{testCur.testA()};
   int output{solCur.minimizeXor(unit.num1, unit.num2)};
 
   if (output == unit.output)
