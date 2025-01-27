@@ -23,4 +23,15 @@ either the first row or column will be completely filled in, return that index.
 - All integers of arr and mat are unique
 
 ## Approach
+Since we need to search for values in a matrix, we will first need to 
+pre-process the data so that we can lookup and retrieve it easier.
+- Convert matrix into a vector of pairs of size m * n; the pairs will be 
+\<col, row> located at index mat\[r]\[c]
+- 2 arrays will represent row and col of length m and n respectively. This
+will track the frequency of each row and col
+- Iterate through arr and access coordinates at lookup\[arr\[i]], decrement the
+values of the 2 arrays at the index that corresponds with the col, row
+- At the end, check if either coordinates now equals 0; return index if true
 
+Runtime: 0ms Beats 100%
+Memory: 133.78mB Beats 94.73%

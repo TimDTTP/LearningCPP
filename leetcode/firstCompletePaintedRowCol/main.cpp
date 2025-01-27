@@ -31,8 +31,33 @@ class Solution {
 public:
   int firstCompleteIndex(std::vector<int> &arr,
                          std::vector<std::vector<int>> &mat) {
-    int out;
-    return out;
+    int const qRows = mat.size();
+    int const qCols = mat[0].size();
+
+    // pre-processing data for quicker lookup
+    std::vector<std::pair<int, int>> lookupTable(qRows * qCols);
+    for (int i{0}; i < qRows; ++i) {
+      for (int j{0}; j < qCols; ++j) {
+        lookupTable[mat[i][j] - 1] = {i, j};
+      }
+    }
+
+    // trackers for row/col freq
+    std::vector<int> fRows(qRows, qCols);
+    std::vector<int> fCols(qCols, qRows);
+
+    // sift until the freqency of any row/col is met
+    for (int index{0}; index < arr.size(); ++index) {
+      std::pair<int, int> temp{lookupTable[arr[index] - 1]};
+      if (fRows[temp.first] == 1 || fCols[temp.second] == 1) {
+        return index;
+      } else {
+        --fRows[temp.first];
+        --fCols[temp.second];
+      }
+    }
+
+    return 0;
   }
 };
 
