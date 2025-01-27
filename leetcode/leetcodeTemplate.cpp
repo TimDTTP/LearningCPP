@@ -29,4 +29,6 @@ int main() {
     std::cout << "Actual: " << output << '\n';
   }
   std::cout << std::endl;
+
+  return 0;
 }
