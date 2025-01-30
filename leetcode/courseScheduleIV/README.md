@@ -43,3 +43,19 @@ Translation
 Note: knowledge gap. Suspecting problem requires thorough knowledge of graph 
 data structure, which is a personal weakpoint, for now...
 
+We can take a more lazy approach, taking advantage of the fact that there is no
+cycles.
+- Transform the prerequisites list into a more managable adjacency list
+- Perform BFS on each query
+
+***
+
+Managed to solve a few test cases but overall failed spectacularly. Online
+approaches include...
+- Kahn's algorithm
+- Floyd Warshall algorithm
+
+Conclusion, very weak at directed graph problems. Must spend more time on 
+problems with this DS.
+
+FAILED
