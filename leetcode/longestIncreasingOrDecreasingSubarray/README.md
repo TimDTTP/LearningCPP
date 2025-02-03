@@ -17,3 +17,19 @@ increasing or decreasing
 - 1 <= nums\[i] <= 50
 
 ## Approach
+- Iterate over vector
+- If counter > 1
+    - if i < i + 1 == bool
+        - ++counter
+    - else
+        - max\(curr, new)
+        - counter = 1
+- If counter == 1
+    - bool = i < i + 1
+    - ++counter
+- Return max value found
+
+Time complexity: O\(n)
+
+Runtime: 0ms Beats 100%
+Memory: 27.97mB Beats 27.06%

@@ -17,8 +17,34 @@ public:
 class Solution {
 public:
   int longestMonotonicSubarray(std::vector<int> &nums) {
-    int out{};
-    return out;
+    int maxSoFar{1};
+
+    int counter{1};
+    bool isIncreasing{};
+    for (int index{0}; index < nums.size() - 1; ++index) {
+      // if duplicate; end
+      if (nums[index] == nums[index + 1]) {
+        maxSoFar = std::max(maxSoFar, counter);
+        counter = 1;
+      }
+
+      // strictly increasing or decreasing
+      else if (counter > 1) {
+        if ((nums[index] < nums[index + 1]) == isIncreasing) {
+          ++counter;
+        } else {
+          --index;
+          maxSoFar = std::max(maxSoFar, counter);
+          counter = 1;
+        }
+      } else {
+        isIncreasing = nums[index] < nums[index + 1];
+        ++counter;
+      }
+    }
+    maxSoFar = std::max(maxSoFar, counter);
+
+    return maxSoFar;
   }
 };
 
@@ -26,7 +52,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testC()};
   int output{solCur.longestMonotonicSubarray(unit.nums)};
 
   if (output == unit.output)
