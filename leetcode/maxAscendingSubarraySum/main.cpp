@@ -19,8 +19,20 @@ public:
 class Solution {
 public:
   int maxAscendingSum(std::vector<int> &nums) {
-    int out{};
-    return out;
+    int maxSoFar{0};
+    int currSum{nums[0]};
+
+    for (int i{0}; i < nums.size() - 1; ++i) {
+      if (nums[i] < nums[i + 1]) {
+        currSum += nums[i + 1];
+      } else {
+        maxSoFar = std::max(maxSoFar, currSum);
+        currSum = nums[i + 1];
+      }
+    }
+    maxSoFar = std::max(maxSoFar, currSum);
+
+    return maxSoFar;
   }
 };
 
@@ -28,7 +40,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testC()};
   int output{solCur.maxAscendingSum(unit.nums)};
 
   if (output == unit.output)
