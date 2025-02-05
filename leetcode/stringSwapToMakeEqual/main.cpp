@@ -38,8 +38,27 @@ public:
 class Solution {
 public:
   bool areAlmostEqual(std::string s1, std::string s2) {
-    bool out;
-    return out;
+    // Edge case: Both strings already are the same
+    if (s1 == s2)
+      return true;
+
+    int first{-1};
+    char temp;
+    for (int i{0}; i < s2.size(); ++i) {
+      if (s1[i] != s2[i]) {
+        if (first == -1) {
+          first = i;
+        } else {
+          // swap current with first inconsistency
+          temp = s2[first];
+          s2[first] = s2[i];
+          s2[i] = temp;
+          break;
+        }
+      }
+    }
+
+    return (s1 == s2);
   }
 };
 
@@ -47,7 +66,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testC()};
   bool output{solCur.areAlmostEqual(unit.s1, unit.s2)};
 
   if (output == unit.output)

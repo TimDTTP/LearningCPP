@@ -21,5 +21,26 @@ swap the characters
 - s1 and s2 consist of only lowercase English letters
 
 ## Approach
+- Include a edge case if both s1 and s2 are the same initially
+- Iterate through s2 and find the first 2 inconsistencies
+- Afterwards terminate loop and swap the characters of both indices
+- Check if s1 and s2 are equal
 
+Note: 
+- No need to check bounds of iteration and adjacent string b/c of constraints
+- No need to check if only one match is found cause only one match cannot be
+swapped, leading to unequal strings
+
+## Analysis
+Time complexity: O\(n) because we are iterating through the string with 
+possibility that we have to iterate through entire string.
+
+Space complexity: O\(1) only dedicated space is to store a index and temp
+value.
+
+Runtime:
+0ms Beats 100%
+
+Memory: 
+8.38mB Beats 61.87%
 
