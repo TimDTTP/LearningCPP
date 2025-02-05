@@ -12,7 +12,25 @@ public:
 
   TestCase testA() {
     TestCase obj;
-    obj.s1 = " ";
+    obj.s1 = "bank";
+    obj.s2 = "kanb";
+    obj.output = true;
+    return obj;
+  }
+
+  TestCase testB() {
+    TestCase obj;
+    obj.s1 = "attack";
+    obj.s2 = "defend";
+    obj.output = false;
+    return obj;
+  }
+
+  TestCase testC() {
+    TestCase obj;
+    obj.s1 = "kelb";
+    obj.s2 = "kelb";
+    obj.output = true;
     return obj;
   }
 };
