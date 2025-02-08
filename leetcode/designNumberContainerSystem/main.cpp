@@ -17,6 +17,13 @@ public:
     obj.output = {0, -1, 0, 0, 0, 0, 1, 0, 2};
     return obj;
   }
+
+  void printVec(std::vector<int> input) {
+    for (int val : input) {
+      std::cout << val << ' ';
+    }
+    std::cout << '\n' << std::endl;
+  }
 };
 
 class NumberContainers {
@@ -62,8 +69,10 @@ int main() {
     std::cout << "Success!\n";
   else {
     std::cout << "Failed!\n";
-    std::cout << "Expected: " << unit.output << '\n';
-    std::cout << "Actual: " << output << '\n';
+    std::cout << "Expected: ";
+    testCur.printVec(unit.output);
+    std::cout << "Actual: ";
+    testCur.printVec(output);
   }
   std::cout << std::endl;
 
