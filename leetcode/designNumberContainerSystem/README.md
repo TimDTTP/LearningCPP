@@ -26,5 +26,9 @@ the new value. Else, insert the value at that position.
 - At most 10^5 calls will be made in total to "change\()" and "find\()"
 
 ## Approach
+- For the number container, we can just instantiate a vector
+- For each call to change\() add number to number container and modify
+- As for find\() just return index using std::find
 
-
+Failed!
+Surpassed time limit. Will revisit
