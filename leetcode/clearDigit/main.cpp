@@ -1,4 +1,5 @@
 
+#include <cctype>
 #include <iostream>
 #include <string>
 
@@ -17,8 +18,18 @@ public:
 class Solution {
 public:
   std::string clearDigits(std::string s) {
-    std::string out{s};
-    return out;
+    for (int i{0}; i < s.size(); ++i) {
+      if (std::isdigit(s[i])) {
+        s.erase(i, 1);
+        --i;
+        if (i >= 0) {
+          s.erase(i, 1);
+          --i;
+        }
+      }
+    }
+
+    return s;
   }
 };
 

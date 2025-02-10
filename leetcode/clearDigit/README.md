@@ -18,3 +18,20 @@ character to its left
 - Able to be delete all digits in input
 
 ## Approach
+- Iterate through string via index
+- If the char is a number, delete that number + whatever position is infront 
+of it unless the index is already 0
+- Return string
+
+## Result
+Time complexity:
+O\(n) because this is a one pass solution including only a single for loop.
+
+Space complexity:
+O\(1) because there is no dedicated memory that is required that is scaled to
+the size of the input. To further prove, there is also zero initialized or 
+defined variables in the approach.
+
+Runtime: 0ms Beats 100%
+Memory: 8.36mB Beats 87.07%
+
