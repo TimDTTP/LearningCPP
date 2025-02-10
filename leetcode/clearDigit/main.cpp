@@ -1,5 +1,5 @@
 
-#include <cctype>
+#include <cctype> // std::isdigit()
 #include <iostream>
 #include <string>
 
