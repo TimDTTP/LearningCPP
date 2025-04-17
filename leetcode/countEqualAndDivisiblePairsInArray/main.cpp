@@ -1,5 +1,8 @@
 
 #include <iostream>
+#include <set>
+#include <unordered_map>
+#include <vector>
 
 class Test {
 public:
@@ -16,8 +19,29 @@ public:
 class Solution {
 public:
   int countPairs(std::vector<int> &nums, int k) {
-    int output{0};
-    return output;
+    constexpr int MAX_VALUE{100};
+    int pairCounter{0};
+
+    std::unordered_map<int, std::set<int>> table{};
+    for (int i{0}; i < nums.size(); ++i) {
+      table[nums[i]].insert(i);
+    }
+
+    for (std::pair<int, std::set<int>> number : table) {
+      if (number.second.size() == 1) {
+        continue;
+      }
+      for (int index{0}; index < number.second.size() - 1; ++index) {
+        for (int cmp{index + 1}; cmp < number.second.size(); ++cmp) {
+          if (!((number.second[index] * number.second[cmp]) % k)) {
+            std::cout << index << ' ' << cmp << '\n';
+            ++pairCounter;
+          }
+        }
+      }
+    }
+
+    return pairCounter;
   }
 };
 
