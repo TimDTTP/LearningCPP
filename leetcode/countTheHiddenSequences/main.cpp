@@ -42,8 +42,18 @@ public:
 class Solution {
 public:
   int numberOfArray(std::vector<int> &differences, int lower, int upper) {
-    int output{};
-    return output;
+    int slider{0};
+    std::pair<int, int> extremes{0, 0};
+    for (int addend : differences) {
+      slider += addend;
+      if (slider > extremes.first)
+        extremes.first = slider;
+      else if (slider < extremes.second)
+        extremes.second = slider;
+    }
+
+    int delta{(upper - lower) - (extremes.first - extremes.second) + 1};
+    return (delta > 0) ? delta : 0;
   }
 };
 
@@ -51,7 +61,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testC()};
   int output{solCur.numberOfArray(unit.differences, unit.lower, unit.upper)};
 
   if (output == unit.output)

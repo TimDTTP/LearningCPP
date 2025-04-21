@@ -24,4 +24,14 @@ sequence, return 0.
 - -10^5 <= lower <= upper <= 10^5
 
 ## Approach
+- Essentially a sliding window
+- Find upper and lower extremes after performing all operations in 
+differences
+- Return the delta between bounds and difference's extremes
+- If extremes is greater than bounds, this means there are no possible 
+sequences
 
+Runtime:
+0ms | Beats: 100%
+Memory:
+112.45mB | Beats: 97.58%
