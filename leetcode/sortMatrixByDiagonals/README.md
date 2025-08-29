@@ -27,5 +27,12 @@ diagonal. The upper right triangle is in a non-decreasing order.
 - Move onto next diagonal
 - Repeat then move onto upper right triangle
 
+Runtime:
+2ms beats 94.14%
+Memory:
+41.85mB beats 94.53%
+
 ## Improvements
+- Implementation of a min heap to handle top right
+    - max heap to handle bottom left
 

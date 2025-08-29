@@ -43,6 +43,8 @@ public:
 
     std::vector<int> temp{};
     std::pair<int, int> coord{};
+
+    // sort bottom left
     for (int i{size - 2}; i >= 0; --i) {
       for (int j{0}; j + i < size; ++j) {
         temp.push_back(grid[i + j][j]);
@@ -59,6 +61,23 @@ public:
       }
     }
 
+    // sort top right
+    for (int i{1}; i < size; ++i) {
+      for (int j{0}; j + i < size; ++j) {
+        temp.push_back(grid[j][i + j]);
+        std::sort(temp.begin(), temp.end());
+      }
+
+      coord.first = 0;
+      coord.second = i;
+      while (!temp.empty()) {
+        grid[coord.first][coord.second] = temp[0];
+        temp.erase(temp.begin());
+        ++coord.first;
+        ++coord.second;
+      }
+    }
+
     return grid;
   }
 };
@@ -67,7 +86,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testB()};
   std::vector<std::vector<int>> output{solCur.sortMatrix(unit.input)};
 
   if (output == unit.output)
