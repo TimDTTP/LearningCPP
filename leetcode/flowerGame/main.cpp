@@ -17,8 +17,8 @@ public:
 class Solution {
 public:
   long long flowerGame(int n, int m) {
-    // useful code here
-    return 0;
+    return ((static_cast<long long>(n / 2) * (m / 2 + m % 2)) +
+            ((n / 2 + n % 2) * static_cast<long long>(m / 2)));
   }
 };
 
@@ -26,7 +26,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testB()};
   long long output{solCur.flowerGame(unit.n, unit.m)};
 
   if (output == unit.output)

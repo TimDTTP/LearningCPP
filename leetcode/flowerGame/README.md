@@ -23,7 +23,16 @@ captures the opponent and wins
 - 1 <= n, m <= 10^5
 
 ## Approach
--
+- Looks like just the only win condition is an odd number of flowers
+- Multiply number of odd numbers of n with number of even numbers of m
+- Multiply number of even numbers of n with number of odd numbers of m
+- Add those two numbers up and return
+
+Runtime
+0ms beats 100%
+
+Memory 
+8.51mB beats 12.44%
 
 ## Improvements
-
+- Could simplify down further to "m * n / 2"
