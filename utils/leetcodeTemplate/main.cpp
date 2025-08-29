@@ -18,7 +18,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur};
+  Test::TestCase unit{testCur.testA()};
   void output{solCur};
 
   if (output == unit.output)
