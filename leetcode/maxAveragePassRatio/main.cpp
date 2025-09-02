@@ -62,6 +62,7 @@ public:
         std::cout << i.first << ' ' << i.second << '\n';
       }
       std::cout << std::endl;
+
       pos = diff.front().first;
 
       // change values
@@ -69,7 +70,7 @@ public:
       total = ++classes[pos][1];
 
       // re-insert in non-increasing order
-      diff.push_back({diff.front().first, (pass / total)});
+      diff.push_back({pos, (((pass + 1.0) / (total + 1)) - (pass / total))});
       diff.erase(diff.begin());
 
       std::sort(diff.begin(), diff.end(),
@@ -79,11 +80,11 @@ public:
     }
 
     // get avg pass ratio
-    double avg{
-        std::accumulate(diff.begin(), diff.end(), 0.0,
-                        [](double currentSum, std::pair<int, double> val) {
-                          return (currentSum + val.second);
-                        })};
+    double avg{std::accumulate(
+        classes.begin(), classes.end(), 0.0,
+        [](double currentSum, std::vector<int> val) {
+          return (currentSum + (static_cast<double>(val[0]) / val[1]));
+        })};
 
     return (avg / size);
   }

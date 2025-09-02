@@ -26,7 +26,17 @@ assigned to
 - 1 <= extraStudents <= 10^5
 
 ## Approach
--
-
+- Distill classes into a vector\<pair\<int, double>> where int is the index
+and double is the pass ratio \+ extraStudent, \(plus 1 to both values), minus 
+the current pass ratio
+    - This is the difference of how 1 extra passing student can make on the 
+    class average
+- Sort the vector by the pass ratio, non-decreasing order
+- For each extraStudents, take the largest difference from diff and increment
+pass and total, and update the difference by incementing another time and
+re-inserting into the vector
+- Sort the vector again 
+- By the end, take all the classes pass ratio and return the average
+Note: Approach passed time limit testcase \#44
 ## Improvements
-
+- 
