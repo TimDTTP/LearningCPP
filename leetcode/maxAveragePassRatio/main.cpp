@@ -43,8 +43,9 @@ public:
       passRatio.first = classes[i][0];
       passRatio.second = classes[i][1];
 
-      diff.push_back({i, (((passRatio.first + 1.0) / (passRatio.second + 1.0)) -
-                          (passRatio.first / passRatio.second))});
+      diff.push_back(
+          {i, ((passRatio.second - passRatio.first) /
+               (passRatio.second * passRatio.second + passRatio.second))});
     }
 
     // sort from greatest to least
@@ -70,7 +71,7 @@ public:
       total = ++classes[pos][1];
 
       // re-insert in non-increasing order
-      diff.push_back({pos, (((pass + 1.0) / (total + 1)) - (pass / total))});
+      diff.push_back({pos, ((total - pass) / (total * total + total))});
       diff.erase(diff.begin());
 
       std::sort(diff.begin(), diff.end(),

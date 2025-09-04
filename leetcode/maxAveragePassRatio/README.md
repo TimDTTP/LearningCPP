@@ -37,6 +37,14 @@ pass and total, and update the difference by incementing another time and
 re-inserting into the vector
 - Sort the vector again 
 - By the end, take all the classes pass ratio and return the average
+
 Note: Approach passed time limit testcase \#44
+
+Re-approach:
+Simplify formula and find a simpler pattern rather than "brute forcing" it
+
 ## Improvements
-- 
+Failed! TLE
+
+We could've use a max heap as a priority queue to reduce an extra iteration 
+which is used to get the potential pass ratio if an extra student was added
