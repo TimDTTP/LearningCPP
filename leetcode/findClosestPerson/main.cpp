@@ -20,8 +20,19 @@ public:
 class Solution {
 public:
   int findClosest(int x, int y, int z) {
-    // useful code here
-    return 0;
+    int xz{z - x};
+    int yz{z - y};
+    xz = (xz < 0) ? -xz : xz;
+    yz = (yz < 0) ? -yz : yz;
+
+    int delta{xz - yz};
+    if (delta > 0) {
+      return 2;
+    } else if (delta < 0) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 };
 
@@ -29,7 +40,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testB()};
   int output{solCur.findClosest(unit.x, unit.y, unit.z)};
 
   if (output == unit.output)

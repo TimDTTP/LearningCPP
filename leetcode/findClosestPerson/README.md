@@ -19,7 +19,15 @@ person 2 will reach person 3 first. Return 0 if both arrive at the same time.
 - 1 <= x,y,z <= 100
 
 ## Approach
--
+- Get abs value of x to z, and y to z
+- If xz - yz < 0; return 2
+- If xz - yz > 0; return 1
+
+Runtime:
+0ms Beats 100%
+Memory:
+8.54mB Beats 54.98%
 
 ## Improvements
+
 
