@@ -20,7 +20,22 @@ lie within the square or on the border.
 - All points\[i] are distinct
 
 ## Approach
-- 
+- Distill points into map\<int, set\<int>>
+- sort map by int \<
+- sort map\[i] \>
+- Increment through map and for each point,
+- Find first point it will run into
+    - Start at same x, then move forward
+    - If map\[i]\[1] exist use it, if not it is map\[i + 1]\[0]
+- Once first point is found, count number of points which is in bound
+    - Iterate up to map.max
+    - Low = y of first point and updated to each next point
+    - High = point's y
+    - Add count to total
+
+TLE:
+On the right track, but wrong/suboptimal code. Only requires 2 loops, one
+nested.
 
 ## Improvements
 
