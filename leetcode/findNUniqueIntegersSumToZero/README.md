@@ -21,5 +21,10 @@ the return vector is an array containing n unique integers that add up to 0
 - Last value add negative summation of all values added thus far
     - AKA; -\(\(n - 1) * \(\(n - 1) + 1) / 2)
 
-## Improvements
+Runtime:
+0ms beats 100%
+Memory:
+9.74mB beats 13.84%
 
+## Improvements
+Same logic path with minimal optimizations AKA; equation simplifiying

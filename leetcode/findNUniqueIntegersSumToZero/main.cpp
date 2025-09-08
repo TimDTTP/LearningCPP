@@ -21,8 +21,19 @@ public:
 class Solution {
 public:
   std::vector<int> sumZero(int n) {
-    // useful code here
-    return {};
+    std::vector<int> out{};
+
+    if (n == 1) {
+      out.push_back(0);
+      return out;
+    } else {
+      for (int i{1}; i < n; i++) {
+        out.push_back(i);
+      }
+      out.push_back(-(((n - 1) * n) / 2));
+    }
+
+    return out;
   }
 };
 
@@ -30,7 +41,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testC()};
   std::vector<int> output{solCur.sumZero(unit.n)};
 
   // Test output
