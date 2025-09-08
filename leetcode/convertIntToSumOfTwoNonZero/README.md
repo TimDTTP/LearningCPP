@@ -21,5 +21,10 @@ Where...
 - Check if value and \(n - value) have zeros
 - If not, return \{value, n - value}
 
-## Improvements
+Runtime:
+0ms beats 100%
+Memory:
+9.72mB beats 5.14%
 
+## Improvements
+Lowering memory by cutting down with less instantiations

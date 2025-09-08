@@ -1,6 +1,7 @@
 
 #include <format>
 #include <iostream>
+#include <string>
 #include <vector>
 
 class Test {
@@ -17,6 +18,22 @@ public:
 class Solution {
 public:
   std::vector<int> getNoZeroIntegers(int n) {
+    auto noZero = [](int num) -> bool {
+      std::string s{std::to_string(num)};
+      for (int i{0}; i < s.length(); i++) {
+        if (s[i] == '0') {
+          return false;
+        }
+      }
+      return true;
+    };
+
+    for (int a{1}; a < n; a++) {
+      if (noZero(a) && noZero(n - a)) {
+        return {a, (n - a)};
+      }
+    }
+
     // useful code here
     return {};
   }
@@ -26,7 +43,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testC()};
   std::vector<int> output{solCur.getNoZeroIntegers(unit.n)};
 
   if (output[0] + output[1] == unit.n) {
@@ -34,7 +51,7 @@ int main() {
   } else {
     std::cout << "Failed!\n{";
   }
-  std::cout << std::format("[{}, {}]", output[0], output[1]);
+  std::cout << std::format("[{}, {}]\n", output[0], output[1]);
 
   return 0;
 }
