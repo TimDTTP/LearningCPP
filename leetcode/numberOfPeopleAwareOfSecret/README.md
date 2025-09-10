@@ -24,7 +24,14 @@ Since the answer can be very large, return it modulo 10^9 + 7
 - 1 <= delay < forget <= n
 
 ## Approach
--
+- A vector\<pair\<int, int>> size == forget 
+- For loop n
+    - Iterate through and count number of vector\[i].first >= delay 
+    count += vector\[i].second
+    - Also increment vector\[i].first
+        - If vector\[i].first == forget; erase
+    - If count != 0; vector.push_back\({1, count})
+- Accumulate vector\[i].second
 
 ## Improvements
 
