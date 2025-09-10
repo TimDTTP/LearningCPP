@@ -1,4 +1,6 @@
 
+#include <bitset>
+#include <climits>
 #include <iostream>
 #include <vector>
 
@@ -34,8 +36,38 @@ class Solution {
 public:
   int minimumTeachings(int n, std::vector<std::vector<int>> &languages,
                        std::vector<std::vector<int>> &friendships) {
-    // useful code
-    // here
+    int m = languages.size();
+
+    // known languages for each person
+    std::vector<std::bitset<501>> know(m);
+    for (int i = 0; i < m; i++)
+      for (int l : languages[i])
+        know[i][l] = 1;
+
+    // people need be taught
+    std::bitset<501> need = 0;
+    for (auto &f : friendships) {
+      int a = f[0] - 1, b = f[1] - 1;
+      if ((know[a] & know[b]).any())
+        continue; // can talk
+      need[a] = need[b] = 1;
+    }
+
+    // if no need
+    if (need.count() == 0)
+      return 0;
+
+    int ans = INT_MAX;
+    for (int lang = 1; lang <= n; lang++) { // languages for 1..n
+      int cnt = 0;
+      for (int i = 0; i < m; i++) {
+        if (need[i] & !know[i][lang])
+          cnt++;
+      }
+      ans = std::min(ans, cnt);
+    }
+
+    return ans;
   }
 };
 

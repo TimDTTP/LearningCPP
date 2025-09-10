@@ -28,7 +28,9 @@ be able to communicate with each other.
 - languages\[i] contains only unique values
 
 ## Approach
--
+- duplicate languages
+- for each n find how many you have to change for all friends to communicate
+- return lowest value
 
 ## Improvements
 
