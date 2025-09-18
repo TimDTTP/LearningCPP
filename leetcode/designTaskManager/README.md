@@ -37,7 +37,15 @@ Note: a user may be assigned multiple tasks
 - The input is generated such that taskId will be valid
 
 ## Approach
--
+- Organize into a map\<taskId, customType>
+    - customType
+        - int user
+        - int priority
+- For execTop
+    - Sort the map by priority than taskId
+    - Hold userId
+    - Run rmv to top id
+    - Return userId
 
 ## Improvements
 

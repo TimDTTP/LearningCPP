@@ -4,29 +4,48 @@
 
 class TaskManager {
 public:
+  struct taskProperties {
+    int userId;
+    int priority;
+  };
+
+private:
+  std::map<int, taskProperties> m_table{};
+
+public:
   TaskManager(std::vector<std::vector<int>> &tasks) {
-    // code
-    // here
+    for (std::vector<int> i : tasks) {
+      m_table[i[1]] = {i[0], i[2]};
+    }
   }
 
   void add(int userId, int taskId, int priority) {
-    // code
-    // here
+    m_table[taskId] = {userId, priority};
   }
 
   void edit(int taskId, int newPriority) {
-    // code
-    // here
+    m_table[taskId].priority = newPriority;
   }
 
-  void rmv(int taskId) {
-    // code
-    // here
-  }
+  void rmv(int taskId) { m_table.erase(taskId); }
 
   int execTop() {
-    // code
-    // here
+    int temp{};
+    if (m_table.empty()) {
+      return -1;
+    }
+    std::vector<std::pair<int, taskProperties>> vec(m_table.begin(),
+                                                    m_table.end());
+    std::sort(
+        vec.begin(), vec.end(),
+        [](std::pair<int, taskProperties> a, std::pair<int, taskProperties> b) {
+          return ((a.second.priority != b.second.priority)
+                      ? (a.second.priority > b.second.priority)
+                      : (a.first > b.first));
+        });
+    temp = vec[0].second.userId;
+    rmv(vec[0].first);
+    return temp;
   }
 };
 
@@ -65,6 +84,7 @@ public:
     std::vector<int> output{};
 
     TaskManager *obj = new TaskManager(input.init);
+    output.push_back(-1);
     obj->add(input.values[0][0], input.values[0][1], input.values[0][2]);
     output.push_back(-1);
     obj->edit(input.values[1][0], input.values[1][1]);
