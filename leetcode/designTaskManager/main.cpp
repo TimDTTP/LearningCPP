@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <map>
+#include <set>
 
 class TaskManager {
 public:
@@ -9,42 +10,53 @@ public:
     int priority;
   };
 
+  struct priorityOrder {
+    int priority;
+    int taskId;
+
+    bool operator<(const priorityOrder &other) const {
+      return ((priority != other.priority) ? (priority > other.priority)
+                                           : (taskId > other.taskId));
+    }
+  };
+
 private:
   std::map<int, taskProperties> m_table{};
+  std::set<priorityOrder> m_set{};
 
 public:
   TaskManager(std::vector<std::vector<int>> &tasks) {
     for (std::vector<int> i : tasks) {
-      m_table[i[1]] = {i[0], i[2]};
+      add(i[0], i[1], i[2]);
     }
   }
 
   void add(int userId, int taskId, int priority) {
+    m_set.insert({priority, taskId});
     m_table[taskId] = {userId, priority};
   }
 
   void edit(int taskId, int newPriority) {
+    m_set.erase({m_table[taskId].priority, taskId});
+    m_set.insert({newPriority, taskId});
     m_table[taskId].priority = newPriority;
   }
 
-  void rmv(int taskId) { m_table.erase(taskId); }
+  void rmv(int taskId) {
+    m_set.erase({m_table[taskId].priority, taskId});
+    m_table.erase(taskId);
+  }
 
   int execTop() {
     int temp{};
     if (m_table.empty()) {
       return -1;
     }
-    std::vector<std::pair<int, taskProperties>> vec(m_table.begin(),
-                                                    m_table.end());
-    std::sort(
-        vec.begin(), vec.end(),
-        [](std::pair<int, taskProperties> a, std::pair<int, taskProperties> b) {
-          return ((a.second.priority != b.second.priority)
-                      ? (a.second.priority > b.second.priority)
-                      : (a.first > b.first));
-        });
-    temp = vec[0].second.userId;
-    rmv(vec[0].first);
+
+    priorityOrder top{*m_set.begin()};
+    temp = m_table[top.taskId].userId;
+    rmv(top.taskId);
+
     return temp;
   }
 };

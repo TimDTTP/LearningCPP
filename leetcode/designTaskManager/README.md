@@ -47,5 +47,10 @@ Note: a user may be assigned multiple tasks
     - Run rmv to top id
     - Return userId
 
+Runtime:
+452ms beats 24.60%
+Memory:
+381.19mB beats 37.06%
+
 ## Improvements
 
