@@ -29,7 +29,21 @@ number 1 to rows
 - At most 10^4 calls total to setCell, resetCell, and getValue
 
 ## Approach
--
+- Initialize matrix of size 26 by rows using vectors
+- Set private function to interpret string to cell indices
+- setCell\(string cell, int value)
+    - pass through interpreter and store value in location
+- resetCell\(string cell)
+    - interpreter\(location) = 0
+- getValue(string formula)
+    - break down to 2 substrings
+    - check if cell or value
+    - add and return
+
+Runtime:
+46ms beats 93.88%
+Memory:
+162.51mB beats 65.96%
 
 ## Improvements
 
