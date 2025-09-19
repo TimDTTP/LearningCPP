@@ -53,4 +53,4 @@ Memory:
 381.19mB beats 37.06%
 
 ## Improvements
-
+Use a priority queue to keep the top priority value easily accessible.
