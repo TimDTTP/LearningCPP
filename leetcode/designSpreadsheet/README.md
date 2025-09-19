@@ -46,4 +46,8 @@ Memory:
 162.51mB beats 65.96%
 
 ## Improvements
-
+- For resetCell\(string cell), just use setCell\(cell, 0) to reduce memory
+- Could make it more efficient by reducing function calls in getValue
+    - Since calls are a static format, just do the calculations inplace
+- Could edit all rows - 1 to anticipate 0 indexed vector instead of just making
+it +1 larger
