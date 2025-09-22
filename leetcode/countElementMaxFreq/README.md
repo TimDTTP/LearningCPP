@@ -17,7 +17,14 @@ with the same frequency of the max frequency.
 - 1 <= nums\[i] <= 100
 
 ## Approach
--
+- Store element frequency in a unordered_map
+- If frequency \> current max, max = new element
+    - Count = 1
+- Else if map\[i] = max
+    - count++
+- Return count
+
 
 ## Improvements
+
 

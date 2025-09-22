@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
 class Test {
@@ -17,8 +18,19 @@ public:
 class Solution {
 public:
   int maxFrequencyElements(std::vector<int> nums) {
-    // some useful
-    // code here
+    int max{0}, count{0};
+    std::unordered_map<int, int> table{};
+
+    for (int i : nums) {
+      table[i]++;
+      if (table[i] > max) {
+        max = table[i];
+        count = table[i];
+      } else if (table[i] == max) {
+        count += table[i];
+      }
+    }
+    return count;
   }
 };
 
@@ -26,7 +38,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testB()};
   int output{solCur.maxFrequencyElements(unit.nums)};
 
   if (output == unit.output)
