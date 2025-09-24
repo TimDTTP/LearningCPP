@@ -34,6 +34,10 @@ Note: problem of cpp not handling decimal digits past 16 floating points
     - Add rest of value
     - If terminate, add '\)'
 
+Runtime
+0ms beats 100%
+Memory
+9.42mB beats 36.85%
 
 ## Improvements
 
