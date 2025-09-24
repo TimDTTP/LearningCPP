@@ -19,8 +19,11 @@ public:
 class Solution {
 public:
   std::string fractionToDecimal(int numerator, int denominator) {
-    // useful code
-    // here
+    // Reduce; Euclid algo
+    // Factor out + get remaining
+    // Determine cycle length
+    // Determine non-repeat length
+    // Simulate long division
   }
 };
 

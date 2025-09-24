@@ -18,7 +18,22 @@ Return the fraction in string format \(decimal value)
 - denominator != 0
 
 ## Approach
-- 
+- Reduce fraction using Euclid algo
+- Factor out 2's and 5's from denominator
+    - \{2^x, 5^y}
+    - init \{x, y, remaining}
+- bool terminate = remaining == 1
+- Determine cycle length
+    - Find k
+        - 10^k % remaining == 1
+- Determine non-repeat length == max\(x, y)
+Note: problem of cpp not handling decimal digits past 16 floating points
+- Simulate long division up to non-repeat length + cycle length
+    - Add first non-repeat length after decimal
+    - If terminate, add '\('
+    - Add rest of value
+    - If terminate, add '\)'
+
 
 ## Improvements
 
