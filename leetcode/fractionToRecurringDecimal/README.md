@@ -22,7 +22,7 @@ Return the fraction in string format \(decimal value)
 - Factor out 2's and 5's from denominator
     - \{2^x, 5^y}
     - init \{x, y, remaining}
-- bool terminate = remaining == 1
+- bool terminate = remaining == 0
 - Determine cycle length
     - Find k
         - 10^k % remaining == 1
@@ -34,10 +34,6 @@ Note: problem of cpp not handling decimal digits past 16 floating points
     - Add rest of value
     - If terminate, add '\)'
 
-Runtime
-0ms beats 100%
-Memory
-9.42mB beats 36.85%
 
 ## Improvements
 
