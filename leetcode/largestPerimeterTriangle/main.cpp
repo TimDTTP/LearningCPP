@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -17,8 +18,17 @@ public:
 class Solution {
 public:
   int largestPerimeter(std::vector<int> &nums) {
-    // useful code
-    // here
+    std::sort(nums.begin(), nums.end(), std::greater<int>());
+
+    int end;
+    for (int i{0}; i < nums.size() - 2; i++) {
+      end = nums[i] - nums[i + 1] - nums[i + 2];
+      if (end < 0) {
+        return (nums[i] + nums[i + 1] + nums[i + 2]);
+      }
+    }
+
+    return 0;
   }
 };
 
@@ -26,7 +36,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testB()};
   int output{solCur.largestPerimeter(unit.nums)};
 
   if (output == unit.output)

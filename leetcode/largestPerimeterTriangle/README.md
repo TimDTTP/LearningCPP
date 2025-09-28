@@ -18,7 +18,14 @@ perimeter of a triangle with a non-zero area use 3 of the given lengths. Return
 - 1 <= nums\[i] <= 10^4
 
 ## Approach
--
+- Sort descending
+- Loop through until \(i + 1) + \(i + 2) is greater than i
+- Return 0 otherwise
+
+Runtime:
+0ms beats 100%
+Memory:
+25.72mB beats 14.34%
 
 ## Improvements
-
+Same logic, except doesn't init variable "end" and expand fully in if statement
