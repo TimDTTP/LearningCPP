@@ -17,8 +17,13 @@ public:
 class Solution {
 public:
   int minimumTotal(std::vector<std::vector<int>> triangle) {
-    // useful
-    // code here
+    for (int i{static_cast<int>(triangle.size()) - 2}; i >= 0; i--) {
+      for (int j{0}; j < triangle[i].size(); j++) {
+        triangle[i][j] = std::min((triangle[i][j] + triangle[i + 1][j]),
+                                  (triangle[i][j] + triangle[i + 1][j + 1]));
+      }
+    }
+    return triangle[0][0];
   }
 };
 
@@ -26,7 +31,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testB()};
   int output{solCur.minimumTotal(unit.triangle)};
 
   if (output == unit.output)

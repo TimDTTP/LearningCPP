@@ -19,7 +19,15 @@ bottom adding values on the way down. AKA each move needs to be i + 1.
 - -10^4 <= triangle\[i]\[j] <= 10^4
 
 ## Approach
--
+- Work bottom to top of triangle
+- Starting from levels - 2, iterate through vector
+- Change value to min\(i + 1, j + 1)
+- Continue to the top, which will be the result
+
+Runtime:
+0ms beats 100%
+Memory:
+12.42mB beats 92.51%
 
 ## Improvements
-
+Matches same logic as online solutions
