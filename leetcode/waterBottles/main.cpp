@@ -17,8 +17,16 @@ public:
 class Solution {
 public:
   int numWaterBottles(int numBottles, int numExchange) {
-    // useful code
-    // here
+    int total{numBottles};
+    int add{0};
+    int rem{0};
+    while (numBottles >= numExchange) {
+      add = numBottles / numExchange;
+      rem = numBottles % numExchange;
+      total += add;
+      numBottles = add + rem;
+    }
+    return total;
   }
 };
 
@@ -26,7 +34,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testB()};
   int output{solCur.numWaterBottles(unit.numBottles, unit.numExchanges)};
 
   if (output == unit.output)

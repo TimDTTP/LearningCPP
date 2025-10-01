@@ -20,7 +20,15 @@ drink.
 - 2 <= numExchange <= 100
 
 ## Approach
--
+Straight forward approach
+- While loop till number of bottles >= exchange
+- Divide bottles by exchange and add to total
+- Add previous value to modulo as bottle in next iteration
+
+Runtime:
+0ms beats 100%
+Memory:
+7.90mB beats 45.09%
 
 ## Improvements
 
