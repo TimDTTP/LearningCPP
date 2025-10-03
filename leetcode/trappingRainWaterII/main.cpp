@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <queue>
 #include <vector>
 
 class Test {
@@ -26,8 +27,8 @@ public:
 class Solution {
 public:
   int trapRainWater(std::vector<std::vector<int>> &heightMap) {
-    // useful code
-    // here
+    std::vector<std::vector<int>> visited{};
+    std::queue<std::pair<int, int>> children{};
   }
 };
 
