@@ -17,8 +17,14 @@ public:
 class Solution {
 public:
   int maxBottlesDrunk(int numBottles, int numExchanges) {
-    // useful code
-    // here
+    int total{numBottles};
+    while (numBottles >= numExchanges) {
+      numBottles = numBottles - numExchanges + 1;
+      total++;
+      numExchanges++;
+    }
+
+    return total;
   }
 };
 
@@ -26,7 +32,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testB()};
   int output{solCur.maxBottlesDrunk(unit.numBottles, unit.numExchanges)};
 
   if (output == unit.output)

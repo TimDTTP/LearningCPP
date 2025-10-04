@@ -20,7 +20,16 @@ the max number you water bottles you can drink.
 - 1 <= numExchanges <= 100
 
 ## Approach
--
+Straight forward approach
+- While numBottles >= numExchanges
+    - Add numExchanges to total
+    - Subtract numExchanges + 1 to numBottles
+    - Increment numExchanges
+
+Runtime:
+0ms beats 100%
+Memory:
+8.59mB beats 44.88%
 
 ## Improvements
 
