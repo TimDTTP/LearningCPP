@@ -24,7 +24,14 @@ elevation map. Return the volume of water it can trap after raining.
 n.size - 2
 - If visited\[m]\[n] -> continue
 - Init a queue to track children
-- 
 
 ## Improvements
+Failed: TLE
+Could not come up with time efficient code to solve.
+
+Tips:
+Instead of focusing on solving the "inner" area, work from the border in. BFS
+and priority queue will be optimal solution for this problem.
+
+Community consensus that it is a difficult problem.
 
