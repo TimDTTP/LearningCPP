@@ -21,7 +21,22 @@ Note: performing this in any order will yield the same result
 - words\[i] consists of lowercase English letters
 
 ## Approach
--
+- Compile each word in words into a map\<char, int> where you count number of
+each character
+- Push each map into a vector in place of words
+- Loop through
+    - if i + 1 is the same as i
+        - erase i + 1
+        - decrement i
+        - decrement size
+
+Runtime:
+37ms beats 5.06%
+Memory:
+27.16mB beats 5.78%
 
 ## Improvements
-
+- If working with an element with a hard cap on possible values, consider
+a vector with a set size \(ie. letters, max 26 possibilities)
+- Another way to check congruency in this situation is to increment index
+of the letter for one word and decrement with the other. Check if all zero
