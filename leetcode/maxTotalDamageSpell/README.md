@@ -23,7 +23,12 @@ Return the maximum amount of damage that a magician can cast
 - 1 <= power\[i] <= 10^9
 
 ## Approach
--
+- Sort vector
+- For loop till value is > 3
+- Recursion loop with value adding value and tracking maxSoFar
+
+TLE:
+Failed too long to find solution
 
 ## Improvements
 
