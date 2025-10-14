@@ -31,4 +31,6 @@ Memory:
 40.49mB beats 53.98%
 
 ## Improvements
-
+No significant improvement in logic.
+Online solution is near exact same logic and beside online solution opting for a
+bit more sophisticated logic instead of a if/else tree.

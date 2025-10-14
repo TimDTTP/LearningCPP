@@ -45,6 +45,25 @@ public:
   }
 };
 
+class OnlineSolution {
+public:
+  bool hasIncreasingSubarrays(std::vector<int> &nums, int k) {
+    int n = nums.size();
+    int cnt = 1, precnt = 0, ans = 0;
+    for (int i = 1; i < n; ++i) {
+      if (nums[i] > nums[i - 1]) {
+        ++cnt;
+      } else {
+        precnt = cnt;
+        cnt = 1;
+      }
+      ans = std::max(ans, std::min(precnt, cnt));
+      ans = std::max(ans, cnt / 2);
+    }
+    return ans >= k;
+  }
+};
+
 int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
