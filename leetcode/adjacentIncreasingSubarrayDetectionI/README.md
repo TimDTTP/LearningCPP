@@ -19,7 +19,16 @@ all the values are strictly increasing.
 - -1000 <=nums\[i] <= 1000
 
 ## Approach
--
+- Iterate through vector and count how many sequential increasing value
+- If no longer increasing, save and compare value
+- Find 2 conditions
+    - If length is 2 * k
+    - If prev && length are > k
+
+Runtime:
+3ms beats 99.11%
+Memory:
+40.49mB beats 53.98%
 
 ## Improvements
 
