@@ -18,16 +18,14 @@ public:
   int maxIncreasingSubarrays(std::vector<int> &nums) {
     int count = 1, prev = 0, ans = 0;
     for (int i{1}; i < nums.size(); ++i) {
-      if (nums[i] > nums[i - 1]) {
-        ++count;
-      } else {
-        ans = std::max(std::min(count, prev), ans);
-        ans = std::max((count / 2), ans);
+      if (nums[i] <= nums[i - 1]) {
+        ans = std::max({(count / 2), std::min(count, prev), ans});
         prev = count;
         count = 1;
+      } else {
+        ++count;
       }
-      ans = std::max(std::min(count, prev), ans);
-      ans = std::max((count / 2), ans);
+      ans = std::max({(count / 2), std::min(count, prev), ans});
     }
 
     return ans;
