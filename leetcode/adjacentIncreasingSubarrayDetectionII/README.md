@@ -17,7 +17,20 @@ must be of equal length, return the maximum length of each array.
 - -10^9 <= nums\[i] <= 10^9
 
 ## Approach
--
+- Iterate through nums
+- If i > i - 1
+    - increment count
+- Else
+    - prev = count
+    - count = 1
+- Conditions to check
+    - If count / 2 > ans
+    - If min\(count, prev) > ans
+
+Runtime
+227ms beats 56.02%
+Memory 
+173.75mB beats 62.03%
 
 ## Improvements
 

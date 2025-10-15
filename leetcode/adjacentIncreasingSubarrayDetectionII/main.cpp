@@ -16,8 +16,21 @@ public:
 class Solution {
 public:
   int maxIncreasingSubarrays(std::vector<int> &nums) {
-    // useful code
-    // here
+    int count = 1, prev = 0, ans = 0;
+    for (int i{1}; i < nums.size(); ++i) {
+      if (nums[i] > nums[i - 1]) {
+        ++count;
+      } else {
+        ans = std::max(std::min(count, prev), ans);
+        ans = std::max((count / 2), ans);
+        prev = count;
+        count = 1;
+      }
+      ans = std::max(std::min(count, prev), ans);
+      ans = std::max((count / 2), ans);
+    }
+
+    return ans;
   }
 };
 
@@ -25,7 +38,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testB()};
   int output{solCur.maxIncreasingSubarrays(unit.nums)};
 
   if (output == unit.output)
