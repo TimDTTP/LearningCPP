@@ -1,5 +1,7 @@
 
 #include <iostream>
+#include <unordered_map>
+#include <utility>
 #include <vector>
 
 class Test {
@@ -25,13 +27,42 @@ public:
         2,
     };
   }
+
+  TestCase testC() {
+    return {
+        {0, -3},
+        4,
+        2,
+    };
+  }
 };
 
 class Solution {
 public:
   int findSmallestInteger(std::vector<int> &nums, int value) {
-    // useful code
-    // here
+    // count remainders
+    std::unordered_map<int, int> base{};
+    for (int i : nums) {
+      if (i < 0) {
+        ++base[i +
+               (std::abs(i) % value ? (-i / value + 1) : -i / value) * value];
+      } else {
+        ++base[i % value];
+      }
+    }
+
+    // check and count
+    int i = 0, ans = 0;
+    while (true) {
+      if (base[i] > 0) {
+        --base[i];
+        ++i;
+        ++ans;
+        i %= value;
+      } else {
+        return ans;
+      }
+    }
   }
 };
 

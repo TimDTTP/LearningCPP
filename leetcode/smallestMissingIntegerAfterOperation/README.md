@@ -20,7 +20,14 @@ of times.
 - -10^9 <= nums\[i] <= 10^9
 
 ## Approach
--
+- Iterate through nums and increment nums\[i] % values in map
+- If nums\[i] is negative, multiply til positive, then perform modulo in map
+- Iterate 0 -> values and decrement count in map, first to fail is max MEX
+
+Runtime:
+68ms beats 38.38%
+Memory:
+135.86mB beats 19.70%
 
 ## Improvements
 
