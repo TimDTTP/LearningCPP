@@ -20,7 +20,16 @@ Return the max possible number of distinct elements in nums.
 - 0 <= k <= 10^9
 
 ## Approach
--
+- Sort array to non-decreasing order
+- Track the minimum boundary
+    - Either nums\[i] - k or current min from previous 
+- If nums\[i] + k >= min
+    - ++min and ++numOfDistinct
+
+Runtime
+112ms beats 85.80%
+Memory
+97.66mB beats 69.72%
 
 ## Improvements
-
+No significant improvement without heavily sacrificing memory
