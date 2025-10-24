@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 class Test {
 public:
@@ -17,8 +18,22 @@ public:
 class Solution {
 public:
   bool hasSameDigits(std::string s) {
-    // useful code
-    // here
+    int size = s.size();
+    std::vector<int> vs;
+
+    // insert s into vs
+    for (char num : s) {
+      vs.push_back(num - '0');
+    }
+
+    // perform operation
+    for (int i{0}; i < (size - 2); ++i) {
+      for (int j{0}; j < (vs.size() - i - 1); ++j) {
+        vs[j] = (vs[j] + vs[j + 1]) % 10;
+      }
+    }
+
+    return (vs[0] == vs[1]);
   }
 };
 
@@ -26,7 +41,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testB()};
   bool output{solCur.hasSameDigits(unit.s)};
 
   if (output == unit.output)
