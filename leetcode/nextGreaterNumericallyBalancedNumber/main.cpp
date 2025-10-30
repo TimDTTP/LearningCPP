@@ -1,5 +1,7 @@
 
+#include <algorithm>
 #include <iostream>
+#include <vector>
 
 class Test {
 public:
@@ -18,8 +20,28 @@ public:
 class Solution {
 public:
   int nextBeautifulNumber(int n) {
-    // useful code
-    // here
+    // int to vector
+    std::vector<int> num{};
+    int temp;
+    while (n > 0) {
+      temp = n % 10;
+      num.push_back(temp);
+      n /= 10;
+    }
+    std::reverse(num.begin(), num.end());
+
+    // Normalize number
+    int size = num.size();
+    num.emplace(num.begin(), 0);
+    for (int i{0}; i < size; ++i) {
+      if (num[i + 1] > size) {
+        ++num[i];
+        std::fill(num.begin() + (i + 1), num.end(), 0);
+        i = 0;
+      }
+    }
+
+    return 0;
   }
 };
 
@@ -27,7 +49,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testB()};
   int output{solCur.nextBeautifulNumber(unit.n)};
 
   if (output == unit.output)
