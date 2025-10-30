@@ -19,8 +19,13 @@ public:
 class Solution {
 public:
   int minNumberOperations(std::vector<int> &target) {
-    // useful code
-    // here
+    int count{target[0]};
+    for (int i{0}; i < target.size() - 1; ++i) {
+      if (target[i] < target[i + 1]) {
+        count += (target[i + 1] - target[i]);
+      }
+    }
+    return count;
   }
 };
 
@@ -28,7 +33,7 @@ int main() {
   Test testCur{Test()};
   Solution solCur{Solution()};
 
-  Test::TestCase unit{testCur.testA()};
+  Test::TestCase unit{testCur.testC()};
   int output{solCur.minNumberOperations(unit.target)};
 
   if (output == unit.output)

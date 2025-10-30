@@ -28,4 +28,9 @@ Count peaks
     - Count += difference
 - Return count
 
+Runtime:
+0ms beats 100%
+Memory:
+76.96mB beats 66.04%
+
 ## Improvements
