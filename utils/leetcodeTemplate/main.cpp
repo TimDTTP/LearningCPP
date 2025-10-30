@@ -1,13 +1,15 @@
 
 #include <iostream>
+#include <vector>
 
 class Test {
 public:
   struct TestCase {
-    void output;
+    void expected;
   };
 
   TestCase testA() {}
+  std::vector<TestCase> all() { return {}; };
 };
 
 class Solution {
@@ -15,20 +17,26 @@ public:
 };
 
 int main() {
-  Test testCur{Test()};
-  Solution solCur{Solution()};
+  Test tests;
+  Solution sol;
+  auto cases = tests.all();
 
-  Test::TestCase unit{testCur.testA()};
-  void output{solCur};
+  int passed{0};
+  for (size_t i{0}; i < cases.size(); ++i) {
+    const auto &unit = cases[i];
+    void result = sol;
 
-  if (output == unit.output)
-    std::cout << "Success!\n";
-  else {
-    std::cout << "Failed!\n";
-    std::cout << "Expected: " << unit.output << '\n';
-    std::cout << "Actual: " << output << '\n';
+    if (result == unit.expected) {
+      std::cout << "✅ Test " << i + 1 << " passed!\n";
+      ++passed;
+    } else {
+      std::cout << "❌ Test " << i + 1 << " failed!\n";
+      std::cout << "   Expected: " << unit.expected << " | Got: " << result
+                << "\n";
+    }
   }
-  std::cout << std::endl;
+  std::cout << "\nSummary: " << passed << "/" << cases.size()
+            << " tests passed.\n";
 
   return 0;
 }
