@@ -23,7 +23,15 @@ exist in nums are removed.
 list that has a value not present in nums
 
 ## Approach
--
+- Insert nums into a set for O\(1) lookup
+- Loop through list and if val is not present it set, append to linked list
+- Return head at the end
+
+Runtime:
+98ms beats 54.72%
+Memory:
+263.35mB beats 52.76%
 
 ## Improvements
-
+Reduce an addition conditional check by shifting head to first qualified value
+instead of checking for every value aka O\(N)
