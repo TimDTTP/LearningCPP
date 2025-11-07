@@ -23,7 +23,7 @@ int main() {
 
   int passed{0};
   for (size_t i{0}; i < cases.size(); ++i) {
-    const auto &unit = cases[i];
+    auto &unit = cases[i];
     void result = sol;
 
     if (result == unit.expected) {
