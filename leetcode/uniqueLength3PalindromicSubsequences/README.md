@@ -17,7 +17,15 @@ subsequences of s.
 - s consists of only lowercase English letters
 
 ## Approach
--
+- String to vector
+- Init a map to char to first occurence, last occurence
+- Loop through and add to map
+- Loop through map and between count unique in between and add to total
+
+Runtime:
+146ms beats 73.93%
+Memory:
+18.88mB beats 16.18%
 
 ## Improvements
 

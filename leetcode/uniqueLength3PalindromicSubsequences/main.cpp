@@ -1,6 +1,8 @@
 
 #include <iostream>
 #include <string>
+#include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 class Test {
@@ -19,8 +21,34 @@ public:
 class Solution {
 public:
   int countPalindromicSubsequence(std::string s) {
-    // useful code
-    // here
+    // string to vector
+    std::vector<char> chars{};
+    for (char c : s) {
+      chars.push_back(c);
+    }
+
+    // map first and last of each char
+    std::unordered_map<char, std::pair<int, int>> table{};
+    for (int i{0}; i < chars.size(); ++i) {
+      if (!table.contains(chars[i])) {
+        table[chars[i]].first = i;
+        table[chars[i]].second = -1;
+      } else {
+        table[chars[i]].second = i;
+      }
+    }
+
+    // count unique
+    int count{0};
+    for (const auto [key, value] : table) {
+      if (value.second == -1)
+        continue;
+      std::unordered_set<char> temp{chars.begin() + value.first + 1,
+                                    chars.begin() + value.second};
+      count += temp.size();
+    }
+
+    return count;
   }
 };
 
