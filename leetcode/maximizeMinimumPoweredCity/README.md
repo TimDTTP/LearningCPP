@@ -26,7 +26,9 @@ the distribution of power stations are built optimally.
 - 0 <= k <= 10^9
 
 ## Approach
-- 
+- Create a map\<int, int>, ascending order of key
+- Populate map with total power to city index
 
 ## Improvements
-
+TLE: Too long to come up with valid solution
+Hint: Difference table \(Greedy sliding window)
