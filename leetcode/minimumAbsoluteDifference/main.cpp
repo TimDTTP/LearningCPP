@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -27,8 +28,30 @@ public:
 class Solution {
 public:
   std::vector<std::vector<int>> minimumAbsDifference(std::vector<int> &arr) {
-    // useful
-    // code here
+    std::sort(arr.begin(), arr.end());
+
+    // find min diff and pairs
+    int minDiff{*(arr.end() - 1) - *arr.begin()};
+    int temp{};
+    std::vector<int> indexes{};
+    for (int i{0}; i < arr.size() - 1; ++i) {
+      temp = arr[i + 1] - arr[i];
+      if (temp < minDiff) {
+        minDiff = temp;
+        indexes.clear();
+        indexes.push_back(i);
+      } else if (temp == minDiff) {
+        indexes.push_back(i);
+      }
+    }
+
+    // assemble array
+    std::vector<std::vector<int>> pairs{};
+    for (int i{0}; i < indexes.size(); ++i) {
+      pairs.push_back({arr[indexes[i]], arr[indexes[i] + 1]});
+    }
+
+    return pairs;
   }
 };
 
