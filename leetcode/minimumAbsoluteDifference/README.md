@@ -30,4 +30,6 @@ Memory
 36.88mB Beats 16.96%
 
 ## Improvements
-
+Instead of init a separate vector to track the indexes, I could've just directly
+added the pair to the array. Despite not lowering the time complexity, it will 
+lower the coefficient.
