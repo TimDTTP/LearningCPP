@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -11,7 +12,8 @@ public:
 
   TestCase testA() { return {{5, 2, 3, 1}, 2}; }
   TestCase testB() { return {{1, 2, 2}, 0}; }
-  std::vector<TestCase> all() { return {testA(), testB()}; };
+  TestCase testC() { return {{7, 5, 3, 1, 2, 4, 6}, 5}; }
+  std::vector<TestCase> all() { return {testA(), testB(), testC()}; };
 
   void printVec(std::vector<int> v) {
     for (int i : v) {
@@ -22,10 +24,41 @@ public:
 };
 
 class Solution {
+private:
+  bool isDecreasing(std::vector<int> const vec) {
+    for (int i{0}; i < vec.size() - 1; ++i) {
+      if (vec[i] > vec[i + 1])
+        return true;
+    }
+    return false;
+  }
+
 public:
   int minimumPairRemoval(std::vector<int> &nums) {
-    // useful code
-    // here
+    // sums vector
+    std::vector<int> sums{};
+    for (int i{0}; i < nums.size() - 1; ++i) {
+      sums.push_back(nums[i] + nums[i + 1]);
+    }
+
+    // checker block
+    int count{0};
+    while (isDecreasing(nums)) {
+      std::size_t index =
+          std::min_element(sums.begin(), sums.end()) - sums.begin();
+      if (index > 0) {
+        sums[index - 1] = sums[index] + nums[index - 1];
+      }
+      if (index < sums.size() - 1) {
+        sums[index + 1] = sums[index] + nums[index + 2];
+      }
+      nums[index] = sums[index];
+      nums.erase(nums.begin() + index + 1);
+      sums.erase(sums.begin() + index);
+      ++count;
+    }
+
+    return count;
   }
 };
 

@@ -22,7 +22,18 @@ Return the minimum number of operations needed to make the array non-decreasing.
 - -1000 <= nums\[i] <= 1000
 
 ## Approach
--
+- Initialize a vector that is the sum of each pair in order
+- Fcn that returns a bool true if the nums vector is non-conforming
+- While nums is non-decreasing,
+    - Add min sum pair
+    - Revise values in sums vector
+    - Increment counter
+- Return counter
+
+Runtime
+4ms beats 25.63%
+Memory
+28.16mB beats 15.53%
 
 ## Improvements
 
