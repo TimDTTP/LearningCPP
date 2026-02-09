@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -19,10 +20,35 @@ public:
 class Solution {
 public:
   int minRemoval(std::vector<int> &nums, int k) {
-    // useful code
-    // here
+    std::sort(nums.begin(), nums.end());
 
-    return 0;
+    int size = nums.size();
+    int currMin{size};
+    bool earlyExit;
+    int checkpoint{0};
+
+    // edge case
+    if (size == 1)
+      return 0;
+
+    for (int i{0}; i < (size - 1); ++i) {
+      for (int j{checkpoint}; j < size; ++j) {
+        earlyExit = false;
+        if (nums[j] > ((long long)nums[i] * (long long)k)) {
+          currMin = std::min(currMin, (i + (size - j)));
+          checkpoint = j;
+          if (currMin == 0)
+            return 0;
+          earlyExit = true;
+          break;
+        }
+      }
+      if (!earlyExit) {
+        return std::min(currMin, i);
+      }
+    }
+
+    return currMin;
   }
 };
 

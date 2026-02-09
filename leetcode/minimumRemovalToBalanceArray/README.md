@@ -20,7 +20,23 @@ minimum value times k.
 - 1 <= nums\[i] <= 10^9
 - 1 <= k <= 10^5
 ## Approach
--
+Brute force
+- min function to find minimum value in vector
+- traverse through vector and count number of values greater than min * 2
+Note: does not account removing min value
+
+- Sort array ascending
+- Iterate through vector
+    - Find next value > than i * k
+    - Add \(i - 1) + \(size - i - 1)
+    - Hold onto value if it is new minimum
+- Return min
+Note: Time limit exceeded
+
+Runtime:
+14ms Beats 99.82%
+Memory: 
+104.92mB Beats 84.72%
 
 ## Improvements
 
