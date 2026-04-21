@@ -18,7 +18,10 @@ Balanced means that the 2 subtree's depth of each node never differ more than 1
 - Root is a binary search tree
 
 ## Approach
--
+- Convert binary tree into a vector via DFS in-order
+- Find middle point of vector and branch out adding continually to binary 
+tree
 
 ## Improvements
+
 

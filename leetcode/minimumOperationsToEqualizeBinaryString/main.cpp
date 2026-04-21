@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <utility>
 #include <vector>
 
 class Test {
@@ -17,10 +18,30 @@ public:
 };
 
 class Solution {
+private:
+  bool ifPossible(int zeroes, int k) {
+    while (k > 0) {
+      if ((zeroes % k) == 0)
+        return true;
+      else
+        k -= 2;
+    }
+    return false;
+  }
+
 public:
   int minOperations(std::string s, int k) {
-    // some useful
-    // code here
+    std::pair<int, int> binaryQuantity{};
+    for (char digit : s) {
+      ((digit - '0') ? ++binaryQuantity.second : ++binaryQuantity.first);
+    }
+
+    // check if possible
+    if (!ifPossible(binaryQuantity.first, k)) {
+      return -1;
+    }
+
+    return 1;
   }
 };
 

@@ -20,7 +20,11 @@ not possible return -1.
 - 1 <= k <= s.length
 
 ## Approach
--
+- Compile number of 0's and 1's into pair
+- Find remainder 0's % k
+- If k - remainder is even, there is a possible answer
+    - Else return -1 \(impossible)
+- Solution is 0's / k ceiling + 1
 
 ## Improvements
 
