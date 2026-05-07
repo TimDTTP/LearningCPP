@@ -28,7 +28,17 @@ same indices.
 - a != b
 
 ## Approach
--
+- Union find indices in allowedSwaps
+    - All indices that traverse to each other should be in one set
+- Convert target to an unordered map where \[value : index]
+- Traverse through source
+    - if map\[source\[i]] and i are NOT in the same set increment counter 
+- Return counter
+
+Runtime
+141ms beats 52.06%
+Memory 
+153.99ms beats 32.54%
 
 ## Improvements
 
