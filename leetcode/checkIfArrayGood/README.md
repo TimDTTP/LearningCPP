@@ -20,7 +20,16 @@ base\[n] = \[1, 2, 3, ..., n - 1, n, n]
 - 1 <= num\[i] <= 200
 
 ## Approach
--
+- get size and init vector with same size and with value 1
+- vector\[n - 1] has value 2 instead of 1
+- iterate through nums and check if value is still available
+    - if not, return false
+- at end return true
+
+Runtime: 
+0ms beats 100%
+Memory: 
+27.13MB beats 36.95%
 
 ## Improvements
 

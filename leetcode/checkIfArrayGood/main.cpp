@@ -20,8 +20,20 @@ public:
 class Solution {
 public:
   bool isGood(std::vector<int> &nums) {
-    // useful code
-    // here
+    int size = nums.size();
+    std::vector<int> check{};
+    check.resize(size, 1);
+    ++check[size - 1];
+
+    for (int i{0}; i < size; ++i) {
+      if (nums[i] >= size) {
+        return false;
+      } else if (check.at(nums[i]) == 0) {
+        return false;
+      }
+      --check[nums[i]];
+    }
+    return true;
   }
 };
 
