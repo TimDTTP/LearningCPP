@@ -23,7 +23,13 @@ complementary.
 - n is even
 
 ## Approach
--
+- Initialize an array size 2 * limit
+- Iterate through nums and calculate how many moves to get each value in 
+target array
+- Find min in target array
+
+TLE
 
 ## Improvements
-
+Proper solution works but is not personally very intuitive. However is the most
+efficient approach that solves the problem. Will most likely revisit.

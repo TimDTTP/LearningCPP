@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -19,8 +20,33 @@ public:
 class Solution {
 public:
   int minMoves(std::vector<int> &nums, int limit) {
-    // some useful
-    // code here
+    int size = nums.size();
+    if (size == 2) {
+      return 0;
+    }
+    std::vector<int> target{};
+    target.resize((2 * limit), 0);
+
+    // iterate and find # of moves
+    for (int i{0}; i < (size / 2); ++i) {
+      int big{std::max(nums[i], nums[size - 1 - i])};
+      int small{std::min(nums[i], nums[size - 1 - i])};
+      int upperLimit{big + limit};
+      int lowerLimit{small + 1};
+
+      for (int tar{2}; tar < (2 * limit); ++tar) {
+        if ((big + small) == tar) {
+          continue;
+        } else if ((lowerLimit <= tar) && (tar <= upperLimit)) {
+          target[tar] += 1;
+        } else {
+          target[tar] += 2;
+        }
+      }
+    }
+
+    auto minMoves{std::min_element(target.begin() + 2, target.end())};
+    return ((minMoves != target.end()) ? *minMoves : 0);
   }
 };
 
