@@ -13,7 +13,8 @@ public:
   TestCase testA() { return {{2, 1, 3}, false}; }
   TestCase testB() { return {{1, 3, 3, 2}, true}; }
   TestCase testC() { return {{1, 1}, true}; }
-  std::vector<TestCase> all() { return {testA(), testB(), testC()}; };
+  TestCase testD() { return {{3, 4, 4, 1, 2, 1}, false}; }
+  std::vector<TestCase> all() { return {testA(), testB(), testC(), testD()}; };
 };
 
 class Solution {
