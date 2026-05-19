@@ -20,7 +20,19 @@ An integer is common if it has at least one occurence in both arrays.
 - Both nums1 and nums2 are sorted in non-decreasing order
 
 ## Approach
--
+- make nums1 the shorter array
+- convert nums2 to set
+- interate throught and check if any nums in nums1 is in nums2
+
+Runtime
+43ms beats 20.05%
+Memory
+69.81mB beats 9.36%
 
 ## Improvements
+- Instead if legacy...
+if \(checkSet.find\(value) != set.end\())
+Use newer...
+if \(checkSet.contains\(value))
+- Also swapping nums1 to smaller array seemed possibly excessive
 
