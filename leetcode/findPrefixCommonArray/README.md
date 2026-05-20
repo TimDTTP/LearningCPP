@@ -20,7 +20,24 @@ before the index i.
 - It is guarateed that A and B are both a permutation of n integers
 
 ## Approach
--
+- B into a unordered map
+- Iterate through A and find the match
+- C\[max\(i, map\[A\[i]])]++
+- Loop over C once more and add previous values
+
+Runtime:
+8ms beats 47.28%
+Memory:
+88.18mB 36.61%
 
 ## Improvements
+- Using a frequency table to track the occurence of a value
+- Overall more elegant due to being a 1 pass algorithm
 
+Personal approach
+O\(J + 3N)
+- J is extra objects needed
+- 3N due to have to loop over 3 times
+
+Online approach
+O\(N)
