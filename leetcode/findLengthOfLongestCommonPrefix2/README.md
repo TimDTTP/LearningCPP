@@ -18,7 +18,15 @@ longest common prefix between 2 values, one in each vector parameter.
 - 1 <= arr\[i], arr2\[i] <= 10^8
 
 ## Approach
--
+- Turn arr2 into a tree where first value is the root
+- Iterate through arr1 and find longest prefix 
+- Return max
+
+Runtime:
+459ms beats 10.33%
+Memory:
+430.02mB beats 5.08%
 
 ## Improvements
-
+- On the right track but there exist a Trie that perform this prefix form
+of tree
