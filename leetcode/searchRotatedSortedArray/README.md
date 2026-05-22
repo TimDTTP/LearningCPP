@@ -30,7 +30,16 @@ Algorithm must be O\(log n) runtime complexity
 - -10^4 <= target <= 10^4
 
 ## Approach
--
+- Divide and conquer
+- Track upper and lower bound
+- While upper and lower bound are more than 1 index apart keep going
+- Divide and decide if to narrow down which direction
+- If neither upper or lower are equivalent to target, return -1
+
+Runtime:
+0ms beats 100.00%
+Memory:
+15.20mB beats 33.92%
 
 ## Improvements
 
