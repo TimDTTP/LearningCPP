@@ -12,14 +12,26 @@ public:
   TestCase testA() { return {{3, 4, 5, 1, 2}, true}; }
   TestCase testB() { return {{2, 1, 3, 4}, false}; }
   TestCase testC() { return {{1, 2, 3}, true}; }
-  std::vector<TestCase> all() { return {testA()}; };
+  std::vector<TestCase> all() { return {testA(), testB(), testC()}; };
 };
 
 class Solution {
 public:
   bool check(std::vector<int> &nums) {
-    // useful code
-    // here
+    int size = nums.size();
+    bool rotated{false};
+
+    for (int i{0}; i < (size - 1); ++i) {
+      if (nums[i] > nums[i + 1]) {
+        if (rotated || (nums[0] < nums[size - 1])) {
+          return false;
+        } else {
+          rotated = true;
+        }
+      }
+    }
+
+    return true;
   }
 };
 

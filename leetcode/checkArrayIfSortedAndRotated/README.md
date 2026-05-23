@@ -18,7 +18,14 @@ There may be duplicates in the original array
 - 1 <= nums\[i] <= 100
 
 ## Approach
--
+- Iterate through ensure all values are equal to or greater than the previous
+except for an allowance of one occurence of nums\[i + 1] greater than
+nums\[i]
+
+Runtime:
+0ms beats 100.00%
+Memory:
+11.34mB beats 18.08%
 
 ## Improvements
 
