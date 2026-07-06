@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -11,15 +12,40 @@ public:
 
   TestCase testA() { return {2, {{1, 4}, {3, 6}, {2, 8}}}; }
   TestCase testB() { return {1, {{1, 4}, {2, 3}}}; }
+  TestCase testC() { return {1, {{1, 2}, {1, 4}, {3, 4}}}; }
 
-  std::vector<TestCase> all() { return {testA()}; };
+  std::vector<TestCase> all() { return {testA(), testB(), testC()}; };
 };
 
 class Solution {
 public:
   int removeCoveredIntervals(std::vector<std::vector<int>> &intervals) {
-    // useful code
-    // here
+    // sort by first value ascending order
+    std::sort(intervals.begin(), intervals.end(),
+              [](const std::vector<int> &a, const std::vector<int> &b) {
+                return ((a[0] != b[0]) ? (a[0] < b[0]) : (a[1] > b[1]));
+              });
+
+    // traverse, track
+    int size = intervals.size();
+    int counter{0};
+    int currMax{intervals[0][1]};
+
+    // edge
+    if (size == 1) {
+      return 1;
+    }
+
+    for (int i{1}; i < size; ++i) {
+      if (intervals[i][1] > currMax) {
+        currMax = intervals[i][1];
+        continue;
+      } else {
+        ++counter;
+      }
+    }
+
+    return size - counter;
   }
 };
 

@@ -23,7 +23,15 @@ c <= a and b <= d
 - All the given intervals are unique
 
 ## Approach
--
+- Sort intervals ascending order by first index
+- Iterate through and track...
+    - Max value in second index
+    - Number of value which are lower than current max value
+
+Runtime:
+0ms beats 100%
+Memory:
+15.22mb beats 30.60%
 
 ## Improvements
 
