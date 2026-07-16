@@ -22,7 +22,16 @@ unpaired value. Repeat till no more pairs can be made
 - 1 <= nums\[i] <= 10^9
 
 ## Approach
--
+- Iterate through and track greatest value seen and pushback on max array
+- Use Euclidean algo to get GCD for given values
+- Sort
+- Pair and sum using a for loop
+
+Runtime:
+72ms Beats 68.57%
+Memory:
+161.38 Beats 51.73%
 
 ## Improvements
-
+Can reduce the time complexity by a coefficient by performing the prefixGcd
+and the max array in the same traversal.

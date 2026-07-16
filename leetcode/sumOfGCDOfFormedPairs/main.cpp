@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -15,10 +16,54 @@ public:
 };
 
 class Solution {
+private:
+  int gcd(int a, int b) {
+    if (a < b) {
+      std::swap(a, b);
+    }
+
+    // Euclid algo
+    int temp;
+    while ((a % b) != 0) {
+      temp = a % b;
+      a = b;
+      b = temp;
+    }
+
+    return b;
+  }
+
 public:
   long long gcdSum(std::vector<int> &nums) {
-    // useful code
-    // here
+    int n = nums.size();
+
+    // max array
+    std::vector<int> max;
+    max.resize(n);
+    int currMax{0};
+    for (int i{0}; i < n; ++i) {
+      if (nums[i] > currMax) {
+        currMax = nums[i];
+      }
+      max[i] = currMax;
+    }
+
+    // prefixGcd array
+    std::vector<int> prefixGcd;
+    prefixGcd.resize(n);
+    for (int i{0}; i < n; ++i) {
+      prefixGcd[i] = gcd(nums[i], max[i]);
+    }
+
+    std::sort(prefixGcd.begin(), prefixGcd.end(), std::less<int>());
+
+    // pair and sum
+    long long sum{0};
+    for (int dist{0}; dist < (n / 2); ++dist) {
+      sum += gcd(prefixGcd[dist], prefixGcd[n - 1 - dist]);
+    }
+
+    return sum;
   }
 };
 
