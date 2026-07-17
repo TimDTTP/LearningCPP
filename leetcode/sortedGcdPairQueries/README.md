@@ -23,7 +23,13 @@ gcdPairs\[queries\[i]]
 - 0 <= queries\[i] < n * \(n - 1) / 2
 
 ## Approach
--
+- Brute force find all GCD
+- Sort that array
+- Run regular queries into resultant
+
+As expected, approach led to memory exceeded. Fix will most likely lie in 
+finding a better way than O\(n^2) due to finding all GCDs.
+- Cannot find solution, will consult online solutions
 
 ## Improvements
 

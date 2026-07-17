@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -13,15 +14,47 @@ public:
   TestCase testA() { return {{2, 3, 4}, {0, 2, 2}, {1, 2, 2}}; }
   TestCase testB() { return {{4, 4, 2, 1}, {5, 3, 1, 0}, {4, 2, 1, 1}}; }
   TestCase testC() { return {{2, 2}, {0, 0}, {2, 2}}; }
-  std::vector<TestCase> all() { return {testA()}; };
+  std::vector<TestCase> all() { return {testA(), testB(), testC()}; };
 };
 
 class Solution {
+private:
+  int gcd(int a, int b) {
+    if (a > b) {
+      std::swap(a, b);
+    }
+
+    int temp;
+    while ((a % b) != 0) {
+      temp = a % b;
+      a = b;
+      b = temp;
+    }
+
+    return b;
+  }
+
 public:
   std::vector<int> gcdValues(std::vector<int> &nums,
                              std::vector<long long> &queries) {
-    // useful code
-    // here
+    int n = nums.size();
+
+    // brute force all GCDs
+    std::vector<int> gcds;
+    for (int a{0}; a < (n - 1); ++a) {
+      for (int b{a + 1}; b < n; ++b) {
+        gcds.push_back(gcd(nums[a], nums[b]));
+      }
+    }
+
+    std::sort(gcds.begin(), gcds.end());
+
+    std::vector<int> answer{};
+    for (long long val : queries) {
+      answer.push_back(gcds[val]);
+    }
+
+    return answer;
   }
 };
 
