@@ -15,21 +15,11 @@ public:
   // proper spacing for double digits
   void print(std::vector<std::vector<int>> v) {
     int n = v.size();
-    // find largest places
-    int longest{0};
-    for (int i{0}; i < n; ++i) {
-      for (int j{0}; j < n; ++j) {
-        if (v[i][j] < longest) {
-          longest = v[i][j];
-        }
-      }
-    }
-
-    int length{numLength(longest)};
+    int m = v[0].size();
 
     // print
     for (int i{0}; i < n; ++i) {
-      for (int j{0}; j < n; ++j) {
+      for (int j{0}; j < m; ++j) {
         std::cout << v[i][j];
         // spaces
         for (int s{7 - (numLength(v[i][j]))}; s > 0; --s) {
@@ -58,19 +48,48 @@ public:
   }
   TestCase testC() {
     return {{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}},
-            4,
+            9,
             {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}};
   }
+  TestCase testD() {
+    return {{{1}, {2}, {3}, {4}, {7}, {6}, {5}},
+            23,
+            {{6}, {5}, {1}, {2}, {3}, {4}, {7}}};
+  }
 
-  std::vector<TestCase> all() { return {testA()}; };
+  std::vector<TestCase> all() { return {testA(), testB(), testC(), testD()}; };
 };
 
 class Solution {
 public:
   std::vector<std::vector<int>> shiftGrid(std::vector<std::vector<int>> &grid,
                                           int k) {
-    // useful code
-    // here
+    int n = grid.size();
+    int m = grid[0].size();
+
+    std::vector<int> vals{};
+    for (int i{0}; i < n; ++i) {
+      for (int j{0}; j < m; ++j) {
+        vals.push_back(grid[i][j]);
+      }
+    }
+
+    std::pair<int, int> coord{};
+    coord.first = ((k / m) < (n - 1) ? (k / m) : ((k / m) % n));
+    coord.second = k % m;
+    // populate tail
+    for (int i : vals) {
+      grid[coord.first][coord.second] = i;
+      ++coord.second;
+      if (coord.second >= m) {
+        coord.second = 0;
+        ++coord.first;
+        if (coord.first >= n) {
+          coord.first = 0;
+        }
+      }
+    }
+
     return grid;
   }
 };

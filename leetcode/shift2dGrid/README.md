@@ -24,7 +24,13 @@ Given the return is grid shifted k number of times.
 - 0 <= k <= 100
 
 ## Approach
-- 
+- add all values to a vector
+- iterate starting at k and emplace all values with values in vector
+
+Runtime
+0ms beats 100%
+Memory
+19.40mb beats 11.39%
 
 ## Improvements
 
