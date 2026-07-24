@@ -1,5 +1,7 @@
 
+#include <cstddef>
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 class Test {
@@ -13,14 +15,69 @@ public:
   TestCase testB() { return {"0100", 4}; }
   TestCase testC() { return {"1000100", 7}; }
   TestCase testD() { return {"01010", 4}; }
-  std::vector<TestCase> all() { return {testA()}; };
+  TestCase testE() { return {"10100101", 7}; }
+  std::vector<TestCase> all() {
+    return {testA(), testB(), testC(), testD(), testE()};
+  };
 };
 
 class Solution {
 public:
   int maxActiveSectionsAfterTrade(std::string s) {
-    // useful code
-    // here
+    int n = s.size();
+
+    // get length into vector
+    std::vector<int> substring{};
+    int totalOnes{0};
+    int curr{0};
+    bool isActive{(s[0] == '1') ? true : false};
+    for (int i{0}; i < n; ++i) {
+      if ((s[i] == '1') == isActive) {
+        ++curr;
+      } else {
+        substring.push_back(curr);
+        if (isActive) {
+          totalOnes += curr;
+        }
+        curr = 1;
+        isActive = !isActive;
+      }
+    }
+    substring.push_back(curr);
+    if (isActive) {
+      totalOnes += curr;
+    }
+
+    // edge cases
+    isActive = (s[0] == '1') ? true : false;
+    int occur = substring.size();
+    if (occur == 1) {
+      return (isActive ? substring[0] : 0);
+    }
+    if (occur <= 3) {
+      switch (occur) {
+      case (1):
+        return (isActive ? substring[0] : 0);
+      case (2):
+        return (isActive ? substring[0] : substring[1]);
+      case (3):
+        if (isActive) {
+          return substring[0] + substring[2];
+        } else {
+          break;
+        }
+      }
+    }
+
+    // compare
+    int max{0};
+    for (int i{(s[0] == '1') ? 0 : 1}; i < occur; i += 2) {
+      curr = std::accumulate((substring.begin() + std::max(0, i - 1)),
+                             (substring.begin() + std::min(occur, (i + 2))), 0);
+      max = std::max(max, (totalOnes - substring[i] + curr));
+    }
+
+    return max;
   }
 };
 

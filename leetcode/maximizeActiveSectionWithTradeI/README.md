@@ -20,7 +20,16 @@ an inactive. By performing one trade in which...
 - s\[i] is either '0' or '1'
 
 ## Approach
--
+- Traverse and count length of each substring and add to vector
+- For each index the represent 1 accumulate s\[i], s\[i + ..4]
+    - 4 positions or until end
+- Accumulate 1 time for the front
+- Return max
+
+Runtime:
+83ms beats 65.65%
+Memory:
+104.89mb beats 33.27%
 
 ## Improvements
 
