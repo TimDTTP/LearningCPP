@@ -1,5 +1,8 @@
 
+#include <algorithm>
 #include <iostream>
+#include <map>
+#include <unordered_map>
 #include <vector>
 
 class Test {
@@ -18,8 +21,32 @@ public:
 class Solution {
 public:
   int minimumPushes(std::string word) {
-    // useful code
-    // here
+    // count letter freq
+    std::vector<int> freq{};
+    std::unordered_map<char, int> pointer{};
+    for (char c : word) {
+      if (pointer.contains(c)) {
+        ++freq[pointer[c]];
+      } else {
+        freq.push_back(1);
+        pointer[c] = freq.size() - 1;
+      }
+    }
+    std::sort(freq.begin(), freq.end(), std::greater<int>());
+
+    // accumulate
+    int totalMoves{};
+    std::pair<int, int> valueLimit{1, 8};
+    for (int c : freq) {
+      totalMoves += (c * valueLimit.first);
+      --valueLimit.second;
+      if (valueLimit.second == 0) {
+        ++valueLimit.first;
+        valueLimit.second = 8;
+      }
+    }
+
+    return totalMoves;
   }
 };
 

@@ -17,7 +17,16 @@ return the minimum number of pushes needed to type 'word'.
 - word consist of lowercase English letters
 
 ## Approach
--
+- Count the letters
+- Populate the 2-9 from greatest to least
+
+Runtime
+43ms beats 14.55%
+Memory
+26.86mB beats 49.93%
 
 ## Improvements
-
+- A more efficient way to track char freq is to index based on distance from
+'a' in a set array size 26.
+- For tracking the number of pushes, you can iterate normally and take...
+i / 8 + 1 * freq\[i]
